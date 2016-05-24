@@ -13,11 +13,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("asdasdf");
-
-            Transport transport = new Transport();
-
-            MessageBox.Show(transport.ToString());
+           // LoadData
         }
     }
 }

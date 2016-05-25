@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Net;
 using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SwissTransport
 {
@@ -37,6 +39,13 @@ namespace SwissTransport
             }
 
             return null;
+        }
+
+        public StationBoardRoot GetStationBoard(string station)
+        {
+            string id = GetStations(station).StationList.First().Id;
+
+            return GetStationBoard(station, id);
         }
 
         public Connections GetConnections(string fromStation, string toStattion)

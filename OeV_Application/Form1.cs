@@ -64,19 +64,54 @@ namespace OeV_Application
             }
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty);
+
+            foreach (StationBoard stationboard in stationboardroot.Entries)
+            {
+                ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
+                listViewItem.SubItems.Add(stationboard.To);
+                listViewItem.SubItems.Add(
+                            (stationboard.Stop.Departure.Hour.ToString().Length > 1 ?
+                                stationboard.Stop.Departure.Hour.ToString() :
+                                "0" + stationboard.Stop.Departure.Hour.ToString())
+                                + ":" +
+                            (stationboard.Stop.Departure.Minute.ToString().Length > 1 ?
+                                stationboard.Stop.Departure.Minute.ToString() :
+                                "0" + stationboard.Stop.Departure.Minute.ToString())
+                            );
+                listViewItem.SubItems.Add(stationboard.Category);
+                listViewItem.SubItems.Add(stationboard.Operator);
+                stationBoardListView.Items.Add(listViewItem);
+            }
+        }
+
         private void CmbFrom_TextChanged(object sender, EventArgs e)
         {
-            LoadRequestResultToCombobox(CmbFrom);
+            ComboBox cmb = (ComboBox)sender;
+            if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
+            {
+                LoadRequestResultToCombobox(cmb);
+            }
         }
 
         private void CmbTo_TextChanged(object sender, EventArgs e)
         {
-            LoadRequestResultToCombobox(CmbTo);
+            ComboBox cmb = (ComboBox)sender;
+            if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
+            {
+                LoadRequestResultToCombobox(CmbFrom);
+            }
         }
 
         private void cmbBoardName_TextChanged(object sender, EventArgs e)
         {
-            LoadRequestResultToCombobox(cmbBoardName);
+            ComboBox cmb = (ComboBox)sender;
+            if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
+            {
+                LoadRequestResultToCombobox(CmbFrom);
+            }
         }
 
         private void CmbFrom_KeyPress(object sender, KeyEventArgs e)
@@ -205,22 +240,19 @@ namespace OeV_Application
 
         private void LoadRequestResultToCombobox(ComboBox cmb, bool executeRequest = false)
         {
-            if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null || executeRequest)
+            this.Enabled = false;
+
+            StationsLoadFunction stationLoadFunction = new StationsLoadFunction();
+            List<Station> stationlist = stationLoadFunction.Execute(cmb.Text);
+
+            cmb.Items.Clear();
+            foreach (Station station in stationlist)
             {
-                this.Enabled = false;
-
-                StationsLoadFunction stationLoadFunction = new StationsLoadFunction();
-                List<Station> stationlist = stationLoadFunction.Execute(cmb.Text);
-
-                cmb.Items.Clear();
-                foreach (Station station in stationlist)
-                {
-                    cmb.Items.Add(station.Name);
-                }
-
-                this.Enabled = true;
-                cmb.SelectionStart = cmb.Text.Length + 1;
+                cmb.Items.Add(station.Name);
             }
+
+            this.Enabled = true;
+            cmb.SelectionStart = cmb.Text.Length + 1;
         }
 
         private void PrepareConnections()
@@ -282,28 +314,29 @@ namespace OeV_Application
 
             return transportConnection.GetStationBoard(name);
         }
+    }
 
-        private void button2_Click(object sender, EventArgs e)
+    public class LoadRequestResultToCombobox
+    {
+        public LoadRequestResultToCombobox(ComboBox target)
         {
-            stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty);
+            Target = target;
+        }
 
-            foreach (StationBoard stationboard in stationboardroot.Entries)
+        public ComboBox Target { get; set; }
+
+        public void Execute()
+        {
+            StationsLoadFunction stationLoadFunction = new StationsLoadFunction();
+            List<Station> stationlist = stationLoadFunction.Execute(Target.Text);
+
+            Target.Items.Clear();
+            foreach (Station station in stationlist)
             {
-                ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
-                listViewItem.SubItems.Add(stationboard.To);
-                listViewItem.SubItems.Add(
-                            (stationboard.Stop.Departure.Hour.ToString().Length > 1 ?
-                                stationboard.Stop.Departure.Hour.ToString() :
-                                "0" + stationboard.Stop.Departure.Hour.ToString())
-                                + ":" +
-                            (stationboard.Stop.Departure.Minute.ToString().Length > 1 ?
-                                stationboard.Stop.Departure.Minute.ToString() :
-                                "0" + stationboard.Stop.Departure.Minute.ToString())
-                            );
-                listViewItem.SubItems.Add(stationboard.Category);
-                listViewItem.SubItems.Add(stationboard.Operator);                
-                stationBoardListView.Items.Add(listViewItem);
+                Target.Items.Add(station.Name);
             }
-        }       
+
+            Target.SelectionStart = Target.Text.Length + 1;
+        }
     }
 }

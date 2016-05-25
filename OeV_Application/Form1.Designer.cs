@@ -173,6 +173,8 @@
             this.cmbBoardName.Name = "cmbBoardName";
             this.cmbBoardName.Size = new System.Drawing.Size(185, 21);
             this.cmbBoardName.TabIndex = 26;
+            this.cmbBoardName.TextChanged += new System.EventHandler(this.cmbBoardName_TextChanged);
+            this.cmbBoardName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbBoardName_KeyPress);
             // 
             // label3
             // 

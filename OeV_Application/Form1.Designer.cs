@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.CmbTo = new System.Windows.Forms.ComboBox();
+            this.CmbFrom = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.listView1 = new System.Windows.Forms.ListView();
             this.button1 = new System.Windows.Forms.Button();
@@ -38,8 +40,6 @@
             this.Label1 = new System.Windows.Forms.Label();
             this.ViaTextBox = new System.Windows.Forms.TextBox();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
-            this.ToTextBox = new System.Windows.Forms.TextBox();
-            this.FromTextbox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -57,6 +57,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.CmbTo);
+            this.tabPage1.Controls.Add(this.CmbFrom);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.button1);
@@ -65,8 +67,6 @@
             this.tabPage1.Controls.Add(this.Label1);
             this.tabPage1.Controls.Add(this.ViaTextBox);
             this.tabPage1.Controls.Add(this.DateTimePicker);
-            this.tabPage1.Controls.Add(this.ToTextBox);
-            this.tabPage1.Controls.Add(this.FromTextbox);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -74,6 +74,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // CmbTo
+            // 
+            this.CmbTo.FormattingEnabled = true;
+            this.CmbTo.Location = new System.Drawing.Point(62, 36);
+            this.CmbTo.Name = "CmbTo";
+            this.CmbTo.Size = new System.Drawing.Size(185, 21);
+            this.CmbTo.TabIndex = 19;
+            this.CmbTo.TextChanged += new System.EventHandler(this.CmbTo_TextChanged);
+            this.CmbTo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmdTo_KeyPress);
+            // 
+            // CmbFrom
+            // 
+            this.CmbFrom.FormattingEnabled = true;
+            this.CmbFrom.Location = new System.Drawing.Point(62, 14);
+            this.CmbFrom.Name = "CmbFrom";
+            this.CmbFrom.Size = new System.Drawing.Size(185, 21);
+            this.CmbFrom.TabIndex = 18;
+            this.CmbFrom.TextChanged += new System.EventHandler(this.CmbFrom_TextChanged);
+            this.CmbFrom.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmbFrom_KeyPress);
             // 
             // label4
             // 
@@ -143,20 +163,6 @@
             this.DateTimePicker.Size = new System.Drawing.Size(185, 20);
             this.DateTimePicker.TabIndex = 9;
             // 
-            // ToTextBox
-            // 
-            this.ToTextBox.Location = new System.Drawing.Point(62, 37);
-            this.ToTextBox.Name = "ToTextBox";
-            this.ToTextBox.Size = new System.Drawing.Size(185, 20);
-            this.ToTextBox.TabIndex = 8;
-            // 
-            // FromTextbox
-            // 
-            this.FromTextbox.Location = new System.Drawing.Point(62, 11);
-            this.FromTextbox.Name = "FromTextbox";
-            this.FromTextbox.Size = new System.Drawing.Size(185, 20);
-            this.FromTextbox.TabIndex = 7;
-            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -192,11 +198,11 @@
         private System.Windows.Forms.Label Label1;
         private System.Windows.Forms.TextBox ViaTextBox;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
-        private System.Windows.Forms.TextBox ToTextBox;
-        private System.Windows.Forms.TextBox FromTextbox;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox CmbFrom;
+        private System.Windows.Forms.ComboBox CmbTo;
     }
 }
 

@@ -292,6 +292,8 @@ namespace OeV_Application
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
+            MailSendForm form = new MailSendForm(listView1.SelectedItems[0]);
+            form.Show();
             //Mail Massage
         }
 

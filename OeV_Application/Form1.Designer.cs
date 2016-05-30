@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_Departure = new System.Windows.Forms.Button();
+            this.button_Arrive = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txb_Time = new System.Windows.Forms.TextBox();
             this.CmbTo = new System.Windows.Forms.ComboBox();
             this.CmbFrom = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -45,10 +49,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.txb_Time = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button_Arrive = new System.Windows.Forms.Button();
-            this.button_Departure = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -85,6 +85,42 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Verbindungen";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button_Departure
+            // 
+            this.button_Departure.Location = new System.Drawing.Point(152, 116);
+            this.button_Departure.Name = "button_Departure";
+            this.button_Departure.Size = new System.Drawing.Size(35, 23);
+            this.button_Departure.TabIndex = 23;
+            this.button_Departure.Text = "Ab";
+            this.button_Departure.UseVisualStyleBackColor = true;
+            this.button_Departure.Click += new System.EventHandler(this.button_Departure_Click);
+            // 
+            // button_Arrive
+            // 
+            this.button_Arrive.Location = new System.Drawing.Point(117, 116);
+            this.button_Arrive.Name = "button_Arrive";
+            this.button_Arrive.Size = new System.Drawing.Size(35, 23);
+            this.button_Arrive.TabIndex = 22;
+            this.button_Arrive.Text = "An";
+            this.button_Arrive.UseVisualStyleBackColor = true;
+            this.button_Arrive.Click += new System.EventHandler(this.Button_Arrive_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 121);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Uhrzeit";
+            // 
+            // txb_Time
+            // 
+            this.txb_Time.Location = new System.Drawing.Point(195, 118);
+            this.txb_Time.Name = "txb_Time";
+            this.txb_Time.Size = new System.Drawing.Size(52, 20);
+            this.txb_Time.TabIndex = 20;
             // 
             // CmbTo
             // 
@@ -170,7 +206,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(602, 427);
+            this.tabPage2.Size = new System.Drawing.Size(520, 427);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Abfahrtsplan";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -227,42 +263,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(185, 20);
             this.dateTimePicker1.TabIndex = 21;
-            // 
-            // txb_Time
-            // 
-            this.txb_Time.Location = new System.Drawing.Point(195, 118);
-            this.txb_Time.Name = "txb_Time";
-            this.txb_Time.Size = new System.Drawing.Size(52, 20);
-            this.txb_Time.TabIndex = 20;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 121);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Uhrzeit";
-            // 
-            // button_Arrive
-            // 
-            this.button_Arrive.Location = new System.Drawing.Point(117, 116);
-            this.button_Arrive.Name = "button_Arrive";
-            this.button_Arrive.Size = new System.Drawing.Size(35, 23);
-            this.button_Arrive.TabIndex = 22;
-            this.button_Arrive.Text = "An";
-            this.button_Arrive.UseVisualStyleBackColor = true;
-            this.button_Arrive.Click += new System.EventHandler(this.Button_Arrive_Click);
-            // 
-            // button_Departure
-            // 
-            this.button_Departure.Location = new System.Drawing.Point(152, 116);
-            this.button_Departure.Name = "button_Departure";
-            this.button_Departure.Size = new System.Drawing.Size(35, 23);
-            this.button_Departure.TabIndex = 23;
-            this.button_Departure.Text = "Ab";
-            this.button_Departure.UseVisualStyleBackColor = true;
-            this.button_Departure.Click += new System.EventHandler(this.button_Departure_Click);
             // 
             // Form1
             // 

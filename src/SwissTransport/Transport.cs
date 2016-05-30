@@ -3,6 +3,8 @@ using System.Net;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
+using System;
 
 namespace SwissTransport
 {
@@ -51,6 +53,32 @@ namespace SwissTransport
         public Connections GetConnections(string fromStation, string toStattion)
         {
             var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStattion);
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null)
+            {
+                var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                var connections =
+                    JsonConvert.DeserializeObject<Connections>(readToEnd);
+                return connections;
+            }
+
+            return null;
+        }
+
+        public Connections GetConnectionsSpecificTime(string fromStation, string toStation, DateTime date, bool IsArrivalTime = false)
+        {
+            var req = "from = " + fromStation + " & to = " + toStation +
+            "&date=" + date.ToString("yyyy-MM-dd") +
+            "&time=" + date.ToString("HH:mm") +
+            "&isArrivalTimes=" + "1";
+
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation +
+            "&date=" + date.ToString("yyyy-MM-dd") +
+            "&time=" + date.ToString("HH:mm") +
+            "&isArrivalTime=" + (IsArrivalTime ? "1" : "0"));
+
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 

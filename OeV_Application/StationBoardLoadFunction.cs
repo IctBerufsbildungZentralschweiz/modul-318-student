@@ -7,14 +7,14 @@ using SwissTransport;
 
 namespace OeV_Application
 {
-    public class StationBoardFunction
+    public class StationBoardLoadFunction
     {
-        public StationBoardFunction()
+        public StationBoardLoadFunction()
         {
 
         }
 
-        ~StationBoardFunction()
+        ~StationBoardLoadFunction()
         {
 
         }

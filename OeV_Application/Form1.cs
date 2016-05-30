@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace OeV_Application
 {
@@ -36,19 +37,25 @@ namespace OeV_Application
                 string FromSearchText = CmbFrom.SelectedItem != null ? CmbFrom.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbFrom.Text) ? CmbFrom.Text : string.Empty;
                 string ToSearchText = CmbTo.SelectedItem != null ? CmbTo.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbTo.Text) ? CmbTo.Text : string.Empty;
 
-                Connections = connectionsLoader.Execute(FromSearchText, ToSearchText);
+                DateTime dt = DateTime.Parse(txb_Time.Text);
+
+                Connections = connectionsLoader.Execute(FromSearchText, ToSearchText, new DateTime(DateTimePicker.Value.Year, DateTimePicker.Value.Month, DateTimePicker.Value.Day, dt.Hour, dt.Minute, 0), !button_Arrive.Enabled);
 
                 if (Connections.Any())
                 {
-                    PrepareConnections();
                     listView1.Items.Clear();
                     foreach (Connection connection in Connections)
                     {
+                        DateTime depa = DateTime.Parse(connection.From.Departure);
+                        DateTime arriv = DateTime.Parse(connection.To.Arrival);
+
+                        TimeSpan duration = TimeSpan.ParseExact(connection.Duration, "dd'd'hh':'mm':'ss", null);
+
                         ListViewItem listviewitem = new ListViewItem(connection.From.Station.Name);
                         listviewitem.SubItems.Add(connection.To.Station.Name);
-                        listviewitem.SubItems.Add(connection.From.Departure);
-                        listviewitem.SubItems.Add(connection.To.Arrival);
-                        listviewitem.SubItems.Add("1");
+                        listviewitem.SubItems.Add(depa.ToString("HH:mm"));
+                        listviewitem.SubItems.Add(arriv.ToString("HH:mm"));
+                        listviewitem.SubItems.Add(duration.ToString(@"hh\:mm"));
 
                         listView1.Items.Add(listviewitem);
                     }
@@ -68,19 +75,14 @@ namespace OeV_Application
         {
             stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty);
 
+            stationBoardListView.Items.Clear();
+
             foreach (StationBoard stationboard in stationboardroot.Entries)
             {
+               
                 ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
                 listViewItem.SubItems.Add(stationboard.To);
-                listViewItem.SubItems.Add(
-                            (stationboard.Stop.Departure.Hour.ToString().Length > 1 ?
-                                stationboard.Stop.Departure.Hour.ToString() :
-                                "0" + stationboard.Stop.Departure.Hour.ToString())
-                                + ":" +
-                            (stationboard.Stop.Departure.Minute.ToString().Length > 1 ?
-                                stationboard.Stop.Departure.Minute.ToString() :
-                                "0" + stationboard.Stop.Departure.Minute.ToString())
-                            );
+                listViewItem.SubItems.Add(stationboard.Stop.Departure.ToString("HH:mm"));
                 listViewItem.SubItems.Add(stationboard.Category);
                 listViewItem.SubItems.Add(stationboard.Operator);
                 stationBoardListView.Items.Add(listViewItem);
@@ -101,7 +103,7 @@ namespace OeV_Application
             ComboBox cmb = (ComboBox)sender;
             if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
             {
-                LoadRequestResultToCombobox(CmbFrom);
+                LoadRequestResultToCombobox(cmb);
             }
         }
 
@@ -110,7 +112,7 @@ namespace OeV_Application
             ComboBox cmb = (ComboBox)sender;
             if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
             {
-                LoadRequestResultToCombobox(CmbFrom);
+                LoadRequestResultToCombobox(cmb);
             }
         }
 
@@ -236,6 +238,8 @@ namespace OeV_Application
             stationBoardListView.Columns.Add("Abfahrt");
             stationBoardListView.Columns.Add("Kategorie");
             stationBoardListView.Columns.Add("Anbieter");
+
+            txb_Time.Text = DateTime.Now.ToString("hh:mm");
         }
 
         private void LoadRequestResultToCombobox(ComboBox cmb, bool executeRequest = false)
@@ -253,35 +257,6 @@ namespace OeV_Application
 
             this.Enabled = true;
             cmb.SelectionStart = cmb.Text.Length + 1;
-        }
-
-        private void PrepareConnections()
-        {
-            foreach (Connection connection in Connections)
-            {
-                connection.From.Departure = (Convert.ToDateTime(connection.From.Departure).Hour.ToString().Length > 1 ?
-                                Convert.ToDateTime(connection.From.Departure).Hour.ToString() :
-                                "0" + Convert.ToDateTime(connection.From.Departure).Hour.ToString())
-                                + ":" +
-                            (Convert.ToDateTime(connection.From.Departure).Minute.ToString().Length > 1 ?
-                                Convert.ToDateTime(connection.From.Departure).Minute.ToString() :
-                                "0" + Convert.ToDateTime(connection.From.Departure).Minute.ToString());
-
-                connection.To.Departure = (Convert.ToDateTime(connection.To.Departure).Hour.ToString().Length > 1 ?
-                                                Convert.ToDateTime(connection.To.Departure).Hour.ToString() :
-                                                "0" + Convert.ToDateTime(connection.To.Departure).Hour.ToString())
-                                                + ":" +
-                                            (Convert.ToDateTime(connection.To.Departure).Minute.ToString().Length > 1 ?
-                                                Convert.ToDateTime(connection.To.Departure).Minute.ToString() :
-                                                "0" + Convert.ToDateTime(connection.To.Departure).Minute.ToString());
-
-                TimeSpan duration = TimeSpan.ParseExact(connection.Duration, "dd'd'hh':'mm':'ss", null);
-
-                connection.Duration = (duration.Hours.ToString().Length > 1 ? duration.Hours.ToString() : "0" + duration.Hours.ToString())
-                    + ":" +
-                    (duration.Minutes.ToString().Length > 1 ? duration.Minutes.ToString() : "0" + duration.Minutes.ToString());
-            }
-
         }
 
         private void SetErrorColor(object target, string Message)
@@ -313,6 +288,23 @@ namespace OeV_Application
             Transport transportConnection = new Transport();
 
             return transportConnection.GetStationBoard(name);
+        }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            //Mail Massage
+        }
+
+        private void Button_Arrive_Click(object sender, EventArgs e)
+        {
+            button_Arrive.Enabled = false;
+            button_Departure.Enabled = true;
+        }
+        
+        private void button_Departure_Click(object sender, EventArgs e)
+        {
+            button_Departure.Enabled = false;
+            button_Arrive.Enabled = true;
         }
     }
 

@@ -19,13 +19,15 @@ namespace OeV_Application
 
         }
 
-        public List<Connection> Execute(string FromStation, string ToStation)
-        {
+        public List<Connection> Execute(string FromStation, string ToStation, DateTime date, bool isArrivalTime = false)
+        { 
             Transport transportitem = new Transport();
 
             List<Connection> connections = new List<Connection>();
 
-            foreach (Connection connection in transportitem.GetConnections(FromStation, ToStation).ConnectionList)
+            var connectionlist = transportitem.GetConnectionsSpecificTime(FromStation, ToStation, date, isArrivalTime).ConnectionList;
+
+            foreach (Connection connection in connectionlist)
             {
                 connections.Add(connection);
             }

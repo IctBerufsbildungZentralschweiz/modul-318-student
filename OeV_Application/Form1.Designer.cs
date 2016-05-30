@@ -49,6 +49,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.Button_MapFrom = new System.Windows.Forms.Button();
+            this.button_MapTo = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -66,6 +68,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button_MapTo);
+            this.tabPage1.Controls.Add(this.Button_MapFrom);
             this.tabPage1.Controls.Add(this.button_Departure);
             this.tabPage1.Controls.Add(this.button_Arrive);
             this.tabPage1.Controls.Add(this.label5);
@@ -264,6 +268,26 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(185, 20);
             this.dateTimePicker1.TabIndex = 21;
             // 
+            // Button_MapFrom
+            // 
+            this.Button_MapFrom.Location = new System.Drawing.Point(253, 4);
+            this.Button_MapFrom.Name = "Button_MapFrom";
+            this.Button_MapFrom.Size = new System.Drawing.Size(25, 23);
+            this.Button_MapFrom.TabIndex = 24;
+            this.Button_MapFrom.Text = "i";
+            this.Button_MapFrom.UseVisualStyleBackColor = true;
+            this.Button_MapFrom.Click += new System.EventHandler(this.Button_MapFrom_Click);
+            // 
+            // button_MapTo
+            // 
+            this.button_MapTo.Location = new System.Drawing.Point(253, 31);
+            this.button_MapTo.Name = "button_MapTo";
+            this.button_MapTo.Size = new System.Drawing.Size(25, 23);
+            this.button_MapTo.TabIndex = 25;
+            this.button_MapTo.Text = "i";
+            this.button_MapTo.UseVisualStyleBackColor = true;
+            this.button_MapTo.Click += new System.EventHandler(this.button_MapTo_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -304,6 +328,8 @@
         private System.Windows.Forms.TextBox txb_Time;
         private System.Windows.Forms.Button button_Departure;
         private System.Windows.Forms.Button button_Arrive;
+        private System.Windows.Forms.Button button_MapTo;
+        private System.Windows.Forms.Button Button_MapFrom;
     }
 }
 

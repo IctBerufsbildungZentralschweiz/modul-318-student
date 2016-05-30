@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using System.Net;
 
 namespace OeV_Application
 {
@@ -19,6 +20,8 @@ namespace OeV_Application
         DateTime TravelDateTime;
         List<Connection> Connections;
         StationBoardRoot stationboardroot;
+        Station Fromstation;
+        Station ToStation; 
 
         public Form1()
         {
@@ -167,11 +170,11 @@ namespace OeV_Application
             string FromStationText = CmbFrom.Text;
             string ToStationText = CmbTo.Text;
 
-            if (FromStationText.Length > 40)
+            if (FromStationText.Length > 100)
             {
                 if (CmbFrom.BackColor == SystemColors.Window)
                 {
-                    SetErrorColor(CmbFrom, "Maximal 40 Zeichen erlaubt.");
+                    SetErrorColor(CmbFrom, "Maximal 100 Zeichen erlaubt.");
                     NoError = false;
                 }
             }
@@ -183,11 +186,11 @@ namespace OeV_Application
                 }
             }
 
-            if (ToStationText.Length > 40)
+            if (ToStationText.Length > 100)
             {
                 if (CmbTo.BackColor == SystemColors.Window)
                 {
-                    SetErrorColor(CmbTo, "Maximal 40 Zeichen erlaubt.");
+                    SetErrorColor(CmbTo, "Maximal 100 Zeichen erlaubt.");
                     NoError = false;
                 }
             }
@@ -307,6 +310,39 @@ namespace OeV_Application
         {
             button_Departure.Enabled = false;
             button_Arrive.Enabled = true;
+        }
+
+        private void Button_MapFrom_Click(object sender, EventArgs e)
+        {
+            StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
+            List<Station> stations = stationsloadfunction.Execute(CmbFrom.Text);
+
+            if(stations != null && stations.Any())
+            {
+                MapsForm mapsform = new MapsForm(stations);
+                mapsform.Show();
+            }
+            else
+            {
+                MessageBox.Show("Es konnten keine Stationen gefunden werden.");
+            }
+
+        }
+
+        private void button_MapTo_Click(object sender, EventArgs e)
+        {
+            StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
+            List<Station> stations = stationsloadfunction.Execute(CmbTo.Text);
+
+            if (stations != null && stations.Any())
+            {
+                MapsForm mapsform = new MapsForm(stations);
+                mapsform.Show();
+            }
+            else
+            {
+                MessageBox.Show("Es konnten keine Stationen gefunden werden.");
+            }
         }
     }
 

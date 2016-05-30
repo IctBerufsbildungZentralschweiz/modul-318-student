@@ -26,6 +26,22 @@ namespace SwissTransport
             return null;
         }
 
+        public Stations GetStationsByAdresse(string adresse)
+        {
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/locations?type=" + adresse);
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null)
+            {
+                var message = new StreamReader(responseStream).ReadToEnd();
+                var stations = JsonConvert.DeserializeObject<Stations>(message);
+                return stations;
+            }
+
+            return null;
+        }
+
         public StationBoardRoot GetStationBoard(string station, string id)
         {
             var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?Station=" + station + "&id=" + id);
@@ -69,10 +85,10 @@ namespace SwissTransport
 
         public Connections GetConnectionsSpecificTime(string fromStation, string toStation, DateTime date, bool IsArrivalTime = false)
         {
-            var req = "from = " + fromStation + " & to = " + toStation +
+            /*var req = "from = " + fromStation + " & to = " + toStation +
             "&date=" + date.ToString("yyyy-MM-dd") +
             "&time=" + date.ToString("HH:mm") +
-            "&isArrivalTimes=" + "1";
+            "&isArrivalTimes=" + "1";*/
 
             var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation +
             "&date=" + date.ToString("yyyy-MM-dd") +

@@ -59,11 +59,24 @@ namespace SwissTransport
             return null;
         }
 
-        public StationBoardRoot GetStationBoard(string station)
+        public StationBoardRoot GetStationBoardWithSpecificTime(string station, DateTime date)
         {
-            string id = GetStations(station).StationList.First().Id;
+            Stations stations = GetStations(station);
+            string id = stations != null ? stations.StationList.First().Id: string.Empty;
 
-            return GetStationBoard(station, id);
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?Station=" + station + "&id=" + id + "&datetime=" + date.ToString("yyyy-MM-dd hh:mm"));
+            var response = request.GetResponse();
+            var responseStream = response.GetResponseStream();
+
+            if (responseStream != null)
+            {
+                var readToEnd = new StreamReader(responseStream).ReadToEnd();
+                var stationboard =
+                    JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
+                return stationboard;
+            }
+
+            return null;
         }
 
         public Connections GetConnections(string fromStation, string toStattion)

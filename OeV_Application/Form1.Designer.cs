@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button_MapTo = new System.Windows.Forms.Button();
+            this.Button_MapFrom = new System.Windows.Forms.Button();
             this.button_Departure = new System.Windows.Forms.Button();
             this.button_Arrive = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -48,9 +50,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.Button_MapFrom = new System.Windows.Forms.Button();
-            this.button_MapTo = new System.Windows.Forms.Button();
+            this.Date_Stationboard = new System.Windows.Forms.DateTimePicker();
+            this.textbox_Time_Stationboard = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -89,6 +91,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Verbindungen";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button_MapTo
+            // 
+            this.button_MapTo.Location = new System.Drawing.Point(253, 31);
+            this.button_MapTo.Name = "button_MapTo";
+            this.button_MapTo.Size = new System.Drawing.Size(25, 23);
+            this.button_MapTo.TabIndex = 25;
+            this.button_MapTo.Text = "i";
+            this.button_MapTo.UseVisualStyleBackColor = true;
+            this.button_MapTo.Click += new System.EventHandler(this.button_MapTo_Click);
+            // 
+            // Button_MapFrom
+            // 
+            this.Button_MapFrom.Location = new System.Drawing.Point(253, 4);
+            this.Button_MapFrom.Name = "Button_MapFrom";
+            this.Button_MapFrom.Size = new System.Drawing.Size(25, 23);
+            this.Button_MapFrom.TabIndex = 24;
+            this.Button_MapFrom.Text = "i";
+            this.Button_MapFrom.UseVisualStyleBackColor = true;
+            this.Button_MapFrom.Click += new System.EventHandler(this.Button_MapFrom_Click);
             // 
             // button_Departure
             // 
@@ -201,12 +223,14 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.textbox_Time_Stationboard);
             this.tabPage2.Controls.Add(this.stationBoardListView);
             this.tabPage2.Controls.Add(this.cmbBoardName);
             this.tabPage2.Controls.Add(this.label3);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.dateTimePicker1);
+            this.tabPage2.Controls.Add(this.Date_Stationboard);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -244,7 +268,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(123, 105);
+            this.button2.Location = new System.Drawing.Point(123, 111);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(124, 23);
             this.button2.TabIndex = 24;
@@ -261,32 +285,28 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Von";
             // 
-            // dateTimePicker1
+            // Date_Stationboard
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(62, 60);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(185, 20);
-            this.dateTimePicker1.TabIndex = 21;
+            this.Date_Stationboard.Location = new System.Drawing.Point(62, 60);
+            this.Date_Stationboard.Name = "Date_Stationboard";
+            this.Date_Stationboard.Size = new System.Drawing.Size(185, 20);
+            this.Date_Stationboard.TabIndex = 21;
             // 
-            // Button_MapFrom
+            // textbox_Time_Stationboard
             // 
-            this.Button_MapFrom.Location = new System.Drawing.Point(253, 4);
-            this.Button_MapFrom.Name = "Button_MapFrom";
-            this.Button_MapFrom.Size = new System.Drawing.Size(25, 23);
-            this.Button_MapFrom.TabIndex = 24;
-            this.Button_MapFrom.Text = "i";
-            this.Button_MapFrom.UseVisualStyleBackColor = true;
-            this.Button_MapFrom.Click += new System.EventHandler(this.Button_MapFrom_Click);
+            this.textbox_Time_Stationboard.Location = new System.Drawing.Point(195, 86);
+            this.textbox_Time_Stationboard.Name = "textbox_Time_Stationboard";
+            this.textbox_Time_Stationboard.Size = new System.Drawing.Size(52, 20);
+            this.textbox_Time_Stationboard.TabIndex = 29;
             // 
-            // button_MapTo
+            // label6
             // 
-            this.button_MapTo.Location = new System.Drawing.Point(253, 31);
-            this.button_MapTo.Name = "button_MapTo";
-            this.button_MapTo.Size = new System.Drawing.Size(25, 23);
-            this.button_MapTo.TabIndex = 25;
-            this.button_MapTo.Text = "i";
-            this.button_MapTo.UseVisualStyleBackColor = true;
-            this.button_MapTo.Click += new System.EventHandler(this.button_MapTo_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Uhrzeit";
             // 
             // Form1
             // 
@@ -322,7 +342,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker Date_Stationboard;
         private System.Windows.Forms.ListView stationBoardListView;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txb_Time;
@@ -330,6 +350,8 @@
         private System.Windows.Forms.Button button_Arrive;
         private System.Windows.Forms.Button button_MapTo;
         private System.Windows.Forms.Button Button_MapFrom;
+        private System.Windows.Forms.TextBox textbox_Time_Stationboard;
+        private System.Windows.Forms.Label label6;
     }
 }
 

@@ -48,7 +48,7 @@ namespace OeV_Application
             TravelDateTime = DateTimePicker.Value;
 
             //Are Data Valid
-            if (Validator())
+            if (ValidatorConnection())
             {
                 ConnectionsLoadFunction connectionsLoader = new ConnectionsLoadFunction();
 
@@ -60,7 +60,7 @@ namespace OeV_Application
 
                 //Set DateTime
                 DateTime dt;
-                if (string.IsNullOrEmpty(txb_Time.Text))
+                if (!string.IsNullOrEmpty(txb_Time.Text))
                 {
                     dt = DateTime.Parse(txb_Time.Text);
                 }
@@ -107,21 +107,38 @@ namespace OeV_Application
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //Load Stationboard
-            stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty);
-
-            //Clear Stationboard listview
-            stationBoardListView.Items.Clear();
-
-            foreach (StationBoard stationboard in stationboardroot.Entries)
+            if (ValidatorStationBoard())
             {
-                // wirte stationboard into the listview
-                ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
-                listViewItem.SubItems.Add(stationboard.To);
-                listViewItem.SubItems.Add(stationboard.Stop.Departure.ToString("HH:mm"));
-                listViewItem.SubItems.Add(stationboard.Category);
-                listViewItem.SubItems.Add(stationboard.Operator);
-                stationBoardListView.Items.Add(listViewItem);
+                DateTime dt;
+                if (!string.IsNullOrEmpty(textbox_Time_Stationboard.Text))
+                {
+                    dt = DateTime.Parse(textbox_Time_Stationboard.Text);
+                }
+                else
+                {
+                    dt = DateTime.Now;
+                }
+
+                //Load Stationboard
+                stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty, new DateTime(Date_Stationboard.Value.Year, Date_Stationboard.Value.Month, Date_Stationboard.Value.Day, dt.Hour, dt.Minute, 0));
+
+                //Clear Stationboard listview
+                stationBoardListView.Items.Clear();
+
+                foreach (StationBoard stationboard in stationboardroot.Entries)
+                {
+                    // wirte stationboard into the listview
+                    ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
+                    listViewItem.SubItems.Add(stationboard.To);
+                    listViewItem.SubItems.Add(stationboard.Stop.Departure.ToString("HH:mm"));
+                    listViewItem.SubItems.Add(stationboard.Category);
+                    listViewItem.SubItems.Add(stationboard.Operator);
+                    stationBoardListView.Items.Add(listViewItem);
+                }
+            }
+            else
+            {
+                CreateDialogWindow();
             }
         }
 
@@ -256,7 +273,7 @@ namespace OeV_Application
             }
         }
 
-        private bool Validator()
+        private bool ValidatorConnection()
         {
             //Reset Color
             ResetColor();
@@ -332,6 +349,62 @@ namespace OeV_Application
             return true;
         }
 
+        private bool ValidatorStationBoard()
+        {
+            //Reset Color
+            ResetColor();
+
+            //Clear Exceptions
+            ErrorExceptions.Clear();
+            ErrorTargets.Clear();
+
+            string FromStationText = cmbBoardName.Text;
+            string Time = textbox_Time_Stationboard.Text;
+
+            DateTime output;
+
+            if (Time.Length > 5)
+            {
+                ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:MM");
+                ErrorTargets.Add(textbox_Time_Stationboard);
+            }
+            //Check has Time the right format
+            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out output))
+            {
+                ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
+                ErrorTargets.Add(textbox_Time_Stationboard);
+            }
+
+            if (string.IsNullOrEmpty(FromStationText))
+            {
+                ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf nicht leer sein.");
+                ErrorTargets.Add(cmbBoardName);
+            }
+            else if (FromStationText.Length > 100)
+            {
+                ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf maximal 100 Zeichen lang sein.");
+                ErrorTargets.Add(cmbBoardName);
+            }
+            else if (cmbBoardName.SelectedItem == null)
+            {
+                if (cmbBoardName.Items.IndexOf(cmbBoardName.Text) == -1)
+                {
+                    ErrorExceptions.Add("Bitte wählen sie ein Element aus der Auswahl für die Ankunftsstation aus.");
+                    ErrorTargets.Add(cmbBoardName);
+                }
+            }
+
+            //Any Exceptions?
+            if (ErrorExceptions.Any())
+            {
+                //Set Color Red
+                SetColorRed();
+                return false;
+            }
+
+            return true;
+        }
+
         private void BuildComponent()
         {
             // Build header from the listview
@@ -354,6 +427,7 @@ namespace OeV_Application
             stationBoardListView.Columns.Add("Anbieter");
 
             //Write Datetime.Now into the Time Textbox
+            textbox_Time_Stationboard.Text = DateTime.Now.ToString("HH:mm");
             txb_Time.Text = DateTime.Now.ToString("HH:mm");
         }
 
@@ -380,12 +454,13 @@ namespace OeV_Application
             cmb.SelectionStart = cursorpos;
         }
 
-        private StationBoardRoot LoadStationBoard(string name)
+        private StationBoardRoot LoadStationBoard(string name, DateTime date)
         {
             // Load Stationboard
             Transport transportConnection = new Transport();
 
-            return transportConnection.GetStationBoard(name);
+            return transportConnection.GetStationBoardWithSpecificTime(name, date);
+            //return transportConnection.GetStationBoard(name);
         }
 
         private void SetColorRed()
@@ -414,23 +489,27 @@ namespace OeV_Application
         private void ResetColor()
         {
             //Reset all Colors from the Controls
-            foreach (Control control in this.Controls[0].Controls[0].Controls)
+            foreach (Control control in this.Controls[0].Controls)
             {
-                    if (control.GetType() == typeof(TextBox))
+                foreach(Control Childcontrol in control.Controls)
+                {
+                    if (Childcontrol.GetType() == typeof(TextBox))
                     {
-                        TextBox textbox = (TextBox)control;
+                        TextBox textbox = (TextBox)Childcontrol;
                         textbox.BackColor = SystemColors.Window;
                     }
-                    else if (control.GetType() == typeof(RichTextBox))
+                    else if (Childcontrol.GetType() == typeof(RichTextBox))
                     {
-                        RichTextBox richtextbox = (RichTextBox)control;
+                        RichTextBox richtextbox = (RichTextBox)Childcontrol;
                         richtextbox.BackColor = SystemColors.Window;
                     }
-                    else if (control.GetType() == typeof(ComboBox))
+                    else if (Childcontrol.GetType() == typeof(ComboBox))
                     {
-                        ComboBox combobox = (ComboBox)control;
+                        ComboBox combobox = (ComboBox)Childcontrol;
                         combobox.BackColor = SystemColors.Window;
                     }
+                }
+                    
             }
         }
 

@@ -15,24 +15,24 @@ namespace OeV_Application
 
         }
 
-        ~StationsLoadFunction()
-        {
-
-        }
+        List<Station> Stations = new List<Station>();
 
         public List<Station> Execute(string SearchText)
         {
 
-            List<Station> ReturnStationList = new List<Station>();
+            //List<Station> ReturnStationList = new List<Station>();
 
+            //Create Transport Object
             Transport transportConnection = new Transport();
 
             Stations stationsList = new Stations();
 
+            //Validator should check it, but it's saver wehen i do a new adjustment
             if (!string.IsNullOrEmpty(SearchText))
             { 
                 try
                 {
+                    // Load all Connections that are semi equals to the searchtext
                     stationsList = transportConnection.GetStations(SearchText);
                 }
                 catch
@@ -43,15 +43,17 @@ namespace OeV_Application
             
             }
 
+            // Any Stations aviable, else Null Refrence Exception
             if (stationsList.StationList.Any())
             {
+                //Loop all Stations. I would return List<Station> instead of Stations
                 foreach (Station station in stationsList.StationList)
                 {
-                    ReturnStationList.Add(station);
+                    Stations.Add(station);
                 }
             }
 
-            return ReturnStationList;
+            return Stations;
         }
     }
 }

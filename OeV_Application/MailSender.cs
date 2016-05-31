@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System.Net;
-using System.Web;
 using System.Windows.Forms;
 
 namespace OeV_Application
@@ -21,7 +15,10 @@ namespace OeV_Application
 
         public void Execute()
         {
+            // Create new SmtpConnection to the Server with the Port
             SmtpClient smtpclient = new SmtpClient("smtp.googlemail.com", 465);
+
+            //Connect with E-Mail and Password
             smtpclient.Credentials = new NetworkCredential("test@googlemail.com", "pw");
             smtpclient.EnableSsl = true;
 

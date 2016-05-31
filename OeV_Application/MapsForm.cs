@@ -20,8 +20,6 @@ namespace OeV_Application
 {
     public partial class MapsForm : Form
     {
-        private Station station; 
-
         public MapsForm()
         { 
 
@@ -31,6 +29,7 @@ namespace OeV_Application
         {
             InitializeComponent();
 
+            //Create the Control
             GMapControl mapcontrol = new GMapControl();
             mapcontrol.Size = new Size(1000, 1000);
             mapcontrol.MapProvider = GMapProviders.OpenStreetMap;
@@ -39,25 +38,11 @@ namespace OeV_Application
             mapcontrol.Zoom = 9;
             this.Controls.Add(mapcontrol);
 
+            //Add the Stations to the map
             foreach(Station station in stations)
             {
                 mapcontrol.Position = new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate);
             }
-
-            IPHostEntry entry = GetGoogleEntry();            
-        }
-
-        private IPHostEntry GetGoogleEntry()
-        {
-            try
-            {
-                return Dns.GetHostEntry("www.google.com");
-            }
-            catch
-            {
-                return null;
-            }
-
         }
     }
 }

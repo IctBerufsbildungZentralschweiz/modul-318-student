@@ -15,23 +15,18 @@ namespace OeV_Application
 
         }
 
-        ~StationBoardLoadFunction()
-        {
-
-        }
-
         public StationBoardRoot Execute(string StationName)
         {
             // Load Station
             StationsLoadFunction loadfunction = new StationsLoadFunction();
-
             Station station = loadfunction.Execute(StationName).First();
 
-            // Load StationBoard
+            // Creaet Transport Object
             Transport transportconnection = new Transport();
 
             try
             {
+                // Load and Return Stationboard
                 return transportconnection.GetStationBoard(station.Name, station.Id);
             }
             catch

@@ -22,24 +22,24 @@ namespace OeV_Application
 
         public MailMessage Message { get; set; }
 
-        public void UpdateText(string body)
+        private void UpdateText(string body)
         {
             Message.Body = body;
         }
 
-        public void UpdateHeader(string header)
+        private void UpdateHeader(string header)
         {
             Message.Subject = header;
         }
 
-        public void RemoveReciever(string mailadress)
+        private void RemoveReciever(string mailadress)
         {
             var removableitem = Message.To.FirstOrDefault(t => t.Address == mailadress);
 
             Message.To.Remove(removableitem);
         }
 
-        public void AddReciever(string mailadress)
+        private void AddReciever(string mailadress)
         {
             Message.To.Add(new MailAddress(mailadress));
         }

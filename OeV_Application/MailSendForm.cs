@@ -16,14 +16,17 @@ namespace OeV_Application
         public MailSendForm(ListViewItem selectedItem)
         {
             InitializeComponent();
-
+            
             ErrorExceptions = new List<string>();
             ErrorTargets = new List<object>();
 
             SelectedListViewItem = selectedItem;
+
+            //Load Standart Header and Content
             Header = GetHeaderFromSelectedItem();
             Content = GetContentFromSelectedItem();
 
+            //Write Content to View
             textBoxHeader.Text = Header;
             richTextBoxContent.Text = Content;
 
@@ -49,17 +52,22 @@ namespace OeV_Application
             Header = textBoxHeader.Text;
             Content = richTextBoxContent.Text;
 
+            // Validate Data
             if (Validator())
             {
+                // Get Single E-Mail Adresses
                 Recievers = GetSplittedRecivers();
 
+                // Create a new Mail Build with the Content, the header and the recivers
                 MailBuilder mailbuild = new MailBuilder(Content, Header, Recievers);
 
+                //Create a Mail send and send it
                 MailSender mailsender = new MailSender(mailbuild.Message);
                 mailsender.Execute();
             }
             else
             {
+                //View Validation Errors
                 CreateDialogWindow();
             }
         }
@@ -83,13 +91,15 @@ namespace OeV_Application
         {
             List<string> returnRecievers = new List<string>();
 
+            //Split string by each ; 
             string[] recievers = RecieversString.Split(';');
 
             foreach (string reciever in recievers)
             {
+                //trim all recivers
                 string value = reciever.Trim(new char[] { ' ', ',' });
 
-                if (!string.IsNullOrEmpty(value) && (Regex.Match(value, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")).Success)
+                if (!string.IsNullOrEmpty(value))
                 {
                     returnRecievers.Add(value);
                 }
@@ -100,7 +110,10 @@ namespace OeV_Application
 
         private bool Validator()
         {
+            //Reset the red Colors
             ResetColor();
+
+            //Clear Exception Lists
             ErrorExceptions.Clear();
             ErrorTargets.Clear();
 
@@ -138,12 +151,15 @@ namespace OeV_Application
             }
             else
             {
+                //Split string by each ; 
                 string[] recievers = RecieversString.Split(';');
 
                 foreach (string reciever in recievers)
                 {
+                    //Trim all recivers
                     string value = reciever.Trim(new char[] { ' ', ',' });
 
+                    //Check are the E-Mail adresses aviable
                     if (!string.IsNullOrEmpty(value) && (Regex.Match(value, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$")).Success == false)
                     {
                         ErrorExceptions.Add("Der Empfänger " + value + " Entspricht nicht den Richtlinien.");
@@ -152,8 +168,10 @@ namespace OeV_Application
                 }
             }
 
+            //If any Exceptions
             if (ErrorExceptions.Any())
             {
+                //Set the Color red by the Controls
                 SetColorRed();
                 return false;
             }
@@ -165,18 +183,24 @@ namespace OeV_Application
         {
             foreach (object target in ErrorTargets)
             {
+                //target == Textbox
                 if (target.GetType() == typeof(TextBox))
                 {
+                    //set color
                     TextBox textbox = (TextBox)target;
                     textbox.BackColor = Color.Red;
                 }
+                //target == Richtextbox
                 else if (target.GetType() == typeof(RichTextBox))
                 {
+                    //set color
                     RichTextBox richtextbox = (RichTextBox)target;
                     richtextbox.BackColor = Color.Red;
                 }
+                //target == combobox
                 else if (target.GetType() == typeof(ComboBox))
                 {
+                    //set color
                     ComboBox combobox = (ComboBox)target;
                     combobox.BackColor = Color.Red;
                 }
@@ -187,18 +211,24 @@ namespace OeV_Application
         {
             foreach(object control in this.Controls)
             {
+                //target == Textbox
                 if (control.GetType() == typeof(TextBox))
                 {
+                    //reset color
                     TextBox textbox = (TextBox)control;
                     textbox.BackColor = SystemColors.Window;
                 }
+                //target == Richtextbox
                 else if (control.GetType() == typeof(RichTextBox))
                 {
+                    //reset color
                     RichTextBox richtextbox = (RichTextBox)control;
                     richtextbox.BackColor = SystemColors.Window;
                 }
+                //target == Combobox
                 else if (control.GetType() == typeof(ComboBox))
                 {
+                    //reset color
                     ComboBox combobox = (ComboBox)control;
                     combobox.BackColor = SystemColors.Window;
                 }
@@ -211,6 +241,7 @@ namespace OeV_Application
 
             foreach(string error in ErrorExceptions)
             {
+                // Add each Exception to Messagebox
                 DialogResultString += error + "\n\n";
             }
 

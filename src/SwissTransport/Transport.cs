@@ -85,11 +85,6 @@ namespace SwissTransport
 
         public Connections GetConnectionsSpecificTime(string fromStation, string toStation, DateTime date, bool IsArrivalTime = false)
         {
-            /*var req = "from = " + fromStation + " & to = " + toStation +
-            "&date=" + date.ToString("yyyy-MM-dd") +
-            "&time=" + date.ToString("HH:mm") +
-            "&isArrivalTimes=" + "1";*/
-
             var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation +
             "&date=" + date.ToString("yyyy-MM-dd") +
             "&time=" + date.ToString("HH:mm") +

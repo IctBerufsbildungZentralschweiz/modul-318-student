@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SwissTransport;
+using System.Windows.Forms;
 
 namespace OeV_Application
 {
@@ -29,8 +30,17 @@ namespace OeV_Application
             Stations stationsList = new Stations();
 
             if (!string.IsNullOrEmpty(SearchText))
-            {
-                stationsList = transportConnection.GetStations(SearchText);
+            { 
+                try
+                {
+                    stationsList = transportConnection.GetStations(SearchText);
+                }
+                catch
+                {
+                    MessageBox.Show("Es ist ein Fehler beim Laden der Station aufgetreten. Bitte versuchen sie es noch einmals");
+                    return null;
+                }
+            
             }
 
             if (stationsList.StationList.Any())

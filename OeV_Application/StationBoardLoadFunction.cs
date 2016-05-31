@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SwissTransport;
+using System.Windows.Forms;
 
 namespace OeV_Application
 {
@@ -28,9 +29,16 @@ namespace OeV_Application
 
             // Load StationBoard
             Transport transportconnection = new Transport();
-            
-            return transportconnection.GetStationBoard(station.Name, station.Id);
 
+            try
+            {
+                return transportconnection.GetStationBoard(station.Name, station.Id);
+            }
+            catch
+            {
+                MessageBox.Show("Es ist ein Fehler beim Laden der Abfahrtstafel aufgetreten. Bitte versuchen sie es noch einmals");
+                return null;
+            }
         }
     }
 }

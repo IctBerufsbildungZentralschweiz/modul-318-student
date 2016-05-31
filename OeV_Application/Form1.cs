@@ -17,16 +17,24 @@ namespace OeV_Application
 {
     public partial class Form1 : Form
     {
-        DateTime TravelDateTime;
-        List<Connection> Connections;
-        StationBoardRoot stationboardroot;
-        Station Fromstation;
-        Station ToStation; 
+        public DateTime TravelDateTime { get; set; }
+        public List<Connection> Connections { get; set; }
+        public StationBoardRoot stationboardroot { get; set; }
+        public Station Fromstation { get; set; }
+        public Station ToStation { get; set; }
+
+        List<string> ErrorExceptions { get; set; }
+        List<object> ErrorTargets { get; set; }
+
 
         public Form1()
         {
             InitializeComponent();
             BuildComponent();
+
+            ErrorExceptions = new List<string>();
+            ErrorTargets = new List<object>();
+            button_Departure.Enabled = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -40,7 +48,15 @@ namespace OeV_Application
                 string FromSearchText = CmbFrom.SelectedItem != null ? CmbFrom.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbFrom.Text) ? CmbFrom.Text : string.Empty;
                 string ToSearchText = CmbTo.SelectedItem != null ? CmbTo.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbTo.Text) ? CmbTo.Text : string.Empty;
 
-                DateTime dt = DateTime.Parse(txb_Time.Text);
+                DateTime dt;
+                if (string.IsNullOrEmpty(txb_Time.Text))
+                {
+                    dt = DateTime.Parse(txb_Time.Text);
+                }
+                else
+                {
+                    dt = DateTime.Now;
+                }
 
                 Connections = connectionsLoader.Execute(FromSearchText, ToSearchText, new DateTime(DateTimePicker.Value.Year, DateTimePicker.Value.Month, DateTimePicker.Value.Day, dt.Hour, dt.Minute, 0), !button_Arrive.Enabled);
 
@@ -70,7 +86,7 @@ namespace OeV_Application
             }
             else
             {
-                MessageBox.Show("Eingaben sind nicht Valid.");
+                CreateDialogWindow();
             }
         }
 
@@ -164,135 +180,6 @@ namespace OeV_Application
             }
         }
 
-        private bool Validator()
-        {
-            bool NoError = true;
-            string FromStationText = CmbFrom.Text;
-            string ToStationText = CmbTo.Text;
-
-            if (FromStationText.Length > 100)
-            {
-                if (CmbFrom.BackColor == SystemColors.Window)
-                {
-                    SetErrorColor(CmbFrom, "Maximal 100 Zeichen erlaubt.");
-                    NoError = false;
-                }
-            }
-            else
-            {
-                if (CmbFrom.BackColor == Color.Red)
-                {
-                    ResetErrorColor(CmbFrom);
-                }
-            }
-
-            if (ToStationText.Length > 100)
-            {
-                if (CmbTo.BackColor == SystemColors.Window)
-                {
-                    SetErrorColor(CmbTo, "Maximal 100 Zeichen erlaubt.");
-                    NoError = false;
-                }
-            }
-            else
-            {
-                if (CmbTo.BackColor == Color.Red)
-                {
-                    ResetErrorColor(CmbTo);
-                }
-            }
-
-            if (CmbFrom.SelectedItem == null)
-            {
-                if (CmbFrom.Items.IndexOf(CmbFrom.Text) == -1)
-                {
-                    SetErrorColor(CmbFrom, "Bitte wählen sie ein Element aus der Auswahl aus.");
-                    NoError = false;
-                }
-            }
-
-            if (CmbTo.SelectedItem == null)
-            {
-                if (CmbTo.Items.IndexOf(CmbTo.Text) == -1)
-                {
-                    SetErrorColor(CmbTo, "Bitte wählen sie ein Element aus der Auswahl aus.");
-                    NoError = false;
-                }
-            }
-
-            return NoError;
-        }
-
-        private void BuildComponent()
-        {
-            listView1.View = View.Details;
-            listView1.FullRowSelect = true;
-            listView1.Columns.Add("Abfahrts Station");
-            listView1.Columns.Add("Ankunfts Station");
-            listView1.Columns.Add("Abfahrt");
-            listView1.Columns.Add("Ankunft");
-            listView1.Columns.Add("Dauer");
-            listView1.Columns.Add("Umsteigen");
-
-            stationBoardListView.View = View.Details;
-            stationBoardListView.FullRowSelect = true;
-            stationBoardListView.Columns.Add("Abfahrts Station");
-            stationBoardListView.Columns.Add("Ankunfts Station");
-            stationBoardListView.Columns.Add("Abfahrt");
-            stationBoardListView.Columns.Add("Kategorie");
-            stationBoardListView.Columns.Add("Anbieter");
-
-            txb_Time.Text = DateTime.Now.ToString("hh:mm");
-        }
-
-        private void LoadRequestResultToCombobox(ComboBox cmb, bool executeRequest = false)
-        {
-            this.Enabled = false;
-
-            StationsLoadFunction stationLoadFunction = new StationsLoadFunction();
-            List<Station> stationlist = stationLoadFunction.Execute(cmb.Text);
-
-            cmb.Items.Clear();
-            foreach (Station station in stationlist)
-            {
-                cmb.Items.Add(station.Name);
-            }
-
-            this.Enabled = true;
-            cmb.SelectionStart = cmb.Text.Length + 1;
-        }
-
-        private void SetErrorColor(object target, string Message)
-        {
-            if(target.GetType() == typeof(ComboBox))
-            {
-                ComboBox cmb = (ComboBox)target;
-                if (cmb.BackColor == SystemColors.Window)
-                {
-                    cmb.BackColor = Color.Red;
-                    cmb.ContextMenu = new ContextMenu();
-                    cmb.ContextMenu.MenuItems.Add(Message);
-                }
-            }
-        }
-
-        private void ResetErrorColor(object target)
-        {
-            if (target.GetType() == typeof(ComboBox))
-            {
-                ComboBox cmb = (ComboBox)target;
-                cmb.BackColor = SystemColors.Window;
-                cmb.ContextMenu.MenuItems.Clear();
-            }
-        }
-
-        private StationBoardRoot LoadStationBoard(string name)
-        {
-            Transport transportConnection = new Transport();
-
-            return transportConnection.GetStationBoard(name);
-        }
-
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
             MailSendForm form = new MailSendForm(listView1.SelectedItems[0]);
@@ -305,7 +192,7 @@ namespace OeV_Application
             button_Arrive.Enabled = false;
             button_Departure.Enabled = true;
         }
-        
+
         private void button_Departure_Click(object sender, EventArgs e)
         {
             button_Departure.Enabled = false;
@@ -317,7 +204,7 @@ namespace OeV_Application
             StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
             List<Station> stations = stationsloadfunction.Execute(CmbFrom.Text);
 
-            if(stations != null && stations.Any())
+            if (stations != null && stations.Any())
             {
                 MapsForm mapsform = new MapsForm(stations);
                 mapsform.Show();
@@ -343,6 +230,177 @@ namespace OeV_Application
             {
                 MessageBox.Show("Es konnten keine Stationen gefunden werden.");
             }
+        }
+
+        private bool Validator()
+        {
+            ResetColor();
+            ErrorExceptions.Clear();
+            ErrorTargets.Clear();
+
+            string FromStationText = CmbFrom.Text;
+            string ToStationText = CmbTo.Text;
+            string Time = txb_Time.Text;
+
+            if (string.IsNullOrEmpty(FromStationText))
+            {
+                ErrorExceptions.Add("Die Suche nach der Abfahrtsstation darf nicht leer sein.");
+                ErrorTargets.Add(CmbFrom);
+            }
+            else if (FromStationText.Length > 100)
+            {
+                ErrorExceptions.Add("Die Suche nach der Abfahrtsstation darf maximal 100 Zeichen lang sein.");
+                ErrorTargets.Add(CmbFrom);
+            }
+            else if (CmbFrom.SelectedItem == null)
+            {
+                if (CmbFrom.Items.IndexOf(CmbFrom.Text) == -1)
+                {
+                    ErrorExceptions.Add("Bitte wählen sie ein Element aus der Auswahl für die Abfahrtsstation aus.");
+                    ErrorTargets.Add(CmbFrom);
+                }
+            }
+
+            if (string.IsNullOrEmpty(ToStationText))
+            {
+                ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf nicht leer sein.");
+                ErrorTargets.Add(CmbTo);
+            }
+            else if (ToStationText.Length > 100)
+            {
+                ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf maximal 100 Zeichen lang sein.");
+                ErrorTargets.Add(CmbTo);
+            }
+            else if (CmbTo.SelectedItem == null)
+            {
+                if (CmbTo.Items.IndexOf(CmbTo.Text) == -1)
+                {
+                    ErrorExceptions.Add("Bitte wählen sie ein Element aus der Auswahl für die Ankunftsstation aus.");
+                    ErrorTargets.Add(CmbTo);
+                }
+            }
+
+            DateTime output;
+
+            if (Time.Length > 5)
+            {
+                ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:MM");
+                ErrorTargets.Add(txb_Time);
+            }
+            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None , out output)/* || !DateTime.TryParse(Time, out output)*/)
+            { 
+                ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
+                ErrorTargets.Add(txb_Time);
+            }
+            if (ErrorExceptions.Any())
+            {
+                SetColorRed();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void BuildComponent()
+        {
+            listView1.View = View.Details;
+            listView1.FullRowSelect = true;
+            listView1.Columns.Add("Abfahrts Station");
+            listView1.Columns.Add("Ankunfts Station");
+            listView1.Columns.Add("Abfahrt");
+            listView1.Columns.Add("Ankunft");
+            listView1.Columns.Add("Dauer");
+            listView1.Columns.Add("Umsteigen");
+
+            stationBoardListView.View = View.Details;
+            stationBoardListView.FullRowSelect = true;
+            stationBoardListView.Columns.Add("Abfahrts Station");
+            stationBoardListView.Columns.Add("Ankunfts Station");
+            stationBoardListView.Columns.Add("Abfahrt");
+            stationBoardListView.Columns.Add("Kategorie");
+            stationBoardListView.Columns.Add("Anbieter");
+
+            txb_Time.Text = DateTime.Now.ToString("HH:mm");
+        }
+
+        private void LoadRequestResultToCombobox(ComboBox cmb, bool executeRequest = false)
+        {
+            this.Enabled = false;
+
+            StationsLoadFunction stationLoadFunction = new StationsLoadFunction();
+            List<Station> stationlist = stationLoadFunction.Execute(cmb.Text);
+
+            cmb.Items.Clear();
+            foreach (Station station in stationlist)
+            {
+                cmb.Items.Add(station.Name);
+            }
+
+            this.Enabled = true;
+            cmb.SelectionStart = cmb.Text.Length + 1;
+        }
+
+        private StationBoardRoot LoadStationBoard(string name)
+        {
+            Transport transportConnection = new Transport();
+
+            return transportConnection.GetStationBoard(name);
+        }
+
+        private void SetColorRed()
+        {
+            foreach (object target in ErrorTargets)
+            {
+                if (target.GetType() == typeof(TextBox))
+                {
+                    TextBox textbox = (TextBox)target;
+                    textbox.BackColor = Color.Red;
+                }
+                else if (target.GetType() == typeof(RichTextBox))
+                {
+                    RichTextBox richtextbox = (RichTextBox)target;
+                    richtextbox.BackColor = Color.Red;
+                }
+                else if (target.GetType() == typeof(ComboBox))
+                {
+                    ComboBox combobox = (ComboBox)target;
+                    combobox.BackColor = Color.Red;
+                }
+            }
+        }
+
+        private void ResetColor()
+        {
+            foreach (Control control in this.Controls[0].Controls[0].Controls)
+            {
+                    if (control.GetType() == typeof(TextBox))
+                    {
+                        TextBox textbox = (TextBox)control;
+                        textbox.BackColor = SystemColors.Window;
+                    }
+                    else if (control.GetType() == typeof(RichTextBox))
+                    {
+                        RichTextBox richtextbox = (RichTextBox)control;
+                        richtextbox.BackColor = SystemColors.Window;
+                    }
+                    else if (control.GetType() == typeof(ComboBox))
+                    {
+                        ComboBox combobox = (ComboBox)control;
+                        combobox.BackColor = SystemColors.Window;
+                    }
+            }
+        }
+
+        private void CreateDialogWindow()
+        {
+            string DialogResultString = string.Empty;
+
+            foreach (string error in ErrorExceptions)
+            {
+                DialogResultString += error + "\n\n";
+            }
+
+            MessageBox.Show(DialogResultString);
         }
     }
 

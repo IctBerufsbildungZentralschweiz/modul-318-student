@@ -333,7 +333,7 @@ namespace OeV_Application
                 ErrorTargets.Add(txb_Time);
             }
             //Check has Time the right format
-            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None , out output))
+            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None , out output) && !string.IsNullOrEmpty(Time))
             { 
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
                 ErrorTargets.Add(txb_Time);
@@ -369,7 +369,7 @@ namespace OeV_Application
                 ErrorTargets.Add(textbox_Time_Stationboard);
             }
             //Check has Time the right format
-            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out output))
+            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out output) && !string.IsNullOrEmpty(Time))
             {
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
                 ErrorTargets.Add(textbox_Time_Stationboard);

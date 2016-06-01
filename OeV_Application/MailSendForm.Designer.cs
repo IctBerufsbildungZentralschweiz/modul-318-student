@@ -34,7 +34,7 @@
             this.richTextBoxContent = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Button_MailSend = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textboxRecievers
@@ -77,22 +77,22 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Betreff";
             // 
-            // button1
+            // Button_MailSend
             // 
-            this.button1.Location = new System.Drawing.Point(188, 267);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(92, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Versenden";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Button_MailSend.Location = new System.Drawing.Point(188, 267);
+            this.Button_MailSend.Name = "Button_MailSend";
+            this.Button_MailSend.Size = new System.Drawing.Size(92, 23);
+            this.Button_MailSend.TabIndex = 5;
+            this.Button_MailSend.Text = "Versenden";
+            this.Button_MailSend.UseVisualStyleBackColor = true;
+            this.Button_MailSend.Click += new System.EventHandler(this.Button_MailSend_Click);
             // 
             // MailSendForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 325);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Button_MailSend);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richTextBoxContent);
@@ -113,6 +113,6 @@
         private System.Windows.Forms.RichTextBox richTextBoxContent;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Button_MailSend;
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace OeV_Application
 {
-    partial class Form1
+    partial class ÖV_Application
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ÖV_Application));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button_MapTo = new System.Windows.Forms.Button();
@@ -40,8 +40,8 @@
             this.CmbTo = new System.Windows.Forms.ComboBox();
             this.CmbFrom = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.button1 = new System.Windows.Forms.Button();
+            this.ConnectionsListView = new System.Windows.Forms.ListView();
+            this.Button_Connection = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.Label1 = new System.Windows.Forms.Label();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -51,7 +51,7 @@
             this.stationBoardListView = new System.Windows.Forms.ListView();
             this.cmbBoardName = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.Button_Stationboard = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.Date_Stationboard = new System.Windows.Forms.DateTimePicker();
             this.tabControl1.SuspendLayout();
@@ -66,7 +66,7 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(528, 453);
+            this.tabControl1.Size = new System.Drawing.Size(440, 453);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -80,15 +80,15 @@
             this.tabPage1.Controls.Add(this.CmbTo);
             this.tabPage1.Controls.Add(this.CmbFrom);
             this.tabPage1.Controls.Add(this.label4);
-            this.tabPage1.Controls.Add(this.listView1);
-            this.tabPage1.Controls.Add(this.button1);
+            this.tabPage1.Controls.Add(this.ConnectionsListView);
+            this.tabPage1.Controls.Add(this.Button_Connection);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.Label1);
             this.tabPage1.Controls.Add(this.DateTimePicker);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(520, 427);
+            this.tabPage1.Size = new System.Drawing.Size(432, 427);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Verbindungen";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -101,7 +101,7 @@
             this.button_MapTo.TabIndex = 25;
             this.button_MapTo.Text = "i";
             this.button_MapTo.UseVisualStyleBackColor = true;
-            this.button_MapTo.Click += new System.EventHandler(this.button_MapTo_Click);
+            this.button_MapTo.Click += new System.EventHandler(this.ButtonMap_Clicked);
             // 
             // Button_MapFrom
             // 
@@ -111,7 +111,7 @@
             this.Button_MapFrom.TabIndex = 24;
             this.Button_MapFrom.Text = "i";
             this.Button_MapFrom.UseVisualStyleBackColor = true;
-            this.Button_MapFrom.Click += new System.EventHandler(this.Button_MapFrom_Click);
+            this.Button_MapFrom.Click += new System.EventHandler(this.ButtonMap_Clicked);
             // 
             // button_Departure
             // 
@@ -121,7 +121,7 @@
             this.button_Departure.TabIndex = 23;
             this.button_Departure.Text = "Ab";
             this.button_Departure.UseVisualStyleBackColor = true;
-            this.button_Departure.Click += new System.EventHandler(this.button_Departure_Click);
+            this.button_Departure.Click += new System.EventHandler(this.Button_Departure_Arrival_Click);
             // 
             // button_Arrive
             // 
@@ -131,7 +131,7 @@
             this.button_Arrive.TabIndex = 22;
             this.button_Arrive.Text = "An";
             this.button_Arrive.UseVisualStyleBackColor = true;
-            this.button_Arrive.Click += new System.EventHandler(this.Button_Arrive_Click);
+            this.button_Arrive.Click += new System.EventHandler(this.Button_Departure_Arrival_Click);
             // 
             // label5
             // 
@@ -156,8 +156,8 @@
             this.CmbTo.Name = "CmbTo";
             this.CmbTo.Size = new System.Drawing.Size(185, 21);
             this.CmbTo.TabIndex = 19;
-            this.CmbTo.TextChanged += new System.EventHandler(this.CmbTo_TextChanged);
-            this.CmbTo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmdTo_KeyPress);
+            this.CmbTo.TextChanged += new System.EventHandler(this.Combobox_TextChanged);
+            this.CmbTo.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Combobox_KeyPress);
             // 
             // CmbFrom
             // 
@@ -166,8 +166,8 @@
             this.CmbFrom.Name = "CmbFrom";
             this.CmbFrom.Size = new System.Drawing.Size(185, 21);
             this.CmbFrom.TabIndex = 18;
-            this.CmbFrom.TextChanged += new System.EventHandler(this.CmbFrom_TextChanged);
-            this.CmbFrom.KeyUp += new System.Windows.Forms.KeyEventHandler(this.CmbFrom_KeyPress);
+            this.CmbFrom.TextChanged += new System.EventHandler(this.Combobox_TextChanged);
+            this.CmbFrom.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Combobox_KeyPress);
             // 
             // label4
             // 
@@ -178,24 +178,24 @@
             this.label4.TabIndex = 17;
             this.label4.Text = "Datum";
             // 
-            // listView1
+            // ConnectionsListView
             // 
-            this.listView1.Location = new System.Drawing.Point(9, 205);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(498, 216);
-            this.listView1.TabIndex = 16;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.DoubleClick += new System.EventHandler(this.listView1_DoubleClick);
+            this.ConnectionsListView.Location = new System.Drawing.Point(9, 205);
+            this.ConnectionsListView.Name = "ConnectionsListView";
+            this.ConnectionsListView.Size = new System.Drawing.Size(417, 216);
+            this.ConnectionsListView.TabIndex = 16;
+            this.ConnectionsListView.UseCompatibleStateImageBehavior = false;
+            this.ConnectionsListView.DoubleClick += new System.EventHandler(this.ListViewItem_DoubleClick);
             // 
-            // button1
+            // Button_Connection
             // 
-            this.button1.Location = new System.Drawing.Point(123, 154);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(124, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Verbindung Suchen";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Button_Connection.Location = new System.Drawing.Point(123, 154);
+            this.Button_Connection.Name = "Button_Connection";
+            this.Button_Connection.Size = new System.Drawing.Size(124, 23);
+            this.Button_Connection.TabIndex = 14;
+            this.Button_Connection.Text = "Verbindung Suchen";
+            this.Button_Connection.UseVisualStyleBackColor = true;
+            this.Button_Connection.Click += new System.EventHandler(this.Button_Connection_Click);
             // 
             // label2
             // 
@@ -229,13 +229,13 @@
             this.tabPage2.Controls.Add(this.stationBoardListView);
             this.tabPage2.Controls.Add(this.cmbBoardName);
             this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Controls.Add(this.button2);
+            this.tabPage2.Controls.Add(this.Button_Stationboard);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.Date_Stationboard);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(520, 427);
+            this.tabPage2.Size = new System.Drawing.Size(432, 427);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Abfahrtsplan";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -260,9 +260,10 @@
             // 
             this.stationBoardListView.Location = new System.Drawing.Point(9, 157);
             this.stationBoardListView.Name = "stationBoardListView";
-            this.stationBoardListView.Size = new System.Drawing.Size(498, 262);
+            this.stationBoardListView.Size = new System.Drawing.Size(420, 262);
             this.stationBoardListView.TabIndex = 28;
             this.stationBoardListView.UseCompatibleStateImageBehavior = false;
+            this.stationBoardListView.DoubleClick += new System.EventHandler(this.ListViewItem_DoubleClick);
             // 
             // cmbBoardName
             // 
@@ -271,8 +272,8 @@
             this.cmbBoardName.Name = "cmbBoardName";
             this.cmbBoardName.Size = new System.Drawing.Size(185, 21);
             this.cmbBoardName.TabIndex = 26;
-            this.cmbBoardName.TextChanged += new System.EventHandler(this.cmbBoardName_TextChanged);
-            this.cmbBoardName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cmbBoardName_KeyPress);
+            this.cmbBoardName.TextChanged += new System.EventHandler(this.Combobox_TextChanged);
+            this.cmbBoardName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Combobox_KeyPress);
             // 
             // label3
             // 
@@ -283,15 +284,15 @@
             this.label3.TabIndex = 25;
             this.label3.Text = "Datum";
             // 
-            // button2
+            // Button_Stationboard
             // 
-            this.button2.Location = new System.Drawing.Point(123, 111);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(124, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "Abfahrten Laden";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.Button_Stationboard.Location = new System.Drawing.Point(123, 111);
+            this.Button_Stationboard.Name = "Button_Stationboard";
+            this.Button_Stationboard.Size = new System.Drawing.Size(124, 23);
+            this.Button_Stationboard.TabIndex = 24;
+            this.Button_Stationboard.Text = "Abfahrten Laden";
+            this.Button_Stationboard.UseVisualStyleBackColor = true;
+            this.Button_Stationboard.Click += new System.EventHandler(this.Button_Stationboard_Click);
             // 
             // label7
             // 
@@ -309,15 +310,15 @@
             this.Date_Stationboard.Size = new System.Drawing.Size(185, 20);
             this.Date_Stationboard.TabIndex = 21;
             // 
-            // Form1
+            // ÖV_Application
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 465);
+            this.ClientSize = new System.Drawing.Size(457, 465);
             this.Controls.Add(this.tabControl1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "ÖV_Application";
+            this.Text = "ÖV Application";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -331,18 +332,18 @@
 
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Button_Connection;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label Label1;
         private System.Windows.Forms.DateTimePicker DateTimePicker;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView ConnectionsListView;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox CmbFrom;
         private System.Windows.Forms.ComboBox CmbTo;
         private System.Windows.Forms.ComboBox cmbBoardName;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button Button_Stationboard;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker Date_Stationboard;
         private System.Windows.Forms.ListView stationBoardListView;

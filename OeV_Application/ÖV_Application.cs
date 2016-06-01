@@ -15,9 +15,9 @@ using System.Net;
 
 namespace OeV_Application
 {
-    public partial class Form1 : Form
+    public partial class ÖV_Application : Form
     {
-        public Form1()
+        public ÖV_Application()
         {
             InitializeComponent();
             BuildComponent();
@@ -43,7 +43,7 @@ namespace OeV_Application
 
         public List<object> ErrorTargets { get; set; }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button_Connection_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -79,7 +79,7 @@ namespace OeV_Application
                 {
                     
                     //Clear all Listview Items
-                    listView1.Items.Clear();
+                    ConnectionsListView.Items.Clear();
                     foreach (Connection connection in Connections)
                     {
                         //Write Connection into the Listview
@@ -94,7 +94,7 @@ namespace OeV_Application
                         listviewitem.SubItems.Add(arriv.ToString("HH:mm"));
                         listviewitem.SubItems.Add(duration.ToString(@"hh\:mm"));
 
-                        listView1.Items.Add(listviewitem);
+                        ConnectionsListView.Items.Add(listviewitem);
                     }
                 }
                 else
@@ -110,7 +110,7 @@ namespace OeV_Application
             Cursor = Cursors.Default;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void Button_Stationboard_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -159,35 +159,154 @@ namespace OeV_Application
             Cursor = Cursors.Default;
         }
 
-        private void CmbFrom_TextChanged(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
+        #region OldEventHandler
+        //private void CmbFrom_TextChanged(object sender, EventArgs e)
+        //{
+        //    Cursor = Cursors.WaitCursor;
 
-            ComboBox cmb = (ComboBox)sender;
-            if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
-            {
-                //Reload Items into Checkbox
-                LoadRequestResultToCombobox(cmb);
-            }
+        //    ComboBox cmb = (ComboBox)sender;
+        //    if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
+        //    {
+        //        //Reload Items into Checkbox
+        //        LoadRequestResultToCombobox(cmb);
+        //    }
 
-            Cursor = Cursors.Default;
-        }
+        //    Cursor = Cursors.Default;
+        //}
 
-        private void CmbTo_TextChanged(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
+        //private void CmbTo_TextChanged(object sender, EventArgs e)
+        //{
+        //    Cursor = Cursors.WaitCursor;
 
-            ComboBox cmb = (ComboBox)sender;
-            if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
-            {
-                //reload Combobox Items 
-                LoadRequestResultToCombobox(cmb);
-            }
+        //    ComboBox cmb = (ComboBox)sender;
+        //    if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
+        //    {
+        //        //reload Combobox Items 
+        //        LoadRequestResultToCombobox(cmb);
+        //    }
 
-            Cursor = Cursors.Default;
-        }
+        //    Cursor = Cursors.Default;
+        //}
 
-        private void cmbBoardName_TextChanged(object sender, EventArgs e)
+        //private void cmbBoardName_TextChanged(object sender, EventArgs e)
+        //{
+        //    Cursor = Cursors.WaitCursor;
+
+        //    //reload Combobox Items 
+        //    ComboBox cmb = (ComboBox)sender;
+        //    if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
+        //    {
+        //        LoadRequestResultToCombobox(cmb);
+        //    }
+
+        //    Cursor = Cursors.Default;
+        //}
+
+        //private void CmbFrom_KeyPress(object sender, KeyEventArgs e)
+        //{
+        //    switch (e.KeyCode)
+        //    {
+        //        case Keys.Down:
+        //            CmbFrom.DroppedDown = true;
+        //            break;
+        //        case Keys.Enter:
+        //            LoadRequestResultToCombobox(CmbFrom, true);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
+        //private void CmdTo_KeyPress(object sender, KeyEventArgs e)
+        //{
+        //    switch (e.KeyCode)
+        //    {
+        //        case Keys.Down:
+        //            CmbTo.DroppedDown = true;
+        //            break;
+        //        case Keys.Enter:
+        //            LoadRequestResultToCombobox(CmbFrom, true);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
+        //private void cmbBoardName_KeyPress(object sender, KeyEventArgs e)
+        //{
+        //    switch (e.KeyCode)
+        //    {
+        //        case Keys.Down:
+        //            cmbBoardName.DroppedDown = true;
+        //            break;
+        //        case Keys.Enter:
+        //            LoadRequestResultToCombobox(cmbBoardName, true);
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //}
+
+        //private void Button_Arrive_Click(object sender, EventArgs e)
+        //{
+        //    //Change An / Ab
+        //    button_Arrive.Enabled = false;
+        //    button_Departure.Enabled = true;
+        //}
+
+        //private void button_Departure_Click(object sender, EventArgs e)
+        //{
+        //    //Change An / Ab
+        //    button_Departure.Enabled = false;
+        //    button_Arrive.Enabled = true;
+        //}
+
+
+        //private void Button_MapFrom_Click(object sender, EventArgs e)
+        //{
+        //    Cursor = Cursors.WaitCursor;
+
+        //    //Load Map view
+        //    StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
+        //    List<Station> stations = stationsloadfunction.Execute(CmbFrom.Text);
+
+        //    if (stations != null && stations.Any())
+        //    {
+        //        MapsForm mapsform = new MapsForm(stations);
+        //        mapsform.Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Es konnten keine Stationen gefunden werden.");
+        //    }
+
+        //    Cursor = Cursors.Default;
+        //}
+
+        //private void button_MapTo_Click(object sender, EventArgs e)
+        //{
+        //    Cursor = Cursors.WaitCursor;
+
+        //    //Load Map view
+        //    StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
+        //    List<Station> stations = stationsloadfunction.Execute(CmbTo.Text);
+
+        //    if (stations != null && stations.Any())
+        //    {
+        //        MapsForm mapsform = new MapsForm(stations);
+        //        mapsform.Show();
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Es konnten keine Stationen gefunden werden.");
+        //    }
+
+        //    Cursor = Cursors.Default;
+        //}
+
+        #endregion
+
+        private void Combobox_TextChanged(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
@@ -197,107 +316,78 @@ namespace OeV_Application
             {
                 LoadRequestResultToCombobox(cmb);
             }
-
+            
             Cursor = Cursors.Default;
         }
 
-        private void CmbFrom_KeyPress(object sender, KeyEventArgs e)
+        private void Combobox_KeyPress(object sender, KeyEventArgs e)
         {
+            ComboBox combobox = (ComboBox)sender;
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    CmbFrom.DroppedDown = true;
+                    combobox.DroppedDown = true;
                     break;
                 case Keys.Enter:
-                    LoadRequestResultToCombobox(CmbFrom, true);
+                    LoadRequestResultToCombobox(combobox, true);
                     break;
                 default:
                     break;
             }
         }
 
-        private void CmdTo_KeyPress(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Down:
-                    CmbTo.DroppedDown = true;
-                    break;
-                case Keys.Enter:
-                    LoadRequestResultToCombobox(CmbFrom, true);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void cmbBoardName_KeyPress(object sender, KeyEventArgs e)
-        {
-            switch (e.KeyCode)
-            {
-                case Keys.Down:
-                    cmbBoardName.DroppedDown = true;
-                    break;
-                case Keys.Enter:
-                    LoadRequestResultToCombobox(cmbBoardName, true);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void listView1_DoubleClick(object sender, EventArgs e)
+        private void ListViewItem_DoubleClick(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
+
+            ListView listview = (ListView)sender;
+
             //Open Mailsend view
-            MailSendForm form = new MailSendForm(listView1.SelectedItems[0]);
+            MailSendForm form = new MailSendForm(listview.SelectedItems[0], listview.Name);
             form.Show();
 
             Cursor = Cursors.Default;
         }
 
-        private void Button_Arrive_Click(object sender, EventArgs e)
+        private void Button_Departure_Arrival_Click(object sender, EventArgs e)
         {
             //Change An / Ab
-            button_Arrive.Enabled = false;
-            button_Departure.Enabled = true;
-        }
+            Button ClickedButton = (Button)sender;
 
-        private void button_Departure_Click(object sender, EventArgs e)
-        {
-            //Change An / Ab
-            button_Departure.Enabled = false;
-            button_Arrive.Enabled = true;
-        }
+            ClickedButton.Enabled = false;
 
-        private void Button_MapFrom_Click(object sender, EventArgs e)
-        {
-            Cursor = Cursors.WaitCursor;
-
-            //Load Map view
-            StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
-            List<Station> stations = stationsloadfunction.Execute(CmbFrom.Text);
-
-            if (stations != null && stations.Any())
+            //unschöner Code 
+            if(ClickedButton.Text == "An")
             {
-                MapsForm mapsform = new MapsForm(stations);
-                mapsform.Show();
+                button_Departure.Enabled = true;
             }
             else
             {
-                MessageBox.Show("Es konnten keine Stationen gefunden werden.");
+                button_Arrive.Enabled = true;
             }
-
-            Cursor = Cursors.Default;
         }
 
-        private void button_MapTo_Click(object sender, EventArgs e)
+        private void ButtonMap_Clicked(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
 
+            string searchtext;
+
+            Button ClickedButton = (Button)sender;
+
+            //unschöner Code 
+            if (ClickedButton.Name == "button_MapTo")
+            {
+                searchtext = CmbTo.Text;
+            }
+            else
+            {
+                searchtext = CmbFrom.Text;
+            }
+
             //Load Map view
             StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
-            List<Station> stations = stationsloadfunction.Execute(CmbTo.Text);
+            List<Station> stations = stationsloadfunction.Execute(searchtext);
 
             if (stations != null && stations.Any())
             {
@@ -447,16 +537,16 @@ namespace OeV_Application
         private void BuildComponent()
         {
             // Build header from the listview
-            listView1.View = View.Details;
-            listView1.FullRowSelect = true;
-            listView1.Columns.Add("Abfahrts Station");
-            listView1.Columns.Add("Ankunfts Station");
-            listView1.Columns.Add("Abfahrt");
-            listView1.Columns.Add("Ankunft");
-            listView1.Columns.Add("Dauer");
-            listView1.Columns.Add("not implement");
+            ConnectionsListView.View = View.Details;
+            ConnectionsListView.FullRowSelect = true;
+            ConnectionsListView.Columns.Add("Abfahrts Station");
+            ConnectionsListView.Columns.Add("Ankunfts Station");
+            ConnectionsListView.Columns.Add("Abfahrt");
+            ConnectionsListView.Columns.Add("Ankunft");
+            ConnectionsListView.Columns.Add("Dauer");
+            ConnectionsListView.Columns.Add("not implement");
 
-            ListViewWidthHeader(listView1);
+            ListViewWidthHeader(ConnectionsListView);
 
 
             // Build header from the listview

@@ -16,15 +16,15 @@ namespace OeV_Application
         public void Execute()
         {
             // Create new SmtpConnection to the Server with the Port
-            SmtpClient smtpclient = new SmtpClient("smtp.googlemail.com", 465);
+            SmtpClient smtpclient = new SmtpClient("mail.gmx.net", 587);
 
             //Connect with E-Mail and Password
-            smtpclient.Credentials = new NetworkCredential("test@googlemail.com", "pw");
+            smtpclient.Credentials = new NetworkCredential("jonas.hodel@gmx.ch", "Gettnau");
             smtpclient.EnableSsl = true;
 
-            //Message.From = new MailAddress("Myadress");
+            Message.From = new MailAddress("jonas.hodel@gmx.ch");
 
-            //smtpclient.Send(Message);
+            smtpclient.Send(Message);
 
             MessageBox.Show("Mail wurde versendet");
         }

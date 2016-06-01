@@ -13,7 +13,7 @@ namespace OeV_Application
 {
     public partial class MailSendForm : Form
     {
-        public MailSendForm(ListViewItem selectedItem)
+        public MailSendForm(ListViewItem selectedItem, string text)
         {
             InitializeComponent();
             
@@ -21,6 +21,7 @@ namespace OeV_Application
             ErrorTargets = new List<object>();
 
             SelectedListViewItem = selectedItem;
+            ListViewName = text;
 
             //Load Standart Header and Content
             Header = GetHeaderFromSelectedItem();
@@ -29,8 +30,9 @@ namespace OeV_Application
             //Write Content to View
             textBoxHeader.Text = Header;
             richTextBoxContent.Text = Content;
-
         }
+
+        public string ListViewName { get; set; }
 
         public ListViewItem SelectedListViewItem { get; set; }
 
@@ -46,7 +48,7 @@ namespace OeV_Application
 
         List<object> ErrorTargets { get; set; }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button_MailSend_Click(object sender, EventArgs e)
         {
             RecieversString = textboxRecievers.Text;
             Header = textBoxHeader.Text;
@@ -74,17 +76,33 @@ namespace OeV_Application
 
         private string GetHeaderFromSelectedItem()
         {
-            return "Verbindung von " + SelectedListViewItem.SubItems[0].Text + "Nach " + SelectedListViewItem.SubItems[0].Text;
+            return "Verbindung von " + SelectedListViewItem.SubItems[0].Text + " Nach " + SelectedListViewItem.SubItems[1].Text;
         }
 
         private string GetContentFromSelectedItem()
         {
-            return "Informationen zur Verbindung von" + SelectedListViewItem.SubItems[0].Text +
-                    " Nach " + SelectedListViewItem.SubItems[0].Text + "\n\n" +
-                    "Diese Verbindung fährt um " + SelectedListViewItem.SubItems[2].Text + " in " +
-                    SelectedListViewItem.SubItems[0].Text + " ab und kommt um " +
-                    SelectedListViewItem.SubItems[4].Text + " in " +
-                    SelectedListViewItem.SubItems[1].Text + " an";
+            // unschöner Code
+            if (ListViewName == "stationBoardListView")
+            {
+                return "Informationen zur Verbindung von" + SelectedListViewItem.SubItems[0].Text +
+                      " Nach " + SelectedListViewItem.SubItems[0].Text + ".\n\n" +
+                      "Diese Verbindung fährt um " + SelectedListViewItem.SubItems[2].Text + " in " +
+                      SelectedListViewItem.SubItems[0].Text + " ab.";
+            }
+            // unschöner Code
+            else if(ListViewName == "ConnectionsListView")
+            {
+                return "Informationen zur Verbindung von" + SelectedListViewItem.SubItems[0].Text +
+                      " Nach " + SelectedListViewItem.SubItems[0].Text + ".\n\n" +
+                      "Diese Verbindung fährt um " + SelectedListViewItem.SubItems[2].Text + " in " +
+                      SelectedListViewItem.SubItems[0].Text + " ab und kommt um " +
+                      SelectedListViewItem.SubItems[3].Text + " in " +
+                      SelectedListViewItem.SubItems[1].Text + " an";
+
+            }
+
+            return string.Empty;
+           
         }
 
         private List<string> GetSplittedRecivers()

@@ -18,6 +18,11 @@ namespace OeV_Application
             Message = new MailMessage();
             UpdateText(connectionText);
             UpdateHeader(connectionHeader);
+
+            foreach(string reciever in recievers)
+            {
+                AddReciever(reciever);
+            }
         }
 
         public MailMessage Message { get; set; }
@@ -30,13 +35,6 @@ namespace OeV_Application
         private void UpdateHeader(string header)
         {
             Message.Subject = header;
-        }
-
-        private void RemoveReciever(string mailadress)
-        {
-            var removableitem = Message.To.FirstOrDefault(t => t.Address == mailadress);
-
-            Message.To.Remove(removableitem);
         }
 
         private void AddReciever(string mailadress)

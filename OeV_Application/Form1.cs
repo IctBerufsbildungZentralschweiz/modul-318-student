@@ -45,6 +45,8 @@ namespace OeV_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             TravelDateTime = DateTimePicker.Value;
 
             //Are Data Valid
@@ -75,6 +77,7 @@ namespace OeV_Application
                 //Any Connections
                 if (Connections.Any())
                 {
+                    
                     //Clear all Listview Items
                     listView1.Items.Clear();
                     foreach (Connection connection in Connections)
@@ -103,10 +106,14 @@ namespace OeV_Application
             {
                 CreateDialogWindow();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             if (ValidatorStationBoard())
             {
                 DateTime dt;
@@ -122,54 +129,76 @@ namespace OeV_Application
                 //Load Stationboard
                 stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty, new DateTime(Date_Stationboard.Value.Year, Date_Stationboard.Value.Month, Date_Stationboard.Value.Day, dt.Hour, dt.Minute, 0));
 
-                //Clear Stationboard listview
-                stationBoardListView.Items.Clear();
-
-                foreach (StationBoard stationboard in stationboardroot.Entries)
+                if(stationboardroot.Entries.Any())
                 {
-                    // wirte stationboard into the listview
-                    ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
-                    listViewItem.SubItems.Add(stationboard.To);
-                    listViewItem.SubItems.Add(stationboard.Stop.Departure.ToString("HH:mm"));
-                    listViewItem.SubItems.Add(stationboard.Category);
-                    listViewItem.SubItems.Add(stationboard.Operator);
-                    stationBoardListView.Items.Add(listViewItem);
+                    //Clear Stationboard listview
+                    stationBoardListView.Items.Clear();
+
+                    foreach (StationBoard stationboard in stationboardroot.Entries)
+                    {
+                        // wirte stationboard into the listview
+                        ListViewItem listViewItem = new ListViewItem(stationboardroot.Station.Name);
+                        listViewItem.SubItems.Add(stationboard.To);
+                        listViewItem.SubItems.Add(stationboard.Stop.Departure.ToString("HH:mm"));
+                        listViewItem.SubItems.Add(stationboard.Category);
+                        listViewItem.SubItems.Add(stationboard.Operator);
+                        stationBoardListView.Items.Add(listViewItem);
+                    }
                 }
+                else
+                {
+                    MessageBox.Show("Es wurde kein Abfahrtsplan zu Ihrer Suche gefunden.");
+                }
+               
             }
             else
             {
                 CreateDialogWindow();
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void CmbFrom_TextChanged(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             ComboBox cmb = (ComboBox)sender;
             if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
             {
                 //Reload Items into Checkbox
                 LoadRequestResultToCombobox(cmb);
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void CmbTo_TextChanged(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             ComboBox cmb = (ComboBox)sender;
             if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
             {
                 //reload Combobox Items 
                 LoadRequestResultToCombobox(cmb);
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void cmbBoardName_TextChanged(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             //reload Combobox Items 
             ComboBox cmb = (ComboBox)sender;
             if (string.IsNullOrEmpty(cmb.Text) ? false : cmb.Text.Length >= 4 && cmb.SelectedItem == null)
             {
                 LoadRequestResultToCombobox(cmb);
             }
+
+            Cursor = Cursors.Default;
         }
 
         private void CmbFrom_KeyPress(object sender, KeyEventArgs e)
@@ -219,9 +248,12 @@ namespace OeV_Application
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             //Open Mailsend view
             MailSendForm form = new MailSendForm(listView1.SelectedItems[0]);
             form.Show();
+
+            Cursor = Cursors.Default;
         }
 
         private void Button_Arrive_Click(object sender, EventArgs e)
@@ -240,6 +272,8 @@ namespace OeV_Application
 
         private void Button_MapFrom_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             //Load Map view
             StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
             List<Station> stations = stationsloadfunction.Execute(CmbFrom.Text);
@@ -254,10 +288,13 @@ namespace OeV_Application
                 MessageBox.Show("Es konnten keine Stationen gefunden werden.");
             }
 
+            Cursor = Cursors.Default;
         }
 
         private void button_MapTo_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
+
             //Load Map view
             StationsLoadFunction stationsloadfunction = new StationsLoadFunction();
             List<Station> stations = stationsloadfunction.Execute(CmbTo.Text);
@@ -271,6 +308,8 @@ namespace OeV_Application
             {
                 MessageBox.Show("Es konnten keine Stationen gefunden werden.");
             }
+
+            Cursor = Cursors.Default;
         }
 
         private bool ValidatorConnection()
@@ -415,7 +454,10 @@ namespace OeV_Application
             listView1.Columns.Add("Abfahrt");
             listView1.Columns.Add("Ankunft");
             listView1.Columns.Add("Dauer");
-            listView1.Columns.Add("Umsteigen");
+            listView1.Columns.Add("not implement");
+
+            ListViewWidthHeader(listView1);
+
 
             // Build header from the listview
             stationBoardListView.View = View.Details;
@@ -425,6 +467,8 @@ namespace OeV_Application
             stationBoardListView.Columns.Add("Abfahrt");
             stationBoardListView.Columns.Add("Kategorie");
             stationBoardListView.Columns.Add("Anbieter");
+
+            ListViewWidthHeader(stationBoardListView);
 
             //Write Datetime.Now into the Time Textbox
             textbox_Time_Stationboard.Text = DateTime.Now.ToString("HH:mm");
@@ -524,6 +568,22 @@ namespace OeV_Application
             }
 
             MessageBox.Show(DialogResultString);
+        }
+
+        private void ListViewWidthHeader(ListView listviewsource)
+        {
+            foreach (ColumnHeader column in listviewsource.Columns)
+            {
+                column.Width = -2;
+            }
+        }
+
+        private void ListViewWithItem(ListView listviewsource)
+        {
+            foreach (ColumnHeader column in listviewsource.Columns)
+            {
+                column.Width = -1;
+            }
         }
     }
 }

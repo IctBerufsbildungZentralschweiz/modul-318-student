@@ -75,7 +75,7 @@ namespace OeV_Application
                 Connections = connectionsLoader.Execute(FromSearchText, ToSearchText, new DateTime(DateTimeConnection.Value.Year, DateTimeConnection.Value.Month, DateTimeConnection.Value.Day, dt.Hour, dt.Minute, 0), !Button_Arrive.Enabled);
 
                 //Any Connections
-                if (Connections.Any())
+                if (Connections != null && Connections.Any())
                 {
 
                     //Clear all Listview Items
@@ -129,7 +129,7 @@ namespace OeV_Application
                 //Load Stationboard
                 stationboardroot = LoadStationBoard(CmbFrom_StationBoard.SelectedItem != null ? CmbFrom_StationBoard.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbFrom_StationBoard.Text) ? CmbFrom_StationBoard.Text : string.Empty, new DateTime(DateTimeStationBoard.Value.Year, DateTimeStationBoard.Value.Month, DateTimeStationBoard.Value.Day, dt.Hour, dt.Minute, 0));
 
-                if (stationboardroot.Entries.Any())
+                if (stationboardroot != null && stationboardroot.Entries.Any())
                 {
                     //Clear Stationboard listview
                     stationBoardListView.Items.Clear();

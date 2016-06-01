@@ -45,7 +45,7 @@ namespace OeV_Application
             }
 
             // Any Stations aviable, else Null Refrence Exception
-            if (stationsList.StationList.Any())
+            if (stationsList != null && stationsList.StationList != null && stationsList.StationList.Any())
             {
                 //Loop all Stations. I would return List<Station> instead of Stations
                 foreach (Station station in stationsList.StationList)

@@ -85,7 +85,7 @@ namespace SwissTransport
                 MessageBox.Show(exceptionstring);
                 return null;
             }
-}
+        }
 
         public StationBoardRoot GetStationBoardWithSpecificTime(string station, DateTime date, string exceptionstring)
         {

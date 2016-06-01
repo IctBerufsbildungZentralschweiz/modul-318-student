@@ -25,9 +25,12 @@ namespace OeV_Application
 
         }
 
+      
         public MapsForm(List<Station> stations)
         {
             InitializeComponent();
+
+            Stations = stations;
 
             //Create the Control
             GMapControl mapcontrol = new GMapControl();
@@ -44,5 +47,7 @@ namespace OeV_Application
                 mapcontrol.Position = new PointLatLng(station.Coordinate.XCoordinate, station.Coordinate.YCoordinate);
             }
         }
+
+        public List<Station> Stations { get; set; }
     }
 }

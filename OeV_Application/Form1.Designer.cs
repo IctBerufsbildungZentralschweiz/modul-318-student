@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.button_MapTo = new System.Windows.Forms.Button();
@@ -45,14 +46,14 @@
             this.Label1 = new System.Windows.Forms.Label();
             this.DateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textbox_Time_Stationboard = new System.Windows.Forms.TextBox();
             this.stationBoardListView = new System.Windows.Forms.ListView();
             this.cmbBoardName = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.Date_Stationboard = new System.Windows.Forms.DateTimePicker();
-            this.textbox_Time_Stationboard = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -239,6 +240,22 @@
             this.tabPage2.Text = "Abfahrtsplan";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 89);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.TabIndex = 30;
+            this.label6.Text = "Uhrzeit";
+            // 
+            // textbox_Time_Stationboard
+            // 
+            this.textbox_Time_Stationboard.Location = new System.Drawing.Point(195, 86);
+            this.textbox_Time_Stationboard.Name = "textbox_Time_Stationboard";
+            this.textbox_Time_Stationboard.Size = new System.Drawing.Size(52, 20);
+            this.textbox_Time_Stationboard.TabIndex = 29;
+            // 
             // stationBoardListView
             // 
             this.stationBoardListView.Location = new System.Drawing.Point(9, 157);
@@ -292,28 +309,13 @@
             this.Date_Stationboard.Size = new System.Drawing.Size(185, 20);
             this.Date_Stationboard.TabIndex = 21;
             // 
-            // textbox_Time_Stationboard
-            // 
-            this.textbox_Time_Stationboard.Location = new System.Drawing.Point(195, 86);
-            this.textbox_Time_Stationboard.Name = "textbox_Time_Stationboard";
-            this.textbox_Time_Stationboard.Size = new System.Drawing.Size(52, 20);
-            this.textbox_Time_Stationboard.TabIndex = 29;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 89);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
-            this.label6.TabIndex = 30;
-            this.label6.Text = "Uhrzeit";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 465);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MailSendForm));
             this.textboxRecievers = new System.Windows.Forms.TextBox();
             this.textBoxHeader = new System.Windows.Forms.TextBox();
             this.richTextBoxContent = new System.Windows.Forms.RichTextBox();
@@ -97,6 +98,7 @@
             this.Controls.Add(this.richTextBoxContent);
             this.Controls.Add(this.textBoxHeader);
             this.Controls.Add(this.textboxRecievers);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MailSendForm";
             this.Text = "MailSendForm";
             this.ResumeLayout(false);

@@ -33,7 +33,8 @@ namespace OeV_Application
                 try
                 {
                     // Load all Connections that are semi equals to the searchtext
-                    stationsList = transportConnection.GetStations(SearchText);
+                    stationsList = transportConnection.GetStations(SearchText, "Es ist ein Problem beim Laden der Stationen aufgetreten. Bitee überprüfen sie, dass sie eine Verbindung zur API : transport.opendata.ch haben." +
+                        "\n\n Sollten sie  Problemem mit den Verbindung haben, so probieren sie die Anfrage bitte nochmals zu einem anderen Zeitpunkt. Ist mit Ihrer Verbindung alles in Ordnung. So führen sie die Aktion nochmals aus.");
                 }
                 catch
                 {

@@ -2,8 +2,8 @@
 {
     public interface ITransport
     {
-        Stations GetStations(string query);
-        StationBoardRoot GetStationBoard(string station, string id);
-        Connections GetConnections(string fromStation, string toStattion);
+        Stations GetStations(string query, string exceptionstring);
+        StationBoardRoot GetStationBoard(string station, string id, string exceptionstring);
+        Connections GetConnections(string fromStation, string toStattion, string exceptionstring);
     }
 }

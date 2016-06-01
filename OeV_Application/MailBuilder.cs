@@ -7,7 +7,6 @@ using System.Net.Mail;
 using System.Net;
 using System.Web;
 using System.Text.RegularExpressions;
-
 namespace OeV_Application
 {
     public class MailBuilder

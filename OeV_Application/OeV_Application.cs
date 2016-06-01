@@ -26,7 +26,7 @@ namespace OeV_Application
             ErrorTargets = new List<object>();
 
             //Set Ab / An
-            button_Departure.Enabled = false;
+            Button_Departure.Enabled = false;
         }
 
         public DateTime TravelDateTime { get; set; }
@@ -47,7 +47,7 @@ namespace OeV_Application
         {
             Cursor = Cursors.WaitCursor;
 
-            TravelDateTime = DateTimePicker.Value;
+            TravelDateTime = DateTimeConnection.Value;
 
             //Are Data Valid
             if (ValidatorConnection())
@@ -55,16 +55,16 @@ namespace OeV_Application
                 ConnectionsLoadFunction connectionsLoader = new ConnectionsLoadFunction();
 
                 //Read text out of Combobox and checkbox
-                string FromSearchText = CmbFrom.SelectedItem != null ? CmbFrom.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbFrom.Text) ? CmbFrom.Text : string.Empty;
-                string ToSearchText = CmbTo.SelectedItem != null ? CmbTo.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbTo.Text) ? CmbTo.Text : string.Empty;
+                string FromSearchText = CmbFrom_ConnectionSearch.SelectedItem != null ? CmbFrom_ConnectionSearch.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbFrom_ConnectionSearch.Text) ? CmbFrom_ConnectionSearch.Text : string.Empty;
+                string ToSearchText = CmbTo_ConnectionSearch.SelectedItem != null ? CmbTo_ConnectionSearch.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbTo_ConnectionSearch.Text) ? CmbTo_ConnectionSearch.Text : string.Empty;
                 //1. SelectedItem
                 //2. Text
 
                 //Set DateTime
                 DateTime dt;
-                if (!string.IsNullOrEmpty(txb_Time.Text))
+                if (!string.IsNullOrEmpty(Txb_TimeConnection.Text))
                 {
-                    dt = DateTime.Parse(txb_Time.Text);
+                    dt = DateTime.Parse(Txb_TimeConnection.Text);
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace OeV_Application
                 }
 
                 //Load Connections
-                Connections = connectionsLoader.Execute(FromSearchText, ToSearchText, new DateTime(DateTimePicker.Value.Year, DateTimePicker.Value.Month, DateTimePicker.Value.Day, dt.Hour, dt.Minute, 0), !button_Arrive.Enabled);
+                Connections = connectionsLoader.Execute(FromSearchText, ToSearchText, new DateTime(DateTimeConnection.Value.Year, DateTimeConnection.Value.Month, DateTimeConnection.Value.Day, dt.Hour, dt.Minute, 0), !Button_Arrive.Enabled);
 
                 //Any Connections
                 if (Connections.Any())
@@ -117,9 +117,9 @@ namespace OeV_Application
             if (ValidatorStationBoard())
             {
                 DateTime dt;
-                if (!string.IsNullOrEmpty(textbox_Time_Stationboard.Text))
+                if (!string.IsNullOrEmpty(Txb_TimeStationboard.Text))
                 {
-                    dt = DateTime.Parse(textbox_Time_Stationboard.Text);
+                    dt = DateTime.Parse(Txb_TimeStationboard.Text);
                 }
                 else
                 {
@@ -127,7 +127,7 @@ namespace OeV_Application
                 }
 
                 //Load Stationboard
-                stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty, new DateTime(Date_Stationboard.Value.Year, Date_Stationboard.Value.Month, Date_Stationboard.Value.Day, dt.Hour, dt.Minute, 0));
+                stationboardroot = LoadStationBoard(CmbFrom_StationBoard.SelectedItem != null ? CmbFrom_StationBoard.SelectedItem.ToString() : !string.IsNullOrEmpty(CmbFrom_StationBoard.Text) ? CmbFrom_StationBoard.Text : string.Empty, new DateTime(DateTimeStationBoard.Value.Year, DateTimeStationBoard.Value.Month, DateTimeStationBoard.Value.Day, dt.Hour, dt.Minute, 0));
 
                 if (stationboardroot.Entries.Any())
                 {
@@ -359,11 +359,11 @@ namespace OeV_Application
             //unschöner Code 
             if (ClickedButton.Text == "An")
             {
-                button_Departure.Enabled = true;
+                Button_Departure.Enabled = true;
             }
             else
             {
-                button_Arrive.Enabled = true;
+                Button_Arrive.Enabled = true;
             }
         }
 
@@ -378,11 +378,11 @@ namespace OeV_Application
             //unschöner Code 
             if (ClickedButton.Name == "button_MapTo")
             {
-                searchtext = CmbTo.Text;
+                searchtext = CmbTo_ConnectionSearch.Text;
             }
             else
             {
-                searchtext = CmbFrom.Text;
+                searchtext = CmbFrom_ConnectionSearch.Text;
             }
 
             //Load Map view
@@ -412,45 +412,45 @@ namespace OeV_Application
             ErrorTargets.Clear();
 
             //Load values from Control
-            string FromStationText = CmbFrom.Text;
-            string ToStationText = CmbTo.Text;
-            string Time = txb_Time.Text;
+            string FromStationText = CmbFrom_ConnectionSearch.Text;
+            string ToStationText = CmbTo_ConnectionSearch.Text;
+            string Time = Txb_TimeConnection.Text;
 
             if (string.IsNullOrEmpty(FromStationText))
             {
                 ErrorExceptions.Add("Die Suche nach der Abfahrtsstation darf nicht leer sein.");
-                ErrorTargets.Add(CmbFrom);
+                ErrorTargets.Add(CmbFrom_ConnectionSearch);
             }
             else if (FromStationText.Length > 100)
             {
                 ErrorExceptions.Add("Die Suche nach der Abfahrtsstation darf maximal 100 Zeichen lang sein.");
-                ErrorTargets.Add(CmbFrom);
+                ErrorTargets.Add(CmbFrom_ConnectionSearch);
             }
-            else if (CmbFrom.SelectedItem == null)
+            else if (CmbFrom_ConnectionSearch.SelectedItem == null)
             {
-                if (CmbFrom.Items.IndexOf(CmbFrom.Text) == -1)
+                if (CmbFrom_ConnectionSearch.Items.IndexOf(CmbFrom_ConnectionSearch.Text) == -1)
                 {
                     ErrorExceptions.Add("Bitte wählen sie ein Element aus der Auswahl für die Abfahrtsstation aus.");
-                    ErrorTargets.Add(CmbFrom);
+                    ErrorTargets.Add(CmbFrom_ConnectionSearch);
                 }
             }
 
             if (string.IsNullOrEmpty(ToStationText))
             {
                 ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf nicht leer sein.");
-                ErrorTargets.Add(CmbTo);
+                ErrorTargets.Add(CmbTo_ConnectionSearch);
             }
             else if (ToStationText.Length > 100)
             {
                 ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf maximal 100 Zeichen lang sein.");
-                ErrorTargets.Add(CmbTo);
+                ErrorTargets.Add(CmbTo_ConnectionSearch);
             }
-            else if (CmbTo.SelectedItem == null)
+            else if (CmbTo_ConnectionSearch.SelectedItem == null)
             {
-                if (CmbTo.Items.IndexOf(CmbTo.Text) == -1)
+                if (CmbTo_ConnectionSearch.Items.IndexOf(CmbTo_ConnectionSearch.Text) == -1)
                 {
                     ErrorExceptions.Add("Bitte wählen sie ein Element aus der Auswahl für die Ankunftsstation aus.");
-                    ErrorTargets.Add(CmbTo);
+                    ErrorTargets.Add(CmbTo_ConnectionSearch);
                 }
             }
 
@@ -459,13 +459,13 @@ namespace OeV_Application
             if (Time.Length > 5)
             {
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:MM");
-                ErrorTargets.Add(txb_Time);
+                ErrorTargets.Add(Txb_TimeConnection);
             }
             //Check has Time the right format
             else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out output) && !string.IsNullOrEmpty(Time))
             {
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
-                ErrorTargets.Add(txb_Time);
+                ErrorTargets.Add(Txb_TimeConnection);
             }
             //Any Exceptions?
             if (ErrorExceptions.Any())
@@ -487,39 +487,39 @@ namespace OeV_Application
             ErrorExceptions.Clear();
             ErrorTargets.Clear();
 
-            string FromStationText = cmbBoardName.Text;
-            string Time = textbox_Time_Stationboard.Text;
+            string FromStationText = CmbFrom_StationBoard.Text;
+            string Time = Txb_TimeStationboard.Text;
 
             DateTime output;
 
             if (Time.Length > 5)
             {
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:MM");
-                ErrorTargets.Add(textbox_Time_Stationboard);
+                ErrorTargets.Add(Txb_TimeStationboard);
             }
             //Check has Time the right format
             else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out output) && !string.IsNullOrEmpty(Time))
             {
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
-                ErrorTargets.Add(textbox_Time_Stationboard);
+                ErrorTargets.Add(Txb_TimeStationboard);
             }
 
             if (string.IsNullOrEmpty(FromStationText))
             {
                 ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf nicht leer sein.");
-                ErrorTargets.Add(cmbBoardName);
+                ErrorTargets.Add(CmbFrom_StationBoard);
             }
             else if (FromStationText.Length > 100)
             {
                 ErrorExceptions.Add("Die Suche nach der Ankunftsstation darf maximal 100 Zeichen lang sein.");
-                ErrorTargets.Add(cmbBoardName);
+                ErrorTargets.Add(CmbFrom_StationBoard);
             }
-            else if (cmbBoardName.SelectedItem == null)
+            else if (CmbFrom_StationBoard.SelectedItem == null)
             {
-                if (cmbBoardName.Items.IndexOf(cmbBoardName.Text) == -1)
+                if (CmbFrom_StationBoard.Items.IndexOf(CmbFrom_StationBoard.Text) == -1)
                 {
                     ErrorExceptions.Add("Bitte wählen sie ein Element aus der Auswahl für die Ankunftsstation aus.");
-                    ErrorTargets.Add(cmbBoardName);
+                    ErrorTargets.Add(CmbFrom_StationBoard);
                 }
             }
 
@@ -561,8 +561,8 @@ namespace OeV_Application
             ListViewWidthHeader(stationBoardListView);
 
             //Write Datetime.Now into the Time Textbox
-            textbox_Time_Stationboard.Text = DateTime.Now.ToString("HH:mm");
-            txb_Time.Text = DateTime.Now.ToString("HH:mm");
+            Txb_TimeStationboard.Text = DateTime.Now.ToString("HH:mm");
+            Txb_TimeConnection.Text = DateTime.Now.ToString("HH:mm");
         }
 
         private void LoadRequestResultToCombobox(ComboBox cmb, bool executeRequest = false)
@@ -593,7 +593,8 @@ namespace OeV_Application
             // Load Stationboard
             Transport transportConnection = new Transport();
 
-            return transportConnection.GetStationBoardWithSpecificTime(name, date);
+            return transportConnection.GetStationBoardWithSpecificTime(name, date, "Es ist ein Problem beim Laden der Abfahrtstafel aufgetreten. Bitee überprüfen sie, dass sie eine Verbindung zur API : transport.opendata.ch haben." +
+                        "\n\n Sollten sie  Problemem mit den Verbindung haben, so probieren sie die Anfrage bitte nochmals zu einem anderen Zeitpunkt. Ist mit Ihrer Verbindung alles in Ordnung. So führen sie die Aktion nochmals aus.");
             //return transportConnection.GetStationBoard(name);
         }
 

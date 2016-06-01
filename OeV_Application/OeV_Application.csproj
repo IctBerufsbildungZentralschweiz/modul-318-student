@@ -61,11 +61,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionsLoadFunction.cs" />
-    <Compile Include="ÖV_Application.cs">
+    <Compile Include="OeV_Application.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ÖV_Application.Designer.cs">
-      <DependentUpon>ÖV_Application.cs</DependentUpon>
+    <Compile Include="OeV_Application.Designer.cs">
+      <DependentUpon>OeV_Application.cs</DependentUpon>
     </Compile>
     <Compile Include="MailBuilder.cs" />
     <Compile Include="MailSender.cs" />
@@ -85,8 +85,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StationBoardLoadFunction.cs" />
     <Compile Include="StationsLoadFunction.cs" />
-    <EmbeddedResource Include="ÖV_Application.resx">
-      <DependentUpon>ÖV_Application.cs</DependentUpon>
+    <EmbeddedResource Include="OeV_Application.resx">
+      <DependentUpon>OeV_Application.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MailSendForm.resx">
       <DependentUpon>MailSendForm.cs</DependentUpon>

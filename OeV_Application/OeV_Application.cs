@@ -15,9 +15,9 @@ using System.Net;
 
 namespace OeV_Application
 {
-    public partial class ÖV_Application : Form
+    public partial class OeV_Application : Form
     {
-        public ÖV_Application()
+        public OeV_Application()
         {
             InitializeComponent();
             BuildComponent();
@@ -77,7 +77,7 @@ namespace OeV_Application
                 //Any Connections
                 if (Connections.Any())
                 {
-                    
+
                     //Clear all Listview Items
                     ConnectionsListView.Items.Clear();
                     foreach (Connection connection in Connections)
@@ -129,7 +129,7 @@ namespace OeV_Application
                 //Load Stationboard
                 stationboardroot = LoadStationBoard(cmbBoardName.SelectedItem != null ? cmbBoardName.SelectedItem.ToString() : !string.IsNullOrEmpty(cmbBoardName.Text) ? cmbBoardName.Text : string.Empty, new DateTime(Date_Stationboard.Value.Year, Date_Stationboard.Value.Month, Date_Stationboard.Value.Day, dt.Hour, dt.Minute, 0));
 
-                if(stationboardroot.Entries.Any())
+                if (stationboardroot.Entries.Any())
                 {
                     //Clear Stationboard listview
                     stationBoardListView.Items.Clear();
@@ -149,7 +149,7 @@ namespace OeV_Application
                 {
                     MessageBox.Show("Es wurde kein Abfahrtsplan zu Ihrer Suche gefunden.");
                 }
-               
+
             }
             else
             {
@@ -316,7 +316,7 @@ namespace OeV_Application
             {
                 LoadRequestResultToCombobox(cmb);
             }
-            
+
             Cursor = Cursors.Default;
         }
 
@@ -357,7 +357,7 @@ namespace OeV_Application
             ClickedButton.Enabled = false;
 
             //unschöner Code 
-            if(ClickedButton.Text == "An")
+            if (ClickedButton.Text == "An")
             {
                 button_Departure.Enabled = true;
             }
@@ -462,8 +462,8 @@ namespace OeV_Application
                 ErrorTargets.Add(txb_Time);
             }
             //Check has Time the right format
-            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None , out output) && !string.IsNullOrEmpty(Time))
-            { 
+            else if (!DateTime.TryParseExact(Time, "HH:mm", CultureInfo.CurrentCulture, DateTimeStyles.None, out output) && !string.IsNullOrEmpty(Time))
+            {
                 ErrorExceptions.Add("Die Uhrzeit eingabe entspricht nicht dem vorgegebenen Format. Format HH:mm");
                 ErrorTargets.Add(txb_Time);
             }
@@ -625,7 +625,7 @@ namespace OeV_Application
             //Reset all Colors from the Controls
             foreach (Control control in this.Controls[0].Controls)
             {
-                foreach(Control Childcontrol in control.Controls)
+                foreach (Control Childcontrol in control.Controls)
                 {
                     if (Childcontrol.GetType() == typeof(TextBox))
                     {
@@ -643,7 +643,7 @@ namespace OeV_Application
                         combobox.BackColor = SystemColors.Window;
                     }
                 }
-                    
+
             }
         }
 
@@ -665,14 +665,6 @@ namespace OeV_Application
             foreach (ColumnHeader column in listviewsource.Columns)
             {
                 column.Width = -2;
-            }
-        }
-
-        private void ListViewWithItem(ListView listviewsource)
-        {
-            foreach (ColumnHeader column in listviewsource.Columns)
-            {
-                column.Width = -1;
             }
         }
     }

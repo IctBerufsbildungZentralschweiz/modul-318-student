@@ -15,7 +15,8 @@ namespace SwissTransport
             if (responseStream != null)
             {
                 var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message);
+                var stations = JsonConvert.DeserializeObject<Stations>(message
+                    , new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                 return stations;
             }
 

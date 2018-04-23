@@ -25,44 +25,6 @@ namespace ImanSbbApp
             this.DataContext = viewModel;
         }
 
-        //OnClick Methoden der Anforderung A001
-        /* 
-        private void btnSearchFrom_Click(object sender, RoutedEventArgs e)
-        {
-            ITransport i = new Transport();
-            if (!string.IsNullOrEmpty(comboBoxFrom.Text))
-            {
-                List<Station> stations = i.GetStations(comboBoxFrom.Text).StationList;
-                if (stations.Count > 0)
-                {
-                    foreach (Station s in stations)
-                    {
-                        comboBoxFrom.Items.Add(s.Name.ToString());
-                        comboBoxFrom.IsDropDownOpen = true;
-
-                    }
-                }
-            }
-        }
-
-        private void btnSearchTo_Click(object sender, RoutedEventArgs e)
-        {
-            ITransport i = new Transport();
-            if (!string.IsNullOrEmpty(comboBoxTo.Text))
-            {
-                List<Station> stations = i.GetStations(comboBoxTo.Text).StationList;
-                if (stations.Count > 0)
-                {
-                    foreach (Station s in stations)
-                    {
-                        comboBoxTo.Items.Add(s.Name.ToString());
-                        comboBoxTo.IsDropDownOpen = true;
-                    }
-                }
-            }
-        }
-        */
-
         public void getStationbyTyping(ComboBox comboBox)
         {
             ITransport it = new Transport();
@@ -83,7 +45,6 @@ namespace ImanSbbApp
         private void setFocusDropdownOpen(ComboBox comboBox)
         {
             comboBox.IsDropDownOpen = true;
-
         }
 
         private void comboBoxFrom_GotFocus(object sender, RoutedEventArgs e)
@@ -118,9 +79,7 @@ namespace ImanSbbApp
             {
                 DisplayConnection dp = new DisplayConnection(c.To.Arrival, c.From.Departure, c.Duration, c.From.Platform);
                 viewModel.Connections.Add(dp);
-
             }
-
         }
 
         //Methoden für Tab Abfahrtstafel 
@@ -152,16 +111,10 @@ namespace ImanSbbApp
                         {
                             DisplayBoard displayBoard = new DisplayBoard(bb.Name, bb.To, bb.Stop.Departure.ToString());
                             viewModel.Board.Add(displayBoard);
-
                         }
                     }
                 }
             }
-        }
-
-        private void listViewConnections_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
-        {
-
         }
     }
 }

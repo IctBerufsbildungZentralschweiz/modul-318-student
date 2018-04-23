@@ -35,7 +35,7 @@ namespace ImanSbbApp
             }
             set
             {
-                departure = value;
+                departure = value; 
             }
         }
 

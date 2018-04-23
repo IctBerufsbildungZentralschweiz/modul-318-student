@@ -21,9 +21,11 @@ namespace ImanSbbApp
         public MainViewModel()
         {
             Connections = new ObservableCollection<DisplayConnection>();
+            Board = new ObservableCollection<DisplayBoard>();
         }
 
         public ObservableCollection<DisplayConnection> Connections { get; set; }
+        public ObservableCollection<DisplayBoard> Board { get; set; }
 
     }
 }

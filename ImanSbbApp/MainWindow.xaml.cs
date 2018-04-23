@@ -63,6 +63,49 @@ namespace ImanSbbApp
         }
         */
 
+        public void getStationbyTyping(ComboBox comboBox)
+        {
+            ITransport it = new Transport();
+            if (!string.IsNullOrEmpty(comboBox.Text))
+            {
+                List<Station> stations = it.GetStations(comboBox.Text).StationList;
+                if (stations.Count > 0)
+                {
+                    foreach (Station s in stations)
+                    {
+                        comboBox.Items.Add(s.Name.ToString());
+                    }
+                }
+            }
+
+        }
+
+        private void setFocusDropdownOpen(ComboBox comboBox)
+        {
+            comboBox.IsDropDownOpen = true;
+
+        }
+
+        private void comboBoxFrom_GotFocus(object sender, RoutedEventArgs e)
+        {
+            setFocusDropdownOpen(comboBoxFrom);
+        }
+
+        private void comboBoxFrom_KeyUp(object sender, KeyEventArgs e)
+        {
+            getStationbyTyping(comboBoxFrom);
+        }
+
+        private void comboBoxTo_GotFocus(object sender, RoutedEventArgs e)
+        {
+            setFocusDropdownOpen(comboBoxTo);
+        }
+
+        private void comboBoxTo_KeyUp(object sender, KeyEventArgs e)
+        {
+            getStationbyTyping(comboBoxTo);
+        }
+
         private void btnSearchConnection_Click(object sender, RoutedEventArgs e)
         {
             SwissTransport.Transport t = new SwissTransport.Transport();
@@ -75,51 +118,51 @@ namespace ImanSbbApp
             {
                 DisplayConnection dp = new DisplayConnection(c.To.Arrival, c.From.Departure, c.Duration, c.From.Platform);
                 viewModel.Connections.Add(dp);
-               
+
             }
+
         }
 
-        private void comboBoxFrom_GotFocus(object sender, RoutedEventArgs e)
+        //Methoden für Tab Abfahrtstafel 
+        private void comboBoxStation_GotFocus(object sender, RoutedEventArgs e)
         {
-            comboBoxFrom.IsDropDownOpen = true;
+            setFocusDropdownOpen(comboBoxStation);
+        }
+        private void comboBoxStation_KeyUp(object sender, KeyEventArgs e)
+        {
+            getStationbyTyping(comboBoxStation);
         }
 
-        private void comboBoxFrom_KeyUp(object sender, KeyEventArgs e)
+        private void btnSearchStationConnections_Click(object sender, RoutedEventArgs e)
         {
-            ITransport it = new Transport();
-            if (!string.IsNullOrEmpty(comboBoxFrom.Text))
-            {
-                List<Station> stations = it.GetStations(comboBoxFrom.Text).StationList;
-                if (stations.Count > 0)
+            ITransport t = new Transport();
+
+            if (!string.IsNullOrEmpty(comboBoxStation.Text))
+            {         
+                List<Station> st = t.GetStations(comboBoxStation.Text).StationList;
+
+                if(st.Count > 0)
                 {
-                    comboBoxFrom.IsDropDownOpen = true;
-                    foreach (Station s in stations)
+                    foreach (Station s in st)
                     {
-                        comboBoxFrom.Items.Add(s.Name.ToString());
+                        StationBoardRoot sbr = t.GetStationBoard(s.Name, s.Id);
+                        List<StationBoard> sb = sbr.Entries;
+
+                        foreach (StationBoard bb in sb)
+                        {
+                            DisplayBoard displayBoard = new DisplayBoard(bb.Name, bb.To, bb.Stop.Departure.ToString());
+                            viewModel.Board.Add(displayBoard);
+
+                        }
                     }
                 }
             }
         }
 
-        private void comboBoxTo_GotFocus(object sender, RoutedEventArgs e)
+        private void listViewConnections_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
         {
-            comboBoxTo.IsDropDownOpen = true;
+
         }
-
-        private void comboBoxTo_KeyUp(object sender, KeyEventArgs e)
-        {
-            ITransport t = new Transport();
-
-            if(!string.IsNullOrEmpty(comboBoxTo.Text))
-            {
-                List<Station> stations = t.GetStations(comboBoxTo.Text).StationList;
-                foreach(Station s in stations)
-                {
-                    comboBoxTo.Items.Add(s.Name);
-                }
-            }
-        }
-
     }
 }
 

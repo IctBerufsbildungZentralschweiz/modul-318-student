@@ -5,8 +5,126 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ImanSbbApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Fahrplan" Height="450" Width="800" MinWidth="850" MinHeight="500">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Vertical" Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock FontSize="25" HorizontalAlignment="Center" Text="Fahrplan" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="1" Orientation="Vertical">
+                            <TextBlock FontSize="15" Margin="10" Grid.Row="0" Text="Von" Height="20" />
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                        <ComboBox GotFocus="comboBoxFrom_GotFocus" 
+                                                  KeyUp="comboBoxFrom_KeyUp"
+                                                  Width="180" Margin="10 10 5 10" 
+                                                  IsEditable="True" 
+                                                  StaysOpenOnEdit="True"
+                                                  x:Name="comboBoxFrom">
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <Button Height="20" Width="60" x:Name="btnSearchFrom"  Content="Suchen" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel x:Name="stackPanelSearchConnection" Grid.Column="1" VerticalAlignment="Bottom">
+                    <Button Click="btnSearchConnection_Click" Background="LightYellow" x:Name="btnSearchConnection"  Width="200" Content="Verbindung suchen"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="1*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Row="1" Orientation="Vertical">
+                            <TextBlock FontSize="15" Margin="10" Grid.Row="0" Text="Nach" Height="20" />
+                            <StackPanel Grid.Row="2" Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*" />
+                                        <ColumnDefinition Width="1*" />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                                        <ComboBox x:Name="comboBoxTo" 
+                                                  Width="180" 
+                                                  Margin="10 10 5 10" 
+                                                  IsEditable="True"
+                                                  GotFocus="comboBoxTo_GotFocus"
+                                                  KeyUp="comboBoxTo_KeyUp">
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                        <Button x:Name="btnSearchTo" Height="20" Width="60" Content="Suchen" />
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" >
+            <ListView x:Name="listViewConnections" ItemsSource="{Binding Connections}">
+                <ListView.View>
+                    <GridView AllowsColumnReorder="true">
+                        <GridView.Columns>
+                            <GridViewColumn Width="180" Header="Abfahrt" DisplayMemberBinding="{Binding Path=Arrival}" />
+                            <GridViewColumn Width="180" Header="Ankunft" DisplayMemberBinding="{Binding Path=Departure}" />
+                            <GridViewColumn Width="180" Header="Dauer" DisplayMemberBinding="{Binding Path=Time}" />
+                            <GridViewColumn Width="180" Header="Gleis/ Kante" DisplayMemberBinding="{Binding Path=Platform}" />
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
     </Grid>
 </Window>

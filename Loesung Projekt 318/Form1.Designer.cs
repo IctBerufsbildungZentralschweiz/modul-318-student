@@ -29,198 +29,322 @@
 		private void InitializeComponent()
 		{
 			this.components = new System.ComponentModel.Container();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.datePicker = new System.Windows.Forms.DateTimePicker();
-			this.TimePicker = new System.Windows.Forms.DateTimePicker();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label1 = new System.Windows.Forms.Label();
-			this.txtNach = new System.Windows.Forms.TextBox();
-			this.txtVon = new System.Windows.Forms.TextBox();
-			this.lblNach = new System.Windows.Forms.Label();
-			this.lblVon = new System.Windows.Forms.Label();
-			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-			this.btnVerbinden = new System.Windows.Forms.Button();
-			this.dataGridView = new System.Windows.Forms.DataGridView();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.transportBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.panel1.SuspendLayout();
-			this.flowLayoutPanel1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+			this.lblVonStation = new System.Windows.Forms.Label();
+			this.txtFromStation = new System.Windows.Forms.TextBox();
+			this.cmbFromStation = new System.Windows.Forms.ComboBox();
+			this.txtToStation = new System.Windows.Forms.TextBox();
+			this.cmbToStation = new System.Windows.Forms.ComboBox();
+			this.lblToPosition = new System.Windows.Forms.Label();
+			this.lblDate = new System.Windows.Forms.Label();
+			this.tpFromDate = new System.Windows.Forms.DateTimePicker();
+			this.grpArrivalOrDepart = new System.Windows.Forms.GroupBox();
+			this.optIsDeparture = new System.Windows.Forms.RadioButton();
+			this.optIsArrival = new System.Windows.Forms.RadioButton();
+			this.lblTime = new System.Windows.Forms.Label();
+			this.tpFromTime = new System.Windows.Forms.DateTimePicker();
+			this.btnDeleteStation = new System.Windows.Forms.Button();
+			this.btnSearchForConnections = new System.Windows.Forms.Button();
+			this.lblConnections = new System.Windows.Forms.Label();
+			this.lvConnections = new System.Windows.Forms.ListView();
+			this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+			this.lblDelete = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.transportBindingSource)).BeginInit();
+			this.grpArrivalOrDepart.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// panel1
-			// 
-			this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.panel1.Controls.Add(this.btnVerbinden);
-			this.panel1.Controls.Add(this.datePicker);
-			this.panel1.Controls.Add(this.TimePicker);
-			this.panel1.Controls.Add(this.label2);
-			this.panel1.Controls.Add(this.label1);
-			this.panel1.Controls.Add(this.txtNach);
-			this.panel1.Controls.Add(this.txtVon);
-			this.panel1.Controls.Add(this.lblNach);
-			this.panel1.Controls.Add(this.lblVon);
-			this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-			this.panel1.Location = new System.Drawing.Point(0, 0);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(1062, 273);
-			this.panel1.TabIndex = 0;
-			// 
-			// datePicker
-			// 
-			this.datePicker.CalendarFont = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.datePicker.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.datePicker.Location = new System.Drawing.Point(261, 213);
-			this.datePicker.Name = "datePicker";
-			this.datePicker.Size = new System.Drawing.Size(321, 27);
-			this.datePicker.TabIndex = 7;
-			// 
-			// TimePicker
-			// 
-			this.TimePicker.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.TimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-			this.TimePicker.Location = new System.Drawing.Point(308, 171);
-			this.TimePicker.Name = "TimePicker";
-			this.TimePicker.ShowUpDown = true;
-			this.TimePicker.Size = new System.Drawing.Size(102, 27);
-			this.TimePicker.TabIndex = 6;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.label2.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.Location = new System.Drawing.Point(126, 207);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(96, 30);
-			this.label2.TabIndex = 5;
-			this.label2.Text = "Datum:";
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.label1.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.Location = new System.Drawing.Point(126, 165);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(63, 30);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "Zeit:";
-			// 
-			// txtNach
-			// 
-			this.txtNach.Location = new System.Drawing.Point(261, 116);
-			this.txtNach.Name = "txtNach";
-			this.txtNach.Size = new System.Drawing.Size(209, 22);
-			this.txtNach.TabIndex = 3;
-			// 
-			// txtVon
-			// 
-			this.txtVon.Location = new System.Drawing.Point(261, 63);
-			this.txtVon.Name = "txtVon";
-			this.txtVon.Size = new System.Drawing.Size(209, 22);
-			this.txtVon.TabIndex = 2;
-			// 
-			// lblNach
-			// 
-			this.lblNach.AutoSize = true;
-			this.lblNach.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.lblNach.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblNach.Location = new System.Drawing.Point(126, 108);
-			this.lblNach.Name = "lblNach";
-			this.lblNach.Size = new System.Drawing.Size(81, 30);
-			this.lblNach.TabIndex = 1;
-			this.lblNach.Text = "Nach:";
-			// 
-			// lblVon
-			// 
-			this.lblVon.AutoSize = true;
-			this.lblVon.BackColor = System.Drawing.Color.WhiteSmoke;
-			this.lblVon.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblVon.Location = new System.Drawing.Point(126, 55);
-			this.lblVon.Name = "lblVon";
-			this.lblVon.Size = new System.Drawing.Size(65, 30);
-			this.lblVon.TabIndex = 0;
-			this.lblVon.Text = "Von:";
-			// 
-			// flowLayoutPanel1
-			// 
-			this.flowLayoutPanel1.BackColor = System.Drawing.Color.AliceBlue;
-			this.flowLayoutPanel1.Controls.Add(this.dataGridView);
-			this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 273);
-			this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-			this.flowLayoutPanel1.Padding = new System.Windows.Forms.Padding(0, 0, 15, 0);
-			this.flowLayoutPanel1.Size = new System.Drawing.Size(1062, 543);
-			this.flowLayoutPanel1.TabIndex = 0;
-			// 
-			// btnVerbinden
-			// 
-			this.btnVerbinden.BackColor = System.Drawing.Color.AliceBlue;
-			this.btnVerbinden.Font = new System.Drawing.Font("Arial", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnVerbinden.Location = new System.Drawing.Point(586, 95);
-			this.btnVerbinden.Name = "btnVerbinden";
-			this.btnVerbinden.Padding = new System.Windows.Forms.Padding(0, 0, 0, 12);
-			this.btnVerbinden.Size = new System.Drawing.Size(367, 64);
-			this.btnVerbinden.TabIndex = 8;
-			this.btnVerbinden.Text = "Nach Verbindung suchen";
-			this.btnVerbinden.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-			this.btnVerbinden.UseVisualStyleBackColor = false;
-			this.btnVerbinden.Click += new System.EventHandler(this.OnClickVerbindungSuchen);
-			// 
-			// dataGridView
-			// 
-			this.dataGridView.AllowUserToAddRows = false;
-			this.dataGridView.AllowUserToDeleteRows = false;
-			this.dataGridView.AllowUserToResizeColumns = false;
-			this.dataGridView.AllowUserToResizeRows = false;
-			this.dataGridView.AutoGenerateColumns = false;
-			this.dataGridView.BackgroundColor = System.Drawing.Color.White;
-			this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-			this.dataGridView.DataSource = this.transportBindingSource;
-			this.dataGridView.Location = new System.Drawing.Point(3, 3);
-			this.dataGridView.Name = "dataGridView";
-			this.dataGridView.RowTemplate.Height = 24;
-			this.dataGridView.Size = new System.Drawing.Size(1059, 540);
-			this.dataGridView.TabIndex = 0;
 			// 
 			// transportBindingSource
 			// 
 			this.transportBindingSource.DataSource = typeof(SwissTransport.Transport);
 			// 
+			// lblVonStation
+			// 
+			this.lblVonStation.AutoSize = true;
+			this.lblVonStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblVonStation.Location = new System.Drawing.Point(60, 55);
+			this.lblVonStation.Name = "lblVonStation";
+			this.lblVonStation.Size = new System.Drawing.Size(43, 20);
+			this.lblVonStation.TabIndex = 21;
+			this.lblVonStation.Text = "Von:";
+			// 
+			// txtFromStation
+			// 
+			this.txtFromStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+			this.txtFromStation.Location = new System.Drawing.Point(126, 55);
+			this.txtFromStation.Margin = new System.Windows.Forms.Padding(4);
+			this.txtFromStation.Name = "txtFromStation";
+			this.txtFromStation.Size = new System.Drawing.Size(425, 27);
+			this.txtFromStation.TabIndex = 22;
+			// 
+			// cmbFromStation
+			// 
+			this.cmbFromStation.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.cmbFromStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cmbFromStation.FormattingEnabled = true;
+			this.cmbFromStation.Location = new System.Drawing.Point(126, 102);
+			this.cmbFromStation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.cmbFromStation.Name = "cmbFromStation";
+			this.cmbFromStation.Size = new System.Drawing.Size(425, 28);
+			this.cmbFromStation.TabIndex = 23;
+			// 
+			// txtToStation
+			// 
+			this.txtToStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+			this.txtToStation.Location = new System.Drawing.Point(126, 165);
+			this.txtToStation.Margin = new System.Windows.Forms.Padding(4);
+			this.txtToStation.Name = "txtToStation";
+			this.txtToStation.Size = new System.Drawing.Size(425, 27);
+			this.txtToStation.TabIndex = 24;
+			// 
+			// cmbToStation
+			// 
+			this.cmbToStation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.cmbToStation.FormattingEnabled = true;
+			this.cmbToStation.Location = new System.Drawing.Point(126, 200);
+			this.cmbToStation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.cmbToStation.Name = "cmbToStation";
+			this.cmbToStation.Size = new System.Drawing.Size(425, 28);
+			this.cmbToStation.TabIndex = 26;
+			// 
+			// lblToPosition
+			// 
+			this.lblToPosition.AutoSize = true;
+			this.lblToPosition.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblToPosition.Location = new System.Drawing.Point(54, 169);
+			this.lblToPosition.Name = "lblToPosition";
+			this.lblToPosition.Size = new System.Drawing.Size(58, 20);
+			this.lblToPosition.TabIndex = 25;
+			this.lblToPosition.Text = "Nach: ";
+			// 
+			// lblDate
+			// 
+			this.lblDate.AutoSize = true;
+			this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblDate.Location = new System.Drawing.Point(54, 288);
+			this.lblDate.Name = "lblDate";
+			this.lblDate.Size = new System.Drawing.Size(64, 20);
+			this.lblDate.TabIndex = 32;
+			this.lblDate.Text = "Datum:";
+			// 
+			// tpFromDate
+			// 
+			this.tpFromDate.Checked = false;
+			this.tpFromDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+			this.tpFromDate.Location = new System.Drawing.Point(126, 289);
+			this.tpFromDate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tpFromDate.Name = "tpFromDate";
+			this.tpFromDate.Size = new System.Drawing.Size(212, 27);
+			this.tpFromDate.TabIndex = 33;
+			// 
+			// grpArrivalOrDepart
+			// 
+			this.grpArrivalOrDepart.Controls.Add(this.optIsDeparture);
+			this.grpArrivalOrDepart.Controls.Add(this.optIsArrival);
+			this.grpArrivalOrDepart.Location = new System.Drawing.Point(609, 270);
+			this.grpArrivalOrDepart.Name = "grpArrivalOrDepart";
+			this.grpArrivalOrDepart.Size = new System.Drawing.Size(175, 57);
+			this.grpArrivalOrDepart.TabIndex = 41;
+			this.grpArrivalOrDepart.TabStop = false;
+			// 
+			// optIsDeparture
+			// 
+			this.optIsDeparture.AutoSize = true;
+			this.optIsDeparture.Location = new System.Drawing.Point(89, 21);
+			this.optIsDeparture.Name = "optIsDeparture";
+			this.optIsDeparture.Size = new System.Drawing.Size(75, 21);
+			this.optIsDeparture.TabIndex = 1;
+			this.optIsDeparture.TabStop = true;
+			this.optIsDeparture.Text = "Abfahrt";
+			this.optIsDeparture.UseVisualStyleBackColor = true;
+			// 
+			// optIsArrival
+			// 
+			this.optIsArrival.AutoSize = true;
+			this.optIsArrival.Location = new System.Drawing.Point(6, 21);
+			this.optIsArrival.Name = "optIsArrival";
+			this.optIsArrival.Size = new System.Drawing.Size(77, 21);
+			this.optIsArrival.TabIndex = 0;
+			this.optIsArrival.TabStop = true;
+			this.optIsArrival.Text = "Ankunft";
+			this.optIsArrival.UseVisualStyleBackColor = true;
+			// 
+			// lblTime
+			// 
+			this.lblTime.AutoSize = true;
+			this.lblTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTime.Location = new System.Drawing.Point(390, 289);
+			this.lblTime.Name = "lblTime";
+			this.lblTime.Size = new System.Drawing.Size(41, 20);
+			this.lblTime.TabIndex = 40;
+			this.lblTime.Text = "Zeit:";
+			// 
+			// tpFromTime
+			// 
+			this.tpFromTime.Checked = false;
+			this.tpFromTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tpFromTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+			this.tpFromTime.Location = new System.Drawing.Point(455, 284);
+			this.tpFromTime.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.tpFromTime.Name = "tpFromTime";
+			this.tpFromTime.ShowUpDown = true;
+			this.tpFromTime.Size = new System.Drawing.Size(137, 27);
+			this.tpFromTime.TabIndex = 39;
+			// 
+			// btnDeleteStation
+			// 
+			this.btnDeleteStation.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDeleteStation.BackgroundImage")));
+			this.btnDeleteStation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+			this.btnDeleteStation.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnDeleteStation.Location = new System.Drawing.Point(627, 102);
+			this.btnDeleteStation.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnDeleteStation.Name = "btnDeleteStation";
+			this.btnDeleteStation.Size = new System.Drawing.Size(178, 105);
+			this.btnDeleteStation.TabIndex = 43;
+			this.btnDeleteStation.UseVisualStyleBackColor = true;
+			this.btnDeleteStation.Click += new System.EventHandler(this.OnClickDelete);
+			// 
+			// btnSearchForConnections
+			// 
+			this.btnSearchForConnections.BackColor = System.Drawing.Color.Firebrick;
+			this.btnSearchForConnections.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnSearchForConnections.FlatStyle = System.Windows.Forms.FlatStyle.System;
+			this.btnSearchForConnections.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnSearchForConnections.Location = new System.Drawing.Point(326, 351);
+			this.btnSearchForConnections.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.btnSearchForConnections.Name = "btnSearchForConnections";
+			this.btnSearchForConnections.Size = new System.Drawing.Size(213, 47);
+			this.btnSearchForConnections.TabIndex = 44;
+			this.btnSearchForConnections.Text = "Verbindung Suchen";
+			this.btnSearchForConnections.UseVisualStyleBackColor = false;
+			this.btnSearchForConnections.Click += new System.EventHandler(this.OnClickSearchConnection);
+			// 
+			// lblConnections
+			// 
+			this.lblConnections.BackColor = System.Drawing.SystemColors.AppWorkspace;
+			this.lblConnections.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.lblConnections.Location = new System.Drawing.Point(58, 442);
+			this.lblConnections.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+			this.lblConnections.Name = "lblConnections";
+			this.lblConnections.Size = new System.Drawing.Size(747, 24);
+			this.lblConnections.TabIndex = 45;
+			this.lblConnections.Text = "Verbindungen:";
+			this.lblConnections.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			// 
+			// lvConnections
+			// 
+			this.lvConnections.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader3,
+            this.columnHeader2,
+            this.columnHeader4,
+            this.columnHeader5});
+			this.lvConnections.Location = new System.Drawing.Point(58, 470);
+			this.lvConnections.Margin = new System.Windows.Forms.Padding(4);
+			this.lvConnections.Name = "lvConnections";
+			this.lvConnections.Size = new System.Drawing.Size(747, 422);
+			this.lvConnections.TabIndex = 46;
+			this.lvConnections.TileSize = new System.Drawing.Size(168, 30);
+			this.lvConnections.UseCompatibleStateImageBehavior = false;
+			this.lvConnections.View = System.Windows.Forms.View.Details;
+			// 
+			// columnHeader1
+			// 
+			this.columnHeader1.Text = "Von";
+			this.columnHeader1.Width = 200;
+			// 
+			// columnHeader3
+			// 
+			this.columnHeader3.Text = "Nach";
+			this.columnHeader3.Width = 200;
+			// 
+			// columnHeader2
+			// 
+			this.columnHeader2.Text = "Abfahrt";
+			this.columnHeader2.Width = 46;
+			// 
+			// columnHeader4
+			// 
+			this.columnHeader4.Text = "Ankunft";
+			this.columnHeader4.Width = 49;
+			// 
+			// columnHeader5
+			// 
+			this.columnHeader5.Text = "Dauer";
+			this.columnHeader5.Width = 55;
+			// 
+			// lblDelete
+			// 
+			this.lblDelete.AutoSize = true;
+			this.lblDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblDelete.Location = new System.Drawing.Point(644, 58);
+			this.lblDelete.Name = "lblDelete";
+			this.lblDelete.Size = new System.Drawing.Size(140, 24);
+			this.lblDelete.TabIndex = 47;
+			this.lblDelete.Text = "Inhalt löschen";
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(1062, 816);
-			this.Controls.Add(this.flowLayoutPanel1);
-			this.Controls.Add(this.panel1);
+			this.ClientSize = new System.Drawing.Size(894, 922);
+			this.Controls.Add(this.lblDelete);
+			this.Controls.Add(this.lvConnections);
+			this.Controls.Add(this.lblConnections);
+			this.Controls.Add(this.btnSearchForConnections);
+			this.Controls.Add(this.btnDeleteStation);
+			this.Controls.Add(this.grpArrivalOrDepart);
+			this.Controls.Add(this.lblTime);
+			this.Controls.Add(this.tpFromTime);
+			this.Controls.Add(this.tpFromDate);
+			this.Controls.Add(this.lblDate);
+			this.Controls.Add(this.txtToStation);
+			this.Controls.Add(this.cmbToStation);
+			this.Controls.Add(this.lblToPosition);
+			this.Controls.Add(this.cmbFromStation);
+			this.Controls.Add(this.txtFromStation);
+			this.Controls.Add(this.lblVonStation);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Form1";
-			this.Text = "Form1";
-			this.panel1.ResumeLayout(false);
-			this.panel1.PerformLayout();
-			this.flowLayoutPanel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+			this.Text = "Swisstransport Programm";
 			((System.ComponentModel.ISupportInitialize)(this.transportBindingSource)).EndInit();
+			this.grpArrivalOrDepart.ResumeLayout(false);
+			this.grpArrivalOrDepart.PerformLayout();
 			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.Panel panel1;
-		private System.Windows.Forms.DateTimePicker datePicker;
-		private System.Windows.Forms.DateTimePicker TimePicker;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox txtNach;
-		private System.Windows.Forms.TextBox txtVon;
-		private System.Windows.Forms.Label lblNach;
-		private System.Windows.Forms.Label lblVon;
-		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-		private System.Windows.Forms.Button btnVerbinden;
-		private System.Windows.Forms.DataGridView dataGridView;
 		private System.Windows.Forms.BindingSource transportBindingSource;
+		private System.Windows.Forms.Label lblVonStation;
+		private System.Windows.Forms.TextBox txtFromStation;
+		private System.Windows.Forms.ComboBox cmbFromStation;
+		private System.Windows.Forms.TextBox txtToStation;
+		private System.Windows.Forms.ComboBox cmbToStation;
+		private System.Windows.Forms.Label lblToPosition;
+		private System.Windows.Forms.Label lblDate;
+		private System.Windows.Forms.DateTimePicker tpFromDate;
+		private System.Windows.Forms.GroupBox grpArrivalOrDepart;
+		private System.Windows.Forms.RadioButton optIsDeparture;
+		private System.Windows.Forms.RadioButton optIsArrival;
+		private System.Windows.Forms.Label lblTime;
+		private System.Windows.Forms.DateTimePicker tpFromTime;
+		private System.Windows.Forms.Button btnDeleteStation;
+		private System.Windows.Forms.Button btnSearchForConnections;
+		private System.Windows.Forms.Label lblConnections;
+		private System.Windows.Forms.ListView lvConnections;
+		private System.Windows.Forms.ColumnHeader columnHeader1;
+		private System.Windows.Forms.ColumnHeader columnHeader3;
+		private System.Windows.Forms.ColumnHeader columnHeader2;
+		private System.Windows.Forms.ColumnHeader columnHeader4;
+		private System.Windows.Forms.ColumnHeader columnHeader5;
+		private System.Windows.Forms.Label lblDelete;
 	}
 }
 

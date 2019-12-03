@@ -24,11 +24,12 @@ namespace SwissTransport
             return null;
         }
 
-        public StationBoardRoot GetStationBoard(string station, string id)
+        public StationBoardRoot GetStationBoard(string station, string id, string dateTime)
         {
             station = System.Uri.EscapeDataString(station);
             id = System.Uri.EscapeDataString(id);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?station=" + station + "&id=" + id);
+            dateTime = System.Uri.EscapeDataString(dateTime);
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?station=" + station + "&id=" + id +"&datetime=" + dateTime);
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
@@ -43,19 +44,19 @@ namespace SwissTransport
             return null;
         }
 
-        public Connections GetConnections(string fromStation, string toStation)
+        public Connections GetConnections(string fromStation, string toStation, string dateTime)
         {
             fromStation = System.Uri.EscapeDataString(fromStation);
             toStation = System.Uri.EscapeDataString(toStation);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation);
+            dateTime = System.Uri.EscapeDataString(dateTime);
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation + "&datetime=" + dateTime);
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
             if (responseStream != null)
             {
                 var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var connections =
-                    JsonConvert.DeserializeObject<Connections>(readToEnd);
+                Connections connections = JsonConvert.DeserializeObject<Connections>(readToEnd);
                 return connections;
             }
 

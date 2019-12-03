@@ -20,7 +20,7 @@ namespace SwissTransport
         public void StationBoard()
         {
             testee = new Transport();
-            var stationBoard = testee.GetStationBoard("Sursee", "8502007");
+            var stationBoard = testee.GetStationBoard("Sursee", "8502007", "2019-12-31T23%3A55");
 
             Assert.IsNotNull(stationBoard);
         }
@@ -29,7 +29,7 @@ namespace SwissTransport
         public void Connections()
         {
             testee = new Transport();
-            var connections = testee.GetConnections("Sursee", "Luzern");
+            var connections = testee.GetConnections("Sursee", "Luzern", "2019-12-31T23%3A55");
 
             Assert.IsNotNull(connections);
         }

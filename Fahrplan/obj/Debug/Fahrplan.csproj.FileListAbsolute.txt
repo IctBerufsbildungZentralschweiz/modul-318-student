@@ -1,0 +1,15 @@
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\Fahrplan.exe.config
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\Fahrplan.exe
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\Fahrplan.pdb
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.csprojAssemblyReference.cache
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.Properties.Resources.resources
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.csproj.GenerateResource.cache
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.exe
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.pdb
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.Fahrplan.resources
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\SwissTransport.dll
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\SwissTransport.pdb
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\bin\Debug\Newtonsoft.Json.xml
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.csproj.CopyComplete
+C:\Users\lukas\Documents\git\modul-318-student\Fahrplan\obj\Debug\Fahrplan.Mail.resources

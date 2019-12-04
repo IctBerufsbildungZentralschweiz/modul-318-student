@@ -1,0 +1,12 @@
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\SwissTransportTest.dll
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\SwissTransportTest.pdb
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\SwissTransport.dll
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\Newtonsoft.Json.dll
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\SwissTransport.pdb
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\Newtonsoft.Json.xml
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\bin\Debug\de\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\obj\Debug\SwissTransportTest.csprojAssemblyReference.cache
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\obj\Debug\SwissTransportTest.csproj.CopyComplete
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\obj\Debug\SwissTransportTest.dll
+C:\Users\lukas\Documents\git\modul-318-student\tests\SwissTransportTest\obj\Debug\SwissTransportTest.pdb

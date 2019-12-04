@@ -34,6 +34,9 @@
             this.lblTitel = new System.Windows.Forms.Label();
             this.txtAbfahrt = new System.Windows.Forms.TextBox();
             this.pnlLayout = new System.Windows.Forms.Panel();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblNach = new System.Windows.Forms.Label();
+            this.lblVon = new System.Windows.Forms.Label();
             this.datDatum = new System.Windows.Forms.DateTimePicker();
             this.pnlAnkunft = new System.Windows.Forms.Panel();
             this.txtAnkunft = new System.Windows.Forms.TextBox();
@@ -48,9 +51,7 @@
             this.btnMail = new System.Windows.Forms.Button();
             this.btnRückfahrt = new System.Windows.Forms.Button();
             this.lblDetail = new System.Windows.Forms.Label();
-            this.lblVon = new System.Windows.Forms.Label();
-            this.lblNach = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
+            this.lblLink = new System.Windows.Forms.LinkLabel();
             this.pnlLayout.SuspendLayout();
             this.pnlAnkunft.SuspendLayout();
             this.pnlAbfahrt.SuspendLayout();
@@ -130,7 +131,7 @@
             this.txtAbfahrt.Margin = new System.Windows.Forms.Padding(2);
             this.txtAbfahrt.Name = "txtAbfahrt";
             this.txtAbfahrt.Size = new System.Drawing.Size(156, 19);
-            this.txtAbfahrt.TabIndex = 4;
+            this.txtAbfahrt.TabIndex = 1;
             this.txtAbfahrt.TextChanged += new System.EventHandler(this.txtAbfahrt_TextChanged);
             // 
             // pnlLayout
@@ -152,6 +153,39 @@
             this.pnlLayout.Size = new System.Drawing.Size(380, 358);
             this.pnlLayout.TabIndex = 6;
             // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
+            this.lblDate.Location = new System.Drawing.Point(17, 253);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(113, 16);
+            this.lblDate.TabIndex = 17;
+            this.lblDate.Text = "Datum / Uhrzeit";
+            // 
+            // lblNach
+            // 
+            this.lblNach.AutoSize = true;
+            this.lblNach.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
+            this.lblNach.Location = new System.Drawing.Point(199, 60);
+            this.lblNach.Name = "lblNach";
+            this.lblNach.Size = new System.Drawing.Size(41, 16);
+            this.lblNach.TabIndex = 16;
+            this.lblNach.Text = "nach";
+            // 
+            // lblVon
+            // 
+            this.lblVon.AutoSize = true;
+            this.lblVon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
+            this.lblVon.Location = new System.Drawing.Point(17, 60);
+            this.lblVon.Name = "lblVon";
+            this.lblVon.Size = new System.Drawing.Size(33, 16);
+            this.lblVon.TabIndex = 15;
+            this.lblVon.Text = "von";
+            // 
             // datDatum
             // 
             this.datDatum.CalendarForeColor = System.Drawing.Color.Black;
@@ -166,7 +200,7 @@
             this.datDatum.MaxDate = new System.DateTime(2020, 12, 12, 0, 0, 0, 0);
             this.datDatum.Name = "datDatum";
             this.datDatum.Size = new System.Drawing.Size(160, 31);
-            this.datDatum.TabIndex = 7;
+            this.datDatum.TabIndex = 3;
             // 
             // pnlAnkunft
             // 
@@ -187,7 +221,7 @@
             this.txtAnkunft.Margin = new System.Windows.Forms.Padding(2);
             this.txtAnkunft.Name = "txtAnkunft";
             this.txtAnkunft.Size = new System.Drawing.Size(156, 19);
-            this.txtAnkunft.TabIndex = 4;
+            this.txtAnkunft.TabIndex = 2;
             this.txtAnkunft.TextChanged += new System.EventHandler(this.txtAnkunft_TextChanged);
             // 
             // pnlAbfahrt
@@ -210,7 +244,7 @@
             this.btnSuchen.Location = new System.Drawing.Point(200, 258);
             this.btnSuchen.Name = "btnSuchen";
             this.btnSuchen.Size = new System.Drawing.Size(160, 75);
-            this.btnSuchen.TabIndex = 12;
+            this.btnSuchen.TabIndex = 5;
             this.btnSuchen.Text = "SUCHEN";
             this.btnSuchen.UseVisualStyleBackColor = false;
             this.btnSuchen.Click += new System.EventHandler(this.btnSuchen_Click);
@@ -239,7 +273,7 @@
             this.datZeit.Name = "datZeit";
             this.datZeit.ShowUpDown = true;
             this.datZeit.Size = new System.Drawing.Size(160, 31);
-            this.datZeit.TabIndex = 8;
+            this.datZeit.TabIndex = 4;
             // 
             // lstAbfahrt
             // 
@@ -257,6 +291,7 @@
             // pnlErgebnisse
             // 
             this.pnlErgebnisse.BackColor = System.Drawing.Color.White;
+            this.pnlErgebnisse.Controls.Add(this.lblLink);
             this.pnlErgebnisse.Controls.Add(this.lstErgebnisse);
             this.pnlErgebnisse.Location = new System.Drawing.Point(504, 11);
             this.pnlErgebnisse.Name = "pnlErgebnisse";
@@ -290,17 +325,19 @@
             // 
             // btnMail
             // 
-            this.btnMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
+            this.btnMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.btnMail.Enabled = false;
             this.btnMail.FlatAppearance.BorderSize = 0;
             this.btnMail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMail.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMail.ForeColor = System.Drawing.Color.White;
-            this.btnMail.Location = new System.Drawing.Point(205, 117);
+            this.btnMail.Location = new System.Drawing.Point(19, 117);
             this.btnMail.Name = "btnMail";
-            this.btnMail.Size = new System.Drawing.Size(86, 43);
-            this.btnMail.TabIndex = 16;
+            this.btnMail.Size = new System.Drawing.Size(90, 43);
+            this.btnMail.TabIndex = 7;
             this.btnMail.Text = "MAIL";
             this.btnMail.UseVisualStyleBackColor = false;
+            this.btnMail.Click += new System.EventHandler(this.btnMail_Click);
             // 
             // btnRückfahrt
             // 
@@ -309,12 +346,13 @@
             this.btnRückfahrt.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRückfahrt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRückfahrt.ForeColor = System.Drawing.Color.Black;
-            this.btnRückfahrt.Location = new System.Drawing.Point(11, 117);
+            this.btnRückfahrt.Location = new System.Drawing.Point(109, 117);
             this.btnRückfahrt.Name = "btnRückfahrt";
-            this.btnRückfahrt.Size = new System.Drawing.Size(197, 43);
-            this.btnRückfahrt.TabIndex = 18;
+            this.btnRückfahrt.Size = new System.Drawing.Size(174, 43);
+            this.btnRückfahrt.TabIndex = 8;
             this.btnRückfahrt.Text = "RÜCKFAHRT";
             this.btnRückfahrt.UseVisualStyleBackColor = false;
+            this.btnRückfahrt.Click += new System.EventHandler(this.btnRückfahrt_Click);
             // 
             // lblDetail
             // 
@@ -323,44 +361,27 @@
             this.lblDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDetail.Location = new System.Drawing.Point(6, 14);
             this.lblDetail.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblDetail.MaximumSize = new System.Drawing.Size(295, 0);
+            this.lblDetail.MaximumSize = new System.Drawing.Size(295, 100);
             this.lblDetail.Name = "lblDetail";
             this.lblDetail.Size = new System.Drawing.Size(294, 29);
             this.lblDetail.TabIndex = 15;
             this.lblDetail.Text = "- - - - - - - - - - - - - - - - - -";
             // 
-            // lblVon
+            // lblLink
             // 
-            this.lblVon.AutoSize = true;
-            this.lblVon.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVon.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
-            this.lblVon.Location = new System.Drawing.Point(17, 60);
-            this.lblVon.Name = "lblVon";
-            this.lblVon.Size = new System.Drawing.Size(33, 16);
-            this.lblVon.TabIndex = 15;
-            this.lblVon.Text = "von";
-            // 
-            // lblNach
-            // 
-            this.lblNach.AutoSize = true;
-            this.lblNach.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNach.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
-            this.lblNach.Location = new System.Drawing.Point(199, 60);
-            this.lblNach.Name = "lblNach";
-            this.lblNach.Size = new System.Drawing.Size(41, 16);
-            this.lblNach.TabIndex = 16;
-            this.lblNach.Text = "nach";
-            // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
-            this.lblDate.Location = new System.Drawing.Point(17, 253);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(113, 16);
-            this.lblDate.TabIndex = 17;
-            this.lblDate.Text = "Datum / Uhrzeit";
+            this.lblLink.ActiveLinkColor = System.Drawing.Color.Navy;
+            this.lblLink.AutoSize = true;
+            this.lblLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
+            this.lblLink.Location = new System.Drawing.Point(7, 124);
+            this.lblLink.Name = "lblLink";
+            this.lblLink.Size = new System.Drawing.Size(97, 20);
+            this.lblLink.TabIndex = 6;
+            this.lblLink.TabStop = true;
+            this.lblLink.Text = "Ort ansehen";
+            this.lblLink.Visible = false;
+            this.lblLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(100)))));
+            this.lblLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblLink_LinkClicked);
             // 
             // Fahrplan
             // 
@@ -368,7 +389,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ClientSize = new System.Drawing.Size(832, 381);
+            this.ClientSize = new System.Drawing.Size(820, 381);
             this.Controls.Add(this.pnlDetail);
             this.Controls.Add(this.pnlErgebnisse);
             this.Controls.Add(this.pnlLayout);
@@ -387,6 +408,7 @@
             this.pnlAbfahrt.ResumeLayout(false);
             this.pnlAbfahrt.PerformLayout();
             this.pnlErgebnisse.ResumeLayout(false);
+            this.pnlErgebnisse.PerformLayout();
             this.pnlDetail.ResumeLayout(false);
             this.pnlDetail.PerformLayout();
             this.ResumeLayout(false);
@@ -418,6 +440,7 @@
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.Label lblNach;
         private System.Windows.Forms.Label lblVon;
+        private System.Windows.Forms.LinkLabel lblLink;
     }
 }
 

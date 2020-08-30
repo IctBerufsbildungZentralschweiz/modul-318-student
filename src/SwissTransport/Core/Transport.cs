@@ -32,21 +32,25 @@ namespace SwissTransport.Core
 
         public StationBoardRoot GetStationBoard(string station, string id)
         {
-            station = System.Uri.EscapeDataString(station);
-            id = System.Uri.EscapeDataString(id);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?station=" + station + "&id=" + id);
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
+            if(string.IsNullOrEmpty(station))
+                throw new ArgumentNullException(nameof(station));
+            
+            if(string.IsNullOrEmpty(id))
+                throw new ArgumentNullException(nameof(id));
 
-            if (responseStream != null)
-            {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var stationboard =
-                    JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
-                return stationboard;
-            }
+            return GetStationBoardAsync(station, id).GetResult();
+        }
 
-            return null;
+        public Task<StationBoardRoot> GetStationBoardAsync(string station, string id)
+        {
+            if (string.IsNullOrEmpty(station))
+                throw new ArgumentNullException(nameof(station));
+
+            if (string.IsNullOrEmpty(id))
+                throw new ArgumentNullException(nameof(id));
+
+            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
+            return HttpClient.GetAsyncObject(uri, JsonConvert.DeserializeObject<StationBoardRoot>);
         }
 
         public Connections GetConnections(string fromStation, string toStation)

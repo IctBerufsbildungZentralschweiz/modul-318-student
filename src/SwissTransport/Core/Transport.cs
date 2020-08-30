@@ -7,7 +7,7 @@ using SwissTransport.Models;
 
 namespace SwissTransport.Core
 {
-    public class Transport : ITransport
+    public class Transport : ITransport, IDisposable
     {
         public const string WebApiHost = "http://transport.opendata.ch/v1/";
 
@@ -75,6 +75,11 @@ namespace SwissTransport.Core
 
             var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
             return HttpClient.GetAsyncObject(uri, JsonConvert.DeserializeObject<Connections>);
+        }
+
+        public void Dispose()
+        {
+            HttpClient?.Dispose();
         }
     }
 }

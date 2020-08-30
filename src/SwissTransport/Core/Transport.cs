@@ -77,16 +77,5 @@ namespace SwissTransport.Core
             var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
             return HttpClient.GetAsyncObject(uri, JsonConvert.DeserializeObject<Connections>);
         }
-
-        private static WebRequest CreateWebRequest(string url)
-        {
-            var request = WebRequest.Create(url);
-            var webProxy = WebRequest.DefaultWebProxy;
-
-            webProxy.Credentials = CredentialCache.DefaultNetworkCredentials;
-            request.Proxy = webProxy;
-
-            return request;
-        }
     }
 }

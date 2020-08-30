@@ -72,7 +72,7 @@ namespace SwissTransport.Core
             if (string.IsNullOrEmpty(toStation))
                 throw new ArgumentNullException(nameof(toStation));
 
-            var uri = new Uri("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation);
+            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
             return HttpClient.GetAsyncObject(uri, JsonConvert.DeserializeObject<Connections>);
         }
 

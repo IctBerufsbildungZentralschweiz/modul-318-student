@@ -1,4 +1,6 @@
-﻿namespace SwissTransport
+﻿using SwissTransport.Models;
+
+namespace SwissTransport
 {
     public interface ITransport
     {

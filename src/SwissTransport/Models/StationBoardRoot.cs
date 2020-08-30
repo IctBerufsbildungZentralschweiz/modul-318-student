@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace SwissTransport
+namespace SwissTransport.Models
 {
     public class StationBoardRoot
     {

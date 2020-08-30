@@ -16,7 +16,7 @@ namespace SwissTransport.Core
                 Proxy = proxy ?? throw new ArgumentNullException(nameof(proxy))
             };
         }
-        
+
         public void Dispose()
         {
             _client?.Dispose();
@@ -24,7 +24,7 @@ namespace SwissTransport.Core
 
         public Task<string> GetAsyncString(Uri uri)
         {
-            if(uri is null)
+            if (uri is null)
                 throw new ArgumentNullException(nameof(uri));
 
             return _client.DownloadStringTaskAsync(uri);
@@ -32,10 +32,10 @@ namespace SwissTransport.Core
 
         public async Task<TObject> GetAsyncObject<TObject>(Uri uri, Func<string, TObject> converter)
         {
-            if(uri is null)
+            if (uri is null)
                 throw new ArgumentNullException(nameof(uri));
-            
-            if(converter is null)
+
+            if (converter is null)
                 throw new ArgumentNullException(nameof(uri));
 
             return converter.Invoke(await GetAsyncString(uri));

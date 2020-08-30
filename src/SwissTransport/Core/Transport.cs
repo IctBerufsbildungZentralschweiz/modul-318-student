@@ -10,12 +10,14 @@ namespace SwissTransport.Core
 {
     public class Transport : ITransport
     {
-        private const string WebApiHost = "http://transport.opendata.ch/v1/";
-        protected readonly IHttpClient HttpClient = new HttpClient(CredentialCache.DefaultNetworkCredentials, WebRequest.DefaultWebProxy);
-        
+        public const string WebApiHost = "http://transport.opendata.ch/v1/";
+
+        protected readonly IHttpClient HttpClient =
+            new HttpClient(CredentialCache.DefaultNetworkCredentials, WebRequest.DefaultWebProxy);
+
         public Stations GetStations(string query)
         {
-            if(string.IsNullOrEmpty(query))
+            if (string.IsNullOrEmpty(query))
                 throw new ArgumentNullException(nameof(query));
 
             return GetStationsAsync(query).GetResult();
@@ -23,7 +25,7 @@ namespace SwissTransport.Core
 
         public Task<Stations> GetStationsAsync(string query)
         {
-            if(string.IsNullOrEmpty(query))
+            if (string.IsNullOrEmpty(query))
                 throw new ArgumentNullException(nameof(query));
 
             var uri = new Uri($"{WebApiHost}locations?query={query}");
@@ -32,10 +34,10 @@ namespace SwissTransport.Core
 
         public StationBoardRoot GetStationBoard(string station, string id)
         {
-            if(string.IsNullOrEmpty(station))
+            if (string.IsNullOrEmpty(station))
                 throw new ArgumentNullException(nameof(station));
-            
-            if(string.IsNullOrEmpty(id))
+
+            if (string.IsNullOrEmpty(id))
                 throw new ArgumentNullException(nameof(id));
 
             return GetStationBoardAsync(station, id).GetResult();
@@ -83,7 +85,7 @@ namespace SwissTransport.Core
 
             webProxy.Credentials = CredentialCache.DefaultNetworkCredentials;
             request.Proxy = webProxy;
-            
+
             return request;
         }
     }

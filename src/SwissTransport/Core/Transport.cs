@@ -1,28 +1,33 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
+using SwissTransport.Extensions;
 using SwissTransport.Models;
 
 namespace SwissTransport.Core
 {
     public class Transport : ITransport
     {
+        private const string WebApiHost = "http://transport.opendata.ch/v1/";
+        protected readonly IHttpClient HttpClient = new HttpClient(CredentialCache.DefaultNetworkCredentials, WebRequest.DefaultWebProxy);
+        
         public Stations GetStations(string query)
         {
-            query = System.Uri.EscapeDataString(query);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/locations?query=" + query);
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
+            if(string.IsNullOrEmpty(query))
+                throw new ArgumentNullException(nameof(query));
 
-            if (responseStream != null)
-            {
-                var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message
-                    , new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
-                return stations;
-            }
+            return GetStationsAsync(query).GetResult();
+        }
 
-            return null;
+        public Task<Stations> GetStationsAsync(string query)
+        {
+            if(string.IsNullOrEmpty(query))
+                throw new ArgumentNullException(nameof(query));
+
+            var uri = new Uri($"{WebApiHost}locations?query={query}");
+            return HttpClient.GetAsyncObject(uri, JsonConvert.DeserializeObject<Stations>);
         }
 
         public StationBoardRoot GetStationBoard(string station, string id)

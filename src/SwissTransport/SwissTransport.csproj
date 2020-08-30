@@ -48,6 +48,7 @@
     <Compile Include="Core\IHttpClient.cs" />
     <Compile Include="Core\ITransport.cs" />
     <Compile Include="Core\Transport.cs" />
+    <Compile Include="Extensions\TaskExtension.cs" />
     <Compile Include="Models\Connections.cs" />
     <Compile Include="Models\StationBoardRoot.cs" />
     <Compile Include="Models\Stations.cs" />

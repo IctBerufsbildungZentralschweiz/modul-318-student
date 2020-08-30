@@ -35,7 +35,7 @@ namespace SwissTransport.Models
 
     public class Stations
     {
-        [JsonProperty("stations")]
+        [JsonProperty("stations", NullValueHandling = NullValueHandling.Ignore)]
         public List<Station> StationList { get; set; }
     }
 }

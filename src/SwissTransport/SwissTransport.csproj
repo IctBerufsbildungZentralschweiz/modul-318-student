@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\HttpClient.cs" />
+    <Compile Include="Core\IHttpClient.cs" />
     <Compile Include="Core\ITransport.cs" />
     <Compile Include="Core\Transport.cs" />
     <Compile Include="Models\Connections.cs" />

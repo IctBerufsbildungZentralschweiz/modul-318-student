@@ -44,11 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ITransport.cs" />
+    <Compile Include="Core\Transport.cs" />
     <Compile Include="Models\Connections.cs" />
     <Compile Include="Models\StationBoardRoot.cs" />
     <Compile Include="Models\Stations.cs" />
-    <Compile Include="ITransport.cs" />
-    <Compile Include="Transport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

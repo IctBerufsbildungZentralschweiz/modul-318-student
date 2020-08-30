@@ -1,6 +1,6 @@
 ﻿using SwissTransport.Models;
 
-namespace SwissTransport
+namespace SwissTransport.Core
 {
     public interface ITransport
     {

@@ -3,7 +3,7 @@ using System.Net;
 using Newtonsoft.Json;
 using SwissTransport.Models;
 
-namespace SwissTransport
+namespace SwissTransport.Core
 {
     public class Transport : ITransport
     {

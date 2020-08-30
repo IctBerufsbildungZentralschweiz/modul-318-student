@@ -55,21 +55,25 @@ namespace SwissTransport.Core
 
         public Connections GetConnections(string fromStation, string toStation)
         {
-            fromStation = System.Uri.EscapeDataString(fromStation);
-            toStation = System.Uri.EscapeDataString(toStation);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation);
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
+            if (string.IsNullOrEmpty(fromStation))
+                throw new ArgumentNullException(nameof(fromStation));
 
-            if (responseStream != null)
-            {
-                var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var connections =
-                    JsonConvert.DeserializeObject<Connections>(readToEnd);
-                return connections;
-            }
+            if (string.IsNullOrEmpty(toStation))
+                throw new ArgumentNullException(nameof(toStation));
 
-            return null;
+            return GetConnectionsAsync(fromStation, toStation).GetResult();
+        }
+
+        public Task<Connections> GetConnectionsAsync(string fromStation, string toStation)
+        {
+            if (string.IsNullOrEmpty(fromStation))
+                throw new ArgumentNullException(nameof(fromStation));
+
+            if (string.IsNullOrEmpty(toStation))
+                throw new ArgumentNullException(nameof(toStation));
+
+            var uri = new Uri("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation);
+            return HttpClient.GetAsyncObject(uri, JsonConvert.DeserializeObject<Connections>);
         }
 
         private static WebRequest CreateWebRequest(string url)

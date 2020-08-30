@@ -9,7 +9,7 @@ namespace SwissTransport.Core
         Task<Stations> GetStationsAsync(string query);
         StationBoardRoot GetStationBoard(string station, string id);
         Task<StationBoardRoot> GetStationBoardAsync(string station, string id);
-        
         Connections GetConnections(string fromStation, string toStattion);
+        Task<Connections> GetConnectionsAsync(string fromStation, string toStation);
     }
 }

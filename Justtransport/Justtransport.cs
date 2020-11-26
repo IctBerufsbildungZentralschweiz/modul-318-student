@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SwissTransport;
 
 namespace Justtransport
 {
@@ -15,6 +16,36 @@ namespace Justtransport
     public Justtransport()
     {
       InitializeComponent();
+
+    }
+    ITransport transport = new Transport();
+    
+
+
+    private void BtnVerbindung2(object sender, EventArgs e)
+    {     
+
+    }
+
+    private void BtnVerbindung(object sender, EventArgs e)
+    {
+      //Variablen definieren
+      //Startort eingabe
+      string startort = txtStartort.Text;
+      //Endort eingabe
+      string endort = txtEndort.Text;
+      //Datum eingabe
+      DateTime date = dpDate.Value;
+      //Zeit eingabe
+      DateTime time = dpTime.Value;
+      //Ankunft oder Abfahrt eingabe
+      bool abfahrt = rbAbfahrt.Checked;
+      bool ankunft = rbAnkunft.Checked;
+      //Button anklicken und damit Verbindungen öffnen
+
+
+      anzeigVerbindung aV = new anzeigVerbindung();
+      aV.Show();
     }
   }
 }

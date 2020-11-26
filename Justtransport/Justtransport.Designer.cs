@@ -193,6 +193,7 @@
       this.txtStartort.Size = new System.Drawing.Size(279, 26);
       this.txtStartort.TabIndex = 1;
       this.txtStartort.Text = "Startort eingeben";
+      this.txtStartort.Click += new System.EventHandler(this.txtclear);
       // 
       // txtEndort
       // 
@@ -201,6 +202,7 @@
       this.txtEndort.Size = new System.Drawing.Size(279, 26);
       this.txtEndort.TabIndex = 1;
       this.txtEndort.Text = "Endort eingeben";
+      this.txtEndort.Click += new System.EventHandler(this.txtclear2);
       // 
       // btnKarte
       // 

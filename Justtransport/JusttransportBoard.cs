@@ -34,7 +34,7 @@ namespace Justtransport
     {
       try
       {
-        var connections = transport.GetConnections(txtStart.Text, txtEnd.Text, 10);
+        var connections = transport.GetConnections(txtStart.Text, txtEnd.Text, 10, dpDate.Text, dpTime.Text);
         if (connections.ConnectionList.Count != 0)
         {//clear List
           listConnection.Items.Clear();
@@ -46,7 +46,7 @@ namespace Justtransport
             DateTime arrivalTime = DateTime.Parse(connection.To.Arrival);
             TimeSpan duration = TimeSpan.Parse(connection.Duration.Replace("d", ":"));
 
-            outputConnectionFromTo = "Von " + connection.From.Station.Name + " | Bis " + connection.To.Station.Name + " | \tAbfahrt: " + departureTime.ToString("HH:mm") + " | Ankunft: " + arrivalTime.ToString("HH:mm") + " | \tDauer: " + duration.ToString(@"hh\:mm") + " | \tGleis: " + connection.From.Platform;
+            outputConnectionFromTo = "Von: " + connection.From.Station.Name + "   /   Bis: " + connection.To.Station.Name + "   /   Abfahrt: " + departureTime.ToString("HH:mm") + "   /   Ankunft: " + arrivalTime.ToString("HH:mm") + "   /   Dauer: " + duration.ToString(@"hh\:mm") + "   /   Gleis: " + connection.From.Platform;
             listConnection.Items.Add(outputConnectionFromTo);
           }
         }

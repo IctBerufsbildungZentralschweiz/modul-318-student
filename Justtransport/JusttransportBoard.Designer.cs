@@ -49,21 +49,21 @@
       // 
       // btnStartEndConnection
       // 
-      this.btnStartEndConnection.Location = new System.Drawing.Point(454, 16);
+      this.btnStartEndConnection.BackColor = System.Drawing.SystemColors.ButtonShadow;
+      this.btnStartEndConnection.Location = new System.Drawing.Point(302, 12);
       this.btnStartEndConnection.Name = "btnStartEndConnection";
       this.btnStartEndConnection.Size = new System.Drawing.Size(104, 36);
       this.btnStartEndConnection.TabIndex = 0;
       this.btnStartEndConnection.Text = "Start u. End";
-      this.btnStartEndConnection.UseVisualStyleBackColor = true;
+      this.btnStartEndConnection.UseVisualStyleBackColor = false;
       // 
       // btnConnectionFrom
       // 
-      this.btnConnectionFrom.Enabled = false;
-      this.btnConnectionFrom.Location = new System.Drawing.Point(555, 16);
+      this.btnConnectionFrom.Location = new System.Drawing.Point(403, 12);
       this.btnConnectionFrom.Name = "btnConnectionFrom";
       this.btnConnectionFrom.Size = new System.Drawing.Size(117, 36);
       this.btnConnectionFrom.TabIndex = 0;
-      this.btnConnectionFrom.Text = "Abfahrtvon";
+      this.btnConnectionFrom.Text = "Abfahrt von";
       this.btnConnectionFrom.UseVisualStyleBackColor = true;
       // 
       // tp1
@@ -72,7 +72,7 @@
       this.tp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tp1.Controls.Add(this.txtStart, 0, 0);
       this.tp1.Controls.Add(this.txtEnd, 0, 1);
-      this.tp1.Location = new System.Drawing.Point(191, 58);
+      this.tp1.Location = new System.Drawing.Point(39, 54);
       this.tp1.Name = "tp1";
       this.tp1.RowCount = 2;
       this.tp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.51852F));
@@ -97,6 +97,7 @@
       this.txtEnd.TabIndex = 1;
       this.txtEnd.Text = "Endort eingeben";
       this.txtEnd.Click += new System.EventHandler(this.txtClearEnd);
+      this.txtEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pressEnter);
       // 
       // tableLayoutPanel3
       // 
@@ -105,7 +106,7 @@
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.85163F));
       this.tableLayoutPanel3.Controls.Add(this.rbStartTime, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.rbEndTime, 1, 0);
-      this.tableLayoutPanel3.Location = new System.Drawing.Point(569, 167);
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(417, 163);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;
       this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -140,7 +141,7 @@
       this.tp2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tp2.Controls.Add(this.dpTime, 0, 1);
       this.tp2.Controls.Add(this.dpDate, 0, 0);
-      this.tp2.Location = new System.Drawing.Point(569, 58);
+      this.tp2.Location = new System.Drawing.Point(417, 54);
       this.tp2.Name = "tp2";
       this.tp2.RowCount = 2;
       this.tp2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -173,12 +174,12 @@
       this.listConnection.ItemHeight = 20;
       this.listConnection.Location = new System.Drawing.Point(12, 219);
       this.listConnection.Name = "listConnection";
-      this.listConnection.Size = new System.Drawing.Size(1063, 324);
+      this.listConnection.Size = new System.Drawing.Size(836, 324);
       this.listConnection.TabIndex = 21;
       // 
       // btnKarte
       // 
-      this.btnKarte.Location = new System.Drawing.Point(788, 16);
+      this.btnKarte.Location = new System.Drawing.Point(636, 12);
       this.btnKarte.Name = "btnKarte";
       this.btnKarte.Size = new System.Drawing.Size(117, 36);
       this.btnKarte.TabIndex = 0;
@@ -188,20 +189,19 @@
       // 
       // btnVerbindung
       // 
-      this.btnVerbindung.Location = new System.Drawing.Point(191, 177);
+      this.btnVerbindung.Location = new System.Drawing.Point(39, 173);
       this.btnVerbindung.Name = "btnVerbindung";
       this.btnVerbindung.Size = new System.Drawing.Size(343, 36);
       this.btnVerbindung.TabIndex = 0;
       this.btnVerbindung.Text = "Verbindungen anzeigen";
       this.btnVerbindung.UseVisualStyleBackColor = true;
       this.btnVerbindung.Click += new System.EventHandler(this.btnOutputShow);
-      this.btnVerbindung.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pressEnter);
       // 
       // JusttransportBoard
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(1104, 569);
+      this.ClientSize = new System.Drawing.Size(866, 569);
       this.Controls.Add(this.listConnection);
       this.Controls.Add(this.tableLayoutPanel3);
       this.Controls.Add(this.tp2);

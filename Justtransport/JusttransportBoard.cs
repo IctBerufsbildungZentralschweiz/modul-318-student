@@ -24,11 +24,6 @@ namespace Justtransport
 
     public String outputConnectionFromTo { get; set; }
 
-    private void btnCard(object sender, EventArgs e)
-    {
-      MessageBox.Show("Diese Funktion ist noch nicht verfügbar");
-      
-    }
 
     private void btnOutputShow(object sender, EventArgs e)
     {
@@ -75,6 +70,11 @@ namespace Justtransport
         MessageBox.Show("Bitte klicken Sie mit der Maus auf den Button");
       }
 
+    }
+
+    private void btnMeldung(object sender, EventArgs e)
+    {
+      MessageBox.Show("Diese Funktion ist noch nicht verfügbar");
     }
   }
 

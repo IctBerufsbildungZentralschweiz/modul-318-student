@@ -42,6 +42,7 @@
       this.listConnection = new System.Windows.Forms.ListBox();
       this.btnKarte = new System.Windows.Forms.Button();
       this.btnVerbindung = new System.Windows.Forms.Button();
+      this.button1 = new System.Windows.Forms.Button();
       this.tp1.SuspendLayout();
       this.tableLayoutPanel3.SuspendLayout();
       this.tp2.SuspendLayout();
@@ -50,7 +51,7 @@
       // btnStartEndConnection
       // 
       this.btnStartEndConnection.BackColor = System.Drawing.SystemColors.ButtonShadow;
-      this.btnStartEndConnection.Location = new System.Drawing.Point(302, 12);
+      this.btnStartEndConnection.Location = new System.Drawing.Point(340, 4);
       this.btnStartEndConnection.Name = "btnStartEndConnection";
       this.btnStartEndConnection.Size = new System.Drawing.Size(104, 36);
       this.btnStartEndConnection.TabIndex = 0;
@@ -59,12 +60,13 @@
       // 
       // btnConnectionFrom
       // 
-      this.btnConnectionFrom.Location = new System.Drawing.Point(403, 12);
+      this.btnConnectionFrom.Location = new System.Drawing.Point(441, 4);
       this.btnConnectionFrom.Name = "btnConnectionFrom";
       this.btnConnectionFrom.Size = new System.Drawing.Size(117, 36);
       this.btnConnectionFrom.TabIndex = 0;
       this.btnConnectionFrom.Text = "Abfahrt von";
       this.btnConnectionFrom.UseVisualStyleBackColor = true;
+      this.btnConnectionFrom.Click += new System.EventHandler(this.btnMeldung);
       // 
       // tp1
       // 
@@ -72,7 +74,7 @@
       this.tp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
       this.tp1.Controls.Add(this.txtStart, 0, 0);
       this.tp1.Controls.Add(this.txtEnd, 0, 1);
-      this.tp1.Location = new System.Drawing.Point(39, 54);
+      this.tp1.Location = new System.Drawing.Point(77, 46);
       this.tp1.Name = "tp1";
       this.tp1.RowCount = 2;
       this.tp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 43.51852F));
@@ -106,7 +108,7 @@
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.85163F));
       this.tableLayoutPanel3.Controls.Add(this.rbStartTime, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.rbEndTime, 1, 0);
-      this.tableLayoutPanel3.Location = new System.Drawing.Point(417, 163);
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(455, 155);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;
       this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -141,7 +143,7 @@
       this.tp2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
       this.tp2.Controls.Add(this.dpTime, 0, 1);
       this.tp2.Controls.Add(this.dpDate, 0, 0);
-      this.tp2.Location = new System.Drawing.Point(417, 54);
+      this.tp2.Location = new System.Drawing.Point(455, 46);
       this.tp2.Name = "tp2";
       this.tp2.RowCount = 2;
       this.tp2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -174,22 +176,22 @@
       this.listConnection.ItemHeight = 20;
       this.listConnection.Location = new System.Drawing.Point(12, 219);
       this.listConnection.Name = "listConnection";
-      this.listConnection.Size = new System.Drawing.Size(836, 324);
+      this.listConnection.Size = new System.Drawing.Size(836, 284);
       this.listConnection.TabIndex = 21;
       // 
       // btnKarte
       // 
-      this.btnKarte.Location = new System.Drawing.Point(636, 12);
+      this.btnKarte.Location = new System.Drawing.Point(677, 4);
       this.btnKarte.Name = "btnKarte";
       this.btnKarte.Size = new System.Drawing.Size(117, 36);
       this.btnKarte.TabIndex = 0;
       this.btnKarte.Text = "Karte";
       this.btnKarte.UseVisualStyleBackColor = true;
-      this.btnKarte.Click += new System.EventHandler(this.btnCard);
+      this.btnKarte.Click += new System.EventHandler(this.btnMeldung);
       // 
       // btnVerbindung
       // 
-      this.btnVerbindung.Location = new System.Drawing.Point(39, 173);
+      this.btnVerbindung.Location = new System.Drawing.Point(77, 165);
       this.btnVerbindung.Name = "btnVerbindung";
       this.btnVerbindung.Size = new System.Drawing.Size(343, 36);
       this.btnVerbindung.TabIndex = 0;
@@ -197,11 +199,22 @@
       this.btnVerbindung.UseVisualStyleBackColor = true;
       this.btnVerbindung.Click += new System.EventHandler(this.btnOutputShow);
       // 
+      // button1
+      // 
+      this.button1.Location = new System.Drawing.Point(615, 509);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(179, 36);
+      this.button1.TabIndex = 22;
+      this.button1.Text = "per Mail versenden";
+      this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.btnMeldung);
+      // 
       // JusttransportBoard
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(866, 569);
+      this.Controls.Add(this.button1);
       this.Controls.Add(this.listConnection);
       this.Controls.Add(this.tableLayoutPanel3);
       this.Controls.Add(this.tp2);
@@ -237,5 +250,6 @@
     private System.Windows.Forms.ListBox listConnection;
     private System.Windows.Forms.Button btnKarte;
     private System.Windows.Forms.Button btnVerbindung;
+    private System.Windows.Forms.Button button1;
   }
 }

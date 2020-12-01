@@ -16,7 +16,7 @@ namespace Justtransport
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new Justtransport());
+      Application.Run(new JusttransportBoard());
     }
   }
 }

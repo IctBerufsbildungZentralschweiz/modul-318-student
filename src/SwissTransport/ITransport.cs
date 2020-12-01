@@ -3,7 +3,7 @@
     public interface ITransport
     {
         Stations GetStations(string query);
-        StationBoardRoot GetStationBoard(string station, string id);
-        Connections GetConnections(string fromStation, string toStattion);
+        StationBoardRoot GetStationBoard(string station, int tolimit);
+        Connections GetConnections(string fromStation, string toStattion, int tolimit);
     }
 }

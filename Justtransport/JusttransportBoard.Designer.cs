@@ -52,7 +52,7 @@
       // 
       this.btnStartEndConnection.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.btnStartEndConnection.BackColor = System.Drawing.SystemColors.ButtonShadow;
-      this.btnStartEndConnection.Location = new System.Drawing.Point(336, 4);
+      this.btnStartEndConnection.Location = new System.Drawing.Point(330, 4);
       this.btnStartEndConnection.Name = "btnStartEndConnection";
       this.btnStartEndConnection.Size = new System.Drawing.Size(104, 38);
       this.btnStartEndConnection.TabIndex = 0;
@@ -62,7 +62,7 @@
       // btnConnectionFrom
       // 
       this.btnConnectionFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-      this.btnConnectionFrom.Location = new System.Drawing.Point(437, 4);
+      this.btnConnectionFrom.Location = new System.Drawing.Point(431, 4);
       this.btnConnectionFrom.Name = "btnConnectionFrom";
       this.btnConnectionFrom.Size = new System.Drawing.Size(117, 38);
       this.btnConnectionFrom.TabIndex = 0;
@@ -111,7 +111,7 @@
       this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.85163F));
       this.tableLayoutPanel3.Controls.Add(this.rbStartTime, 0, 0);
       this.tableLayoutPanel3.Controls.Add(this.rbEndTime, 1, 0);
-      this.tableLayoutPanel3.Location = new System.Drawing.Point(448, 147);
+      this.tableLayoutPanel3.Location = new System.Drawing.Point(448, 153);
       this.tableLayoutPanel3.Name = "tableLayoutPanel3";
       this.tableLayoutPanel3.RowCount = 1;
       this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -159,7 +159,7 @@
       // 
       this.dpTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
       this.dpTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-      this.dpTime.Location = new System.Drawing.Point(174, 57);
+      this.dpTime.Location = new System.Drawing.Point(174, 49);
       this.dpTime.Name = "dpTime";
       this.dpTime.Size = new System.Drawing.Size(162, 29);
       this.dpTime.TabIndex = 3;
@@ -177,11 +177,12 @@
       // listConnection
       // 
       this.listConnection.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+      this.listConnection.Font = new System.Drawing.Font("Ebrima", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.listConnection.FormattingEnabled = true;
-      this.listConnection.ItemHeight = 21;
-      this.listConnection.Location = new System.Drawing.Point(5, 227);
+      this.listConnection.ItemHeight = 30;
+      this.listConnection.Location = new System.Drawing.Point(51, 227);
       this.listConnection.Name = "listConnection";
-      this.listConnection.Size = new System.Drawing.Size(785, 214);
+      this.listConnection.Size = new System.Drawing.Size(736, 184);
       this.listConnection.TabIndex = 21;
       // 
       // btnKarte
@@ -208,7 +209,7 @@
       // button1
       // 
       this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-      this.button1.Location = new System.Drawing.Point(608, 447);
+      this.button1.Location = new System.Drawing.Point(608, 426);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(179, 38);
       this.button1.TabIndex = 22;
@@ -220,7 +221,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(859, 516);
+      this.ClientSize = new System.Drawing.Size(859, 476);
       this.Controls.Add(this.button1);
       this.Controls.Add(this.listConnection);
       this.Controls.Add(this.tableLayoutPanel3);

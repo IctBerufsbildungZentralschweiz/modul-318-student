@@ -74,8 +74,8 @@
       // 
       this.tp1.ColumnCount = 1;
       this.tp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tp1.Controls.Add(this.txtStart, 0, 0);
       this.tp1.Controls.Add(this.txtEnd, 0, 1);
+      this.tp1.Controls.Add(this.txtStart, 0, 0);
       this.tp1.Location = new System.Drawing.Point(77, 48);
       this.tp1.Name = "tp1";
       this.tp1.RowCount = 2;

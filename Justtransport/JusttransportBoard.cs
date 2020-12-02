@@ -17,6 +17,7 @@ namespace Justtransport
     {
       InitializeComponent();
       dpTime.Text = DateTime.Now.ToString("HH:mm");
+      dpDate.Text = DateTime.Now.ToString("dd.MM.yyyy");
     }
 
     ITransport transport = new Transport();
@@ -41,14 +42,14 @@ namespace Justtransport
             DateTime arrivalTime = DateTime.Parse(connection.To.Arrival);
             TimeSpan duration = TimeSpan.Parse(connection.Duration.Replace("d", ":"));
 
-            outputConnectionFromTo = "Von: " + connection.From.Station.Name + "   /   Bis: " + connection.To.Station.Name + "   /   Abfahrt: " + departureTime.ToString("HH:mm") + "   /   Ankunft: " + arrivalTime.ToString("HH:mm") + "   /   Dauer: " + duration.ToString(@"hh\:mm") + "   /   Gleis: " + connection.From.Platform;
+            outputConnectionFromTo = "Von: " + connection.From.Station.Name + "   =>   Bis: " + connection.To.Station.Name + "   /   Abfahrt: " + departureTime.ToString("HH:mm") + "   /   Ankunft: " + arrivalTime.ToString("HH:mm") + "   /   Dauer: " + duration.ToString(@"hh\:mm") + "   /   Gleis: " + connection.From.Platform;
             listConnection.Items.Add(outputConnectionFromTo);
           }
         }
       }
       catch
       {
-        MessageBox.Show("Sie haben einen ungültigen wert eingegeben.");
+        MessageBox.Show("Sie haben einen ungültigen Wert eingegeben.");
       }
     }
 
@@ -76,6 +77,8 @@ namespace Justtransport
     {
       MessageBox.Show("Diese Funktion ist noch nicht verfügbar");
     }
+
+
   }
 
 }

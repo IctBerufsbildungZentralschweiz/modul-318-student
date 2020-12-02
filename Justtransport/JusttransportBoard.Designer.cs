@@ -31,8 +31,8 @@
       this.btnStartEndConnection = new System.Windows.Forms.Button();
       this.btnConnectionFrom = new System.Windows.Forms.Button();
       this.tp1 = new System.Windows.Forms.TableLayoutPanel();
-      this.txtStart = new System.Windows.Forms.TextBox();
       this.txtEnd = new System.Windows.Forms.TextBox();
+      this.txtStart = new System.Windows.Forms.TextBox();
       this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
       this.rbStartTime = new System.Windows.Forms.RadioButton();
       this.rbEndTime = new System.Windows.Forms.RadioButton();
@@ -52,7 +52,7 @@
       // 
       this.btnStartEndConnection.Anchor = System.Windows.Forms.AnchorStyles.Top;
       this.btnStartEndConnection.BackColor = System.Drawing.SystemColors.ButtonShadow;
-      this.btnStartEndConnection.Location = new System.Drawing.Point(330, 4);
+      this.btnStartEndConnection.Location = new System.Drawing.Point(331, 4);
       this.btnStartEndConnection.Name = "btnStartEndConnection";
       this.btnStartEndConnection.Size = new System.Drawing.Size(104, 38);
       this.btnStartEndConnection.TabIndex = 0;
@@ -62,7 +62,7 @@
       // btnConnectionFrom
       // 
       this.btnConnectionFrom.Anchor = System.Windows.Forms.AnchorStyles.Top;
-      this.btnConnectionFrom.Location = new System.Drawing.Point(431, 4);
+      this.btnConnectionFrom.Location = new System.Drawing.Point(432, 4);
       this.btnConnectionFrom.Name = "btnConnectionFrom";
       this.btnConnectionFrom.Size = new System.Drawing.Size(117, 38);
       this.btnConnectionFrom.TabIndex = 0;
@@ -74,8 +74,8 @@
       // 
       this.tp1.ColumnCount = 1;
       this.tp1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-      this.tp1.Controls.Add(this.txtEnd, 0, 1);
       this.tp1.Controls.Add(this.txtStart, 0, 0);
+      this.tp1.Controls.Add(this.txtEnd, 0, 1);
       this.tp1.Location = new System.Drawing.Point(77, 48);
       this.tp1.Name = "tp1";
       this.tp1.RowCount = 2;
@@ -83,15 +83,6 @@
       this.tp1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 56.48148F));
       this.tp1.Size = new System.Drawing.Size(343, 108);
       this.tp1.TabIndex = 14;
-      // 
-      // txtStart
-      // 
-      this.txtStart.Location = new System.Drawing.Point(3, 3);
-      this.txtStart.Name = "txtStart";
-      this.txtStart.Size = new System.Drawing.Size(279, 29);
-      this.txtStart.TabIndex = 1;
-      this.txtStart.Text = "Startort eingeben";
-      this.txtStart.Click += new System.EventHandler(this.txtClearStart);
       // 
       // txtEnd
       // 
@@ -102,6 +93,15 @@
       this.txtEnd.Text = "Endort eingeben";
       this.txtEnd.Click += new System.EventHandler(this.txtClearEnd);
       this.txtEnd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.pressEnter);
+      // 
+      // txtStart
+      // 
+      this.txtStart.Location = new System.Drawing.Point(3, 3);
+      this.txtStart.Name = "txtStart";
+      this.txtStart.Size = new System.Drawing.Size(279, 29);
+      this.txtStart.TabIndex = 1;
+      this.txtStart.Text = "Startort eingeben";
+      this.txtStart.Click += new System.EventHandler(this.txtClearStart);
       // 
       // tableLayoutPanel3
       // 

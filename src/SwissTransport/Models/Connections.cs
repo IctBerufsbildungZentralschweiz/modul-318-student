@@ -1,30 +1,25 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace SwissTransport
+namespace SwissTransport.Models
 {
     public class Connections
     {
-        [JsonProperty("connections")]
-        public List<Connection> ConnectionList { get; set; } 
+        [JsonProperty("connections")] public List<Connection> ConnectionList { get; set; }
     }
 
     public class Connection
     {
-        [JsonProperty("from")]
-        public ConnectionPoint From  { get; set; }
+        [JsonProperty("from")] public ConnectionPoint From { get; set; }
 
-        [JsonProperty("to")]
-        public ConnectionPoint To { get; set; }
+        [JsonProperty("to")] public ConnectionPoint To { get; set; }
 
-        [JsonProperty("duration")]
-        public string Duration { get; set; }
+        [JsonProperty("duration")] public string Duration { get; set; }
     }
 
     public class ConnectionPoint
     {
-        [JsonProperty("station")]
-        public Station Station { get; set; }
+        [JsonProperty("station")] public Station Station { get; set; }
 
         public string Arrival { get; set; }
 

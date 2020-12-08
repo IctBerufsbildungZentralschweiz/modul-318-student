@@ -43,11 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connections.cs" />
-    <Compile Include="StationBoardRoot.cs" />
-    <Compile Include="Stations.cs" />
-    <Compile Include="ITransport.cs" />
-    <Compile Include="Transport.cs" />
+    <Compile Include="Core\HttpClient.cs" />
+    <Compile Include="Core\IHttpClient.cs" />
+    <Compile Include="Core\ITransport.cs" />
+    <Compile Include="Core\Transport.cs" />
+    <Compile Include="Extensions\TaskExtension.cs" />
+    <Compile Include="Models\Connections.cs" />
+    <Compile Include="Models\StationBoardRoot.cs" />
+    <Compile Include="Models\Stations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

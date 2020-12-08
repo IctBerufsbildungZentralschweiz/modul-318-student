@@ -2,6 +2,8 @@
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
+    using SwissTransport.Core;
+
     /// <summary>
     /// The Swiss Transport API tests.
     /// </summary>

@@ -1,7 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-namespace SwissTransport
+﻿namespace SwissTransport
 {
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+    /// <summary>
+    /// The Swiss Transport API tests.
+    /// </summary>
     [TestClass]
     public class TransportTest
     {
@@ -11,7 +14,7 @@ namespace SwissTransport
         public void Locations()
         {
             testee = new Transport();
-            var stations = testee.GetStations("Sursee,");
+            var stations = this.testee.GetStations("Sursee,");
 
             Assert.AreEqual(10, stations.StationList.Count);
         }
@@ -20,7 +23,7 @@ namespace SwissTransport
         public void StationBoard()
         {
             testee = new Transport();
-            var stationBoard = testee.GetStationBoard("Sursee", "8502007");
+            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
 
             Assert.IsNotNull(stationBoard);
         }
@@ -29,7 +32,7 @@ namespace SwissTransport
         public void Connections()
         {
             testee = new Transport();
-            var connections = testee.GetConnections("Sursee", "Luzern");
+            var connections = this.testee.GetConnections("Sursee", "Luzern");
 
             Assert.IsNotNull(connections);
         }

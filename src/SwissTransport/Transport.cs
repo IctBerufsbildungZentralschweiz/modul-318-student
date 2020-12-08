@@ -1,9 +1,10 @@
-﻿using System.IO;
-using System.Net;
-using Newtonsoft.Json;
-
-namespace SwissTransport
+﻿namespace SwissTransport
 {
+    using System.IO;
+    using System.Net;
+
+    using Newtonsoft.Json;
+
     public class Transport : ITransport
     {
         public Stations GetStations(string query)
@@ -16,8 +17,7 @@ namespace SwissTransport
             if (responseStream != null)
             {
                 var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message
-                    , new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                var stations = JsonConvert.DeserializeObject<Stations>(message, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                 return stations;
             }
 
@@ -35,9 +35,9 @@ namespace SwissTransport
             if (responseStream != null)
             {
                 var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var stationboard =
+                var stationBoard =
                     JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
-                return stationboard;
+                return stationBoard;
             }
 
             return null;

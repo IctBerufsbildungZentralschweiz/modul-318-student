@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using Newtonsoft.Json;
-
-namespace SwissTransport
+﻿namespace SwissTransport
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Newtonsoft.Json;
+
     public class StationBoardRoot
     {
         [JsonProperty("Station")]

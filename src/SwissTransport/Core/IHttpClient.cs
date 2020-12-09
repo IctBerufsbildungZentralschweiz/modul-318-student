@@ -5,8 +5,8 @@
 
     public interface IHttpClient : IDisposable
     {
-        Task<string> GetAsyncString(Uri uri);
+        string GetString(Uri uri);
 
-        Task<TObject> GetAsyncObject<TObject>(Uri uri, Func<string, TObject> converter);
+        TObject GetObject<TObject>(Uri uri, Func<string, TObject> converter);
     }
 }

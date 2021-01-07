@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport", "src\Swiss
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransportTest", "tests\SwissTransportTest\SwissTransportTest.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTravel", "SwissTravel\SwissTravel.csproj", "{E19F7264-0B67-402C-9A60-40CEFBF269B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "löschen", "löschen\löschen.csproj", "{BCB3ADC0-9090-4765-B541-07117273608D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,15 +23,15 @@ Global
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E19F7264-0B67-402C-9A60-40CEFBF269B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E19F7264-0B67-402C-9A60-40CEFBF269B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E19F7264-0B67-402C-9A60-40CEFBF269B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E19F7264-0B67-402C-9A60-40CEFBF269B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCB3ADC0-9090-4765-B541-07117273608D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCB3ADC0-9090-4765-B541-07117273608D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCB3ADC0-9090-4765-B541-07117273608D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCB3ADC0-9090-4765-B541-07117273608D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {619B92BB-F5F8-4EED-B0E4-8878E201E4EA}
+		SolutionGuid = {5C9847FB-38CF-4540-9497-D8D5930F93A9}
 	EndGlobalSection
 EndGlobal

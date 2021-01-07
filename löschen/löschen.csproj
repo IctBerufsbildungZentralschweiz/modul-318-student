@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E19F7264-0B67-402C-9A60-40CEFBF269B9}</ProjectGuid>
+    <ProjectGuid>{BCB3ADC0-9090-4765-B541-07117273608D}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SwissTravel</RootNamespace>
-    <AssemblyName>SwissTravel</AssemblyName>
+    <RootNamespace>löschen</RootNamespace>
+    <AssemblyName>löschen</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abfahrtstafel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Abfahrtstafel.Designer.cs">
+      <DependentUpon>Abfahrtstafel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoCompleteClass.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,8 +61,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="TransportMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransportMain.Designer.cs">
+      <DependentUpon>TransportMain.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Abfahrtstafel.resx">
+      <DependentUpon>Abfahrtstafel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

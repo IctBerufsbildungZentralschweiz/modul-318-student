@@ -1,9 +1,8 @@
-﻿namespace SwissTransport
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+
+namespace SwissTransport
 {
-    using System.Collections.Generic;
-
-    using Newtonsoft.Json;
-
     public class Coordinate
     {
         [JsonProperty("type")]

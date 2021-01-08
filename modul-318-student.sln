@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30503.244
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport", "src\SwissTransport\SwissTransport.csproj", "{D0262178-A48F-4DE0-807B-E76B63E39421}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransportTest", "tests\SwissTransportTest\SwissTransportTest.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTransportApp", "MyTransportApp\MyTransportApp.csproj", "{84C346AB-22A9-4367-9FE3-A0D241F2685D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fahrplan", "src\SwissTransportGUI\Fahrplan.csproj", "{B9B72571-0BD6-4335-9A39-ADE3FF7376BA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup_Fahrplan", "Setup_Fahrplan\Setup_Fahrplan.vdproj", "{D74A05FB-F573-4706-BE02-09C9287CEF76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,15 +25,17 @@ Global
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Release|Any CPU.Build.0 = Release|Any CPU
-		{84C346AB-22A9-4367-9FE3-A0D241F2685D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{84C346AB-22A9-4367-9FE3-A0D241F2685D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{84C346AB-22A9-4367-9FE3-A0D241F2685D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{84C346AB-22A9-4367-9FE3-A0D241F2685D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B72571-0BD6-4335-9A39-ADE3FF7376BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B72571-0BD6-4335-9A39-ADE3FF7376BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B72571-0BD6-4335-9A39-ADE3FF7376BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B72571-0BD6-4335-9A39-ADE3FF7376BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D74A05FB-F573-4706-BE02-09C9287CEF76}.Debug|Any CPU.ActiveCfg = Debug
+		{D74A05FB-F573-4706-BE02-09C9287CEF76}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E797EF72-C03B-428C-B1FC-EAFFA8C80BF5}
+		SolutionGuid = {75FD6710-8251-4052-85AF-F04E3046549A}
 	EndGlobalSection
 EndGlobal

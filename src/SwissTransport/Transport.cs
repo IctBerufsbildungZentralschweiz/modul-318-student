@@ -1,10 +1,9 @@
-﻿namespace SwissTransport
+﻿using System.IO;
+using System.Net;
+using Newtonsoft.Json;
+
+namespace SwissTransport
 {
-    using System.IO;
-    using System.Net;
-
-    using Newtonsoft.Json;
-
     public class Transport : ITransport
     {
         public Stations GetStations(string query)
@@ -17,7 +16,8 @@
             if (responseStream != null)
             {
                 var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+                var stations = JsonConvert.DeserializeObject<Stations>(message
+                    , new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
                 return stations;
             }
 
@@ -35,19 +35,22 @@
             if (responseStream != null)
             {
                 var readToEnd = new StreamReader(responseStream).ReadToEnd();
-                var stationBoard =
+                var stationboard =
                     JsonConvert.DeserializeObject<StationBoardRoot>(readToEnd);
-                return stationBoard;
+                return stationboard;
             }
 
             return null;
         }
 
-        public Connections GetConnections(string fromStation, string toStation)
+        public Connections GetConnections(string fromStation, string toStation, string Date, string Time)
         {
             fromStation = System.Uri.EscapeDataString(fromStation);
             toStation = System.Uri.EscapeDataString(toStation);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation);
+            Time = System.Uri.EscapeDataString(Time);
+            Date = System.Uri.EscapeDataString(Date);
+
+            var request = CreateWebRequest("http://transport.opendata.ch/v1/connections?from=" + fromStation + "&to=" + toStation + "&date=" + Date + "&time=" + Time);
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 

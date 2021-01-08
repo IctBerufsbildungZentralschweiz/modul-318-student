@@ -1,12 +1,7 @@
-﻿namespace SwissTransport
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+
+namespace SwissTransport
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
-    using SwissTransport.Core;
-
-    /// <summary>
-    /// The Swiss Transport API tests.
-    /// </summary>
     [TestClass]
     public class TransportTest
     {
@@ -16,7 +11,7 @@
         public void Locations()
         {
             testee = new Transport();
-            var stations = this.testee.GetStations("Sursee,");
+            var stations = testee.GetStations("Sursee,");
 
             Assert.AreEqual(10, stations.StationList.Count);
         }
@@ -25,7 +20,7 @@
         public void StationBoard()
         {
             testee = new Transport();
-            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
+            var stationBoard = testee.GetStationBoard("Sursee", "8502007");
 
             Assert.IsNotNull(stationBoard);
         }
@@ -34,9 +29,18 @@
         public void Connections()
         {
             testee = new Transport();
-            var connections = this.testee.GetConnections("Sursee", "Luzern");
+            var connections = testee.GetConnections("Sursee", "Luzern", "2019-12-17", "00:00");
 
             Assert.IsNotNull(connections);
+        }
+
+        [TestMethod]
+        public void Stations()
+        {
+            testee = new Transport();
+            var stations = testee.GetStations("Sursee");
+
+            Assert.IsNotNull(stations);
         }
     }
 }

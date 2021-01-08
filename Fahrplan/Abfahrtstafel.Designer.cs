@@ -48,7 +48,7 @@
             this.dgvStart,
             this.dgvEnd});
             this.AdgvVerbindungen.Location = new System.Drawing.Point(48, 105);
-            this.AdgvVerbindungen.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AdgvVerbindungen.Margin = new System.Windows.Forms.Padding(4);
             this.AdgvVerbindungen.Name = "AdgvVerbindungen";
             this.AdgvVerbindungen.RowHeadersWidth = 51;
             this.AdgvVerbindungen.Size = new System.Drawing.Size(632, 294);
@@ -85,7 +85,7 @@
             // AbtnAbfahrtstafel
             // 
             this.AbtnAbfahrtstafel.Location = new System.Drawing.Point(347, 50);
-            this.AbtnAbfahrtstafel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AbtnAbfahrtstafel.Margin = new System.Windows.Forms.Padding(4);
             this.AbtnAbfahrtstafel.Name = "AbtnAbfahrtstafel";
             this.AbtnAbfahrtstafel.Size = new System.Drawing.Size(100, 28);
             this.AbtnAbfahrtstafel.TabIndex = 1;
@@ -97,7 +97,7 @@
             // 
             this.AcbStart.FormattingEnabled = true;
             this.AcbStart.Location = new System.Drawing.Point(147, 50);
-            this.AcbStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AcbStart.Margin = new System.Windows.Forms.Padding(4);
             this.AcbStart.Name = "AcbStart";
             this.AcbStart.Size = new System.Drawing.Size(160, 24);
             this.AcbStart.TabIndex = 0;
@@ -117,12 +117,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(774, 445);
+            this.ClientSize = new System.Drawing.Size(895, 445);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AcbStart);
             this.Controls.Add(this.AbtnAbfahrtstafel);
             this.Controls.Add(this.AdgvVerbindungen);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Abfahrtstafel";
             this.Text = "Abfahrtstafel";
             ((System.ComponentModel.ISupportInitialize)(this.AdgvVerbindungen)).EndInit();

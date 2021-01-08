@@ -2,9 +2,7 @@
 {
     using System;
     using System.Net;
-
     using Newtonsoft.Json;
-
     using SwissTransport.Models;
 
     public class Transport : ITransport, IDisposable
@@ -25,7 +23,7 @@
             return HttpClient.GetObject(uri, JsonConvert.DeserializeObject<Stations>);
         }
 
-        public StationBoardRoot GetStationBoard(string station, string id)
+        public StationBoardRoot GetStationBoard(string station, string id, DateTime zeit, int ende)
         {
             if (string.IsNullOrEmpty(station))
             {
@@ -37,11 +35,11 @@
                 throw new ArgumentNullException(nameof(id));
             }
 
-            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
+            var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}&time={zeit}&limit={ende}");
             return HttpClient.GetObject(uri, JsonConvert.DeserializeObject<StationBoardRoot>);
         }
 
-        public Connections GetConnections(string fromStation, string toStation)
+        public Connections GetConnections(string fromStation, string toStation, DateTime Zeit, DateTime datum, int ende)
         {
             if (string.IsNullOrEmpty(fromStation))
             {
@@ -53,7 +51,7 @@
                 throw new ArgumentNullException(nameof(toStation));
             }
 
-            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
+            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}&time={Zeit}&date={datum}&limit={ende}");
             return HttpClient.GetObject(uri, JsonConvert.DeserializeObject<Connections>);
         }
 

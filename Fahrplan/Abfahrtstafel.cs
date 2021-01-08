@@ -16,6 +16,7 @@ namespace MeinFahrplan
     {
         AutoCompleteClass autoComplete = new AutoCompleteClass();
         ITransport transport = new Transport();
+        
         public Abfahrtstafel()
         {
             InitializeComponent();
@@ -26,7 +27,8 @@ namespace MeinFahrplan
         private void AbtnAbfahrtstafel_Click(object sender, EventArgs e)
         {
             DateTime zeit = DateTime.Now;
-            var getStationBoard = transport.GetStationBoard(AcbStart.Text, "1", zeit,  10);
+            var getStationBoard = transport.GetStationBoard(AcbStart.Text, "1", zeit, 10); 
+            
             
 
             AdgvVerbindungen.Rows.Clear();

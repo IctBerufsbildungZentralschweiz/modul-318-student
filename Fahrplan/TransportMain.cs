@@ -55,5 +55,6 @@ namespace MeinFahrplan
             if (e.KeyCode != Keys.Up && e.KeyCode != Keys.Right && e.KeyCode != Keys.Down && e.KeyCode != Keys.Left)
                 autoComplete.getStation((ComboBox)sender);
         }
+
     }
 }

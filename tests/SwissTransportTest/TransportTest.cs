@@ -1,5 +1,7 @@
 ﻿namespace SwissTransport
 {
+    using System.Threading.Tasks;
+    using Core;
     using FluentAssertions;
     using Models;
     using Xunit;
@@ -14,25 +16,25 @@
         }
 
         [Fact]
-        public void Locations()
+        public async Task Locations()
         {
-            Stations stations = this.testee.GetStations("Sursee,");
+            Stations stations = await this.testee.GetStationsAsync("Sursee,");
 
             stations.StationList.Should().HaveCount(10);
         }
 
         [Fact]
-        public void StationBoard()
+        public async Task StationBoard()
         {
-            StationBoardRoot stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
+            StationBoardRoot stationBoard = await this.testee.GetStationBoardAsync("Sursee", "8502007");
 
             stationBoard.Should().NotBeNull();
         }
 
         [Fact]
-        public void Connections()
+        public async Task Connections()
         {
-            Connections connections = this.testee.GetConnections("Sursee", "Luzern");
+            Connections connections = await this.testee.GetConnectionsAsync("Sursee", "Luzern");
 
             connections.Should().NotBeNull();
         }

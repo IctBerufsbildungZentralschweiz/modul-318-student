@@ -6,13 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfbefa82-00f7-43b2-bcec-2bbd5683b07d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Connection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/ConnectionPoint.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Coordinate.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Station.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Models/Connections.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Connections.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Models/StationBoardRoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Models/StationBoardRoot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Models/Stations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Stations.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Core/HttpClient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Core/IHttpClient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Core/ITransport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Core/ITransport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Core/Transport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Core/Transport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/ITransport.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/StationBoardRoot.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Stations.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Transport.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/SwissTransportTest/TransportTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/SwissTransportTest/TransportTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,11 +31,6 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
-  </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/SwissTransport/ITransport.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/SwissTransport/Transport.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/SwissTransport/Core/IHttpClient.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="233F8YXXJqC12q03WAXsAXPvmlh" />
   <component name="ProjectLevelVcsManager">
@@ -99,7 +96,7 @@
       <workItem from="1640954715918" duration="683000" />
       <workItem from="1640955410391" duration="1080000" />
       <workItem from="1640956521888" duration="76000" />
-      <workItem from="1640956902129" duration="544000" />
+      <workItem from="1640956902129" duration="1231000" />
     </task>
     <servers />
   </component>

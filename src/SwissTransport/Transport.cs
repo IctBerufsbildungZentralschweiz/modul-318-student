@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.Net;
-
+    using Models;
     using Newtonsoft.Json;
 
     public class Transport : ITransport
@@ -10,7 +10,7 @@
         public Stations GetStations(string query)
         {
             query = System.Uri.EscapeDataString(query);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/locations?query=" + query);
+            var request = CreateWebRequest($"http://transport.opendata.ch/v1/locations?query={query}");
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 
@@ -28,7 +28,7 @@
         {
             station = System.Uri.EscapeDataString(station);
             id = System.Uri.EscapeDataString(id);
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?station=" + station + "&id=" + id);
+            var request = CreateWebRequest($"http://transport.opendata.ch/v1/stationboard?station={station}&id={id}");
             var response = request.GetResponse();
             var responseStream = response.GetResponseStream();
 

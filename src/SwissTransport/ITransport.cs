@@ -1,5 +1,7 @@
 ﻿namespace SwissTransport
 {
+    using Models;
+
     public interface ITransport
     {
         Stations GetStations(string query);

@@ -6,14 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfbefa82-00f7-43b2-bcec-2bbd5683b07d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Settings.StyleCop" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/SwissTransport.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/SwissTransport.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SwissTransport/packages.config" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SwissTransportTest/Properties/AssemblyInfo.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SwissTransportTest/Settings.StyleCop" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SwissTransportTest/SwissTransportTest.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/tests/SwissTransportTest/SwissTransportTest.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/SwissTransportTest/TransportTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/tests/SwissTransportTest/TransportTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Connection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/ConnectionPoint.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Coordinate.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Station.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Models/Connections.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Connections.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Models/StationBoardRoot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Models/StationBoardRoot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SwissTransport/Models/Stations.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/SwissTransport/Models/Stations.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,9 @@
     <setting file="file://$PROJECT_DIR$/src/SwissTransport/Core/IHttpClient.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="233F8YXXJqC12q03WAXsAXPvmlh" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -45,7 +47,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="SolutionBuilderGeneralOptionsPageId" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected=".NET Project.TransportUI">
@@ -97,6 +99,7 @@
       <workItem from="1640954715918" duration="683000" />
       <workItem from="1640955410391" duration="1080000" />
       <workItem from="1640956521888" duration="76000" />
+      <workItem from="1640956902129" duration="544000" />
     </task>
     <servers />
   </component>

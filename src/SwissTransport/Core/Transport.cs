@@ -23,6 +23,11 @@
             return await this.GetObjectAsync<Stations>(uri);
         }
 
+        public Stations GetStations(string query) =>
+            this.GetStationsAsync(query)
+                .GetAwaiter()
+                .GetResult();
+
         public async Task<StationBoardRoot> GetStationBoardAsync(string station, string id)
         {
             if (string.IsNullOrEmpty(station))
@@ -39,6 +44,11 @@
             return await this.GetObjectAsync<StationBoardRoot>(uri);
         }
 
+        public StationBoardRoot GetStationBoard(string station, string id) =>
+            this.GetStationBoardAsync(station, id)
+                .GetAwaiter()
+                .GetResult();
+
         public async Task<Connections> GetConnectionsAsync(string fromStation, string toStation)
         {
             if (string.IsNullOrEmpty(fromStation))
@@ -54,6 +64,11 @@
             var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
             return await this.GetObjectAsync<Connections>(uri);
         }
+
+        public Connections GetConnections(string fromStation, string toStation) =>
+            this.GetConnectionsAsync(fromStation, toStation)
+                .GetAwaiter()
+                .GetResult();
 
         public void Dispose()
         {

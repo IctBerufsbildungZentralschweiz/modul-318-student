@@ -16,7 +16,7 @@
         }
 
         [Fact]
-        public async Task Locations()
+        public async Task LocationsAsync()
         {
             Stations stations = await this.testee.GetStationsAsync("Sursee,");
 
@@ -24,7 +24,15 @@
         }
 
         [Fact]
-        public async Task StationBoard()
+        public void Locations()
+        {
+            Stations stations = this.testee.GetStations("Sursee,");
+
+            stations.StationList.Should().HaveCount(10);
+        }
+
+        [Fact]
+        public async Task StationBoardAsync()
         {
             StationBoardRoot stationBoard = await this.testee.GetStationBoardAsync("Sursee", "8502007");
 
@@ -32,9 +40,25 @@
         }
 
         [Fact]
-        public async Task Connections()
+        public void StationBoard()
+        {
+            StationBoardRoot stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
+
+            stationBoard.Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task ConnectionsAsync()
         {
             Connections connections = await this.testee.GetConnectionsAsync("Sursee", "Luzern");
+
+            connections.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void Connections()
+        {
+            Connections connections = this.testee.GetConnections("Sursee", "Luzern");
 
             connections.Should().NotBeNull();
         }

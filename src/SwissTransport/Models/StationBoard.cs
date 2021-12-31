@@ -10,16 +10,16 @@ namespace SwissTransport.Models
         [JsonProperty("category")]
         public string Category { get; set; }
 
-        [JsonProperty("Number")] 
+        [JsonProperty("Number")]
         public string Number { get; set; }
 
         [JsonProperty("to")]
         public string To { get; set; }
 
-        [JsonProperty("operator")] 
+        [JsonProperty("operator")]
         public string Operator { get; set; }
 
-        [JsonProperty("stop")] 
+        [JsonProperty("stop")]
         public Stop Stop { get; set; }
     }
 }

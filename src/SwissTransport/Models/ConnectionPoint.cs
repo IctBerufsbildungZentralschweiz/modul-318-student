@@ -5,7 +5,7 @@ namespace SwissTransport.Models
 
     public class ConnectionPoint
     {
-        [JsonProperty("station")] 
+        [JsonProperty("station")]
         public Station Station { get; set; }
 
         public DateTime? Arrival { get; set; }

@@ -6,7 +6,7 @@ namespace SwissTransport.Models
 
     public class Connections
     {
-        [JsonProperty("connections")] 
+        [JsonProperty("connections")]
         public List<Connection> ConnectionList { get; set; }
     }
 }

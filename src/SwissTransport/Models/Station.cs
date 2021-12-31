@@ -4,7 +4,7 @@ namespace SwissTransport.Models
 
     public class Station
     {
-        [JsonProperty("id")] 
+        [JsonProperty("id")]
         public string Id { get; set; }
 
         [JsonProperty("name")]

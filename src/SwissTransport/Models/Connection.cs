@@ -4,13 +4,13 @@ namespace SwissTransport.Models
 
     public class Connection
     {
-        [JsonProperty("from")] 
+        [JsonProperty("from")]
         public ConnectionPoint From { get; set; }
 
-        [JsonProperty("to")] 
+        [JsonProperty("to")]
         public ConnectionPoint To { get; set; }
 
-        [JsonProperty("duration")] 
+        [JsonProperty("duration")]
         public string Duration { get; set; }
     }
 }

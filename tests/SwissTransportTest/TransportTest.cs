@@ -1,9 +1,9 @@
 ﻿namespace SwissTransport
 {
     using System.Threading.Tasks;
-    using Core;
     using FluentAssertions;
-    using Models;
+    using SwissTransport.Core;
+    using SwissTransport.Models;
     using Xunit;
 
     public class TransportTest

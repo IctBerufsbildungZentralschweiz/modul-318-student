@@ -5,7 +5,7 @@ namespace SwissTransport.Models
 
     public class Stop
     {
-        [JsonProperty("departure")] 
+        [JsonProperty("departure")]
         public DateTime Departure { get; set; }
     }
 }

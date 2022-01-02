@@ -1,18 +1,6 @@
-﻿namespace SwissTransport
+namespace SwissTransport.Models
 {
-    using System;
-    using System.Collections.Generic;
-
     using Newtonsoft.Json;
-
-    public class StationBoardRoot
-    {
-        [JsonProperty("Station")]
-        public Station Station { get; set; }
-
-        [JsonProperty("stationboard")]
-        public List<StationBoard> Entries { get; set; }
-    }
 
     public class StationBoard
     {
@@ -33,11 +21,5 @@
 
         [JsonProperty("stop")]
         public Stop Stop { get; set; }
-    }
-
-    public class Stop
-    {
-        [JsonProperty("departure")]
-        public DateTime Departure { get; set; }
     }
 }

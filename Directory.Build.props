@@ -1,0 +1,6 @@
+<Project>  
+    <PropertyGroup>
+        <CodeAnalysisRuleSet>../../rulesets/Source.ruleset</CodeAnalysisRuleSet>
+        <CodeAnalysisRuleSet Condition="$(MSBuildProjectName.EndsWith('Test'))">../../rulesets/Test.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+</Project>

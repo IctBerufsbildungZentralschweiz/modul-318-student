@@ -1,42 +1,66 @@
 ﻿namespace SwissTransport
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+    using System.Threading.Tasks;
+    using FluentAssertions;
     using SwissTransport.Core;
+    using SwissTransport.Models;
+    using Xunit;
 
-    /// <summary>
-    /// The Swiss Transport API tests.
-    /// </summary>
-    [TestClass]
     public class TransportTest
     {
-        private ITransport testee;
+        private readonly ITransport testee;
 
-        [TestMethod]
+        public TransportTest()
+        {
+            this.testee = new Transport();
+        }
+
+        [Fact]
+        public async Task LocationsAsync()
+        {
+            Stations stations = await this.testee.GetStationsAsync("Sursee,");
+
+            stations.StationList.Should().HaveCount(10);
+        }
+
+        [Fact]
         public void Locations()
         {
-            testee = new Transport();
-            var stations = this.testee.GetStations("Sursee,");
+            Stations stations = this.testee.GetStations("Sursee,");
 
-            Assert.AreEqual(10, stations.StationList.Count);
+            stations.StationList.Should().HaveCount(10);
         }
 
-        [TestMethod]
+        [Fact]
+        public async Task StationBoardAsync()
+        {
+            StationBoardRoot stationBoard = await this.testee.GetStationBoardAsync("Sursee", "8502007");
+
+            stationBoard.Should().NotBeNull();
+        }
+
+        [Fact]
         public void StationBoard()
         {
-            testee = new Transport();
-            var stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
+            StationBoardRoot stationBoard = this.testee.GetStationBoard("Sursee", "8502007");
 
-            Assert.IsNotNull(stationBoard);
+            stationBoard.Should().NotBeNull();
         }
 
-        [TestMethod]
+        [Fact]
+        public async Task ConnectionsAsync()
+        {
+            Connections connections = await this.testee.GetConnectionsAsync("Sursee", "Luzern");
+
+            connections.Should().NotBeNull();
+        }
+
+        [Fact]
         public void Connections()
         {
-            testee = new Transport();
-            var connections = this.testee.GetConnections("Sursee", "Luzern");
+            Connections connections = this.testee.GetConnections("Sursee", "Luzern");
 
-            Assert.IsNotNull(connections);
+            connections.Should().NotBeNull();
         }
     }
 }

@@ -12,7 +12,7 @@
 
         private readonly HttpClient httpClient = new HttpClient();
 
-        public async Task<Stations> GetStationsAsync(string query)
+        public Stations GetStations(string query)
         {
             if (string.IsNullOrEmpty(query))
             {
@@ -20,15 +20,10 @@
             }
 
             var uri = new Uri($"{WebApiHost}locations?query={query}");
-            return await this.GetObjectAsync<Stations>(uri);
+            return this.GetObject<Stations>(uri);
         }
 
-        public Stations GetStations(string query) =>
-            this.GetStationsAsync(query)
-                .GetAwaiter()
-                .GetResult();
-
-        public async Task<StationBoardRoot> GetStationBoardAsync(string station, string id)
+        public StationBoardRoot GetStationBoard(string station, string id)
         {
             if (string.IsNullOrEmpty(station))
             {
@@ -41,15 +36,10 @@
             }
 
             var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
-            return await this.GetObjectAsync<StationBoardRoot>(uri);
+            return this.GetObject<StationBoardRoot>(uri);
         }
 
-        public StationBoardRoot GetStationBoard(string station, string id) =>
-            this.GetStationBoardAsync(station, id)
-                .GetAwaiter()
-                .GetResult();
-
-        public async Task<Connections> GetConnectionsAsync(string fromStation, string toStation)
+        public Connections GetConnections(string fromStation, string toStation)
         {
             if (string.IsNullOrEmpty(fromStation))
             {
@@ -62,23 +52,24 @@
             }
 
             var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
-            return await this.GetObjectAsync<Connections>(uri);
+            return this.GetObject<Connections>(uri);
         }
-
-        public Connections GetConnections(string fromStation, string toStation) =>
-            this.GetConnectionsAsync(fromStation, toStation)
-                .GetAwaiter()
-                .GetResult();
 
         public void Dispose()
         {
             this.httpClient?.Dispose();
         }
 
-        private async Task<T> GetObjectAsync<T>(Uri uri)
+        private T GetObject<T>(Uri uri)
         {
-            HttpResponseMessage response = await this.httpClient.GetAsync(uri);
-            string content = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = this.httpClient
+                .GetAsync(uri)
+                .GetAwaiter()
+                .GetResult();
+            string content = response.Content
+                .ReadAsStringAsync()
+                .GetAwaiter()
+                .GetResult();
 
             return JsonConvert.DeserializeObject<T>(content);
         }

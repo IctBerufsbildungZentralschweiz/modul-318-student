@@ -8,9 +8,9 @@ namespace SwissTransport.Models
         public string Type { get; set; }
 
         [JsonProperty("x")]
-        public double XCoordinate { get; set; }
+        public double? XCoordinate { get; set; }
 
         [JsonProperty("y")]
-        public double YCoordinate { get; set; }
+        public double? YCoordinate { get; set; }
     }
 }

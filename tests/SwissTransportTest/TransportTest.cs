@@ -5,6 +5,7 @@
     using SwissTransport.Core;
     using SwissTransport.Models;
     using Xunit;
+    using System;
 
     public class TransportTest
     {
@@ -50,7 +51,7 @@
         [Fact]
         public async Task ConnectionsAsync()
         {
-            Connections connections = await this.testee.GetConnectionsAsync("Sursee", "Luzern");
+            Connections connections = await this.testee.GetConnectionsAsync("Sursee", "Luzern", Convert.ToDateTime("11:42:22"), Convert.ToDateTime("12.12.2002"));
 
             connections.Should().NotBeNull();
         }
@@ -58,7 +59,7 @@
         [Fact]
         public void Connections()
         {
-            Connections connections = this.testee.GetConnections("Sursee", "Luzern");
+            Connections connections = this.testee.GetConnections("Sursee", "Luzern", Convert.ToDateTime("12:34:43"), Convert.ToDateTime("24.12.2003"));
 
             connections.Should().NotBeNull();
         }

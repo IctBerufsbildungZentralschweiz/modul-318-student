@@ -1,11 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransport", "src\SwissTransport\SwissTransport.csproj", "{D0262178-A48F-4DE0-807B-E76B63E39421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwissTransport", "src\SwissTransport\SwissTransport.csproj", "{D0262178-A48F-4DE0-807B-E76B63E39421}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwissTransportTest", "tests\SwissTransportTest\SwissTransportTest.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwissTransportTest", "tests\SwissTransportTest\SwissTransportTest.csproj", "{959C6E54-5B1C-40F5-938A-C57B17451421}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Connection4You", "Connection4You\Connection4You.csproj", "{2DC2C4F3-8A3B-46CE-A673-C97496A0DDA6}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Connection4YouInstaller", "Connection4YouInstaller\Connection4YouInstaller.vdproj", "{8510332A-8D25-4755-8728-A8099EA485B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +25,17 @@ Global
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{959C6E54-5B1C-40F5-938A-C57B17451421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC2C4F3-8A3B-46CE-A673-C97496A0DDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC2C4F3-8A3B-46CE-A673-C97496A0DDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC2C4F3-8A3B-46CE-A673-C97496A0DDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC2C4F3-8A3B-46CE-A673-C97496A0DDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8510332A-8D25-4755-8728-A8099EA485B7}.Debug|Any CPU.ActiveCfg = Debug
+		{8510332A-8D25-4755-8728-A8099EA485B7}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B02EF1B4-1F5E-4F66-8730-FC38C2CDBBB8}
 	EndGlobalSection
 EndGlobal

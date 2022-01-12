@@ -20,11 +20,12 @@
             }
 
             var uri = new Uri($"{WebApiHost}locations?query={query}");
-            return await this.GetObjectAsync<Stations>(uri);
+            return await this.GetObjectAsync<Stations>(uri)
+                .ConfigureAwait(false);
         }
 
-        public Stations GetStations(string query) =>
-            this.GetStationsAsync(query)
+        public Stations GetStations(string query) => this.GetStationsAsync(query)
+                .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
 
@@ -41,15 +42,18 @@
             }
 
             var uri = new Uri($"{WebApiHost}stationboard?station={station}&id={id}");
-            return await this.GetObjectAsync<StationBoardRoot>(uri);
+            return await this
+                .GetObjectAsync<StationBoardRoot>(uri)
+                .ConfigureAwait(false);
         }
 
         public StationBoardRoot GetStationBoard(string station, string id) =>
             this.GetStationBoardAsync(station, id)
+                .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
 
-        public async Task<Connections> GetConnectionsAsync(string fromStation, string toStation)
+        public async Task<Connections> GetConnectionsAsync(string fromStation, string toStation, DateTime date, DateTime time)
         {
             if (string.IsNullOrEmpty(fromStation))
             {
@@ -61,12 +65,14 @@
                 throw new ArgumentNullException(nameof(toStation));
             }
 
-            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}");
-            return await this.GetObjectAsync<Connections>(uri);
+            var uri = new Uri($"{WebApiHost}connections?from={fromStation}&to={toStation}&date={date}&time={time}");
+            return await this.GetObjectAsync<Connections>(uri)
+                .ConfigureAwait(false);
         }
 
-        public Connections GetConnections(string fromStation, string toStation) =>
-            this.GetConnectionsAsync(fromStation, toStation)
+        public Connections GetConnections(string fromStation, string toStation, DateTime date, DateTime time) =>
+            this.GetConnectionsAsync(fromStation, toStation, date, time)
+                .ConfigureAwait(false)
                 .GetAwaiter()
                 .GetResult();
 
@@ -77,8 +83,12 @@
 
         private async Task<T> GetObjectAsync<T>(Uri uri)
         {
-            HttpResponseMessage response = await this.httpClient.GetAsync(uri);
-            string content = await response.Content.ReadAsStringAsync();
+            HttpResponseMessage response = await this.httpClient
+                .GetAsync(uri)
+                .ConfigureAwait(false);
+            string content = await response.Content
+                .ReadAsStringAsync()
+                .ConfigureAwait(false);
 
             return JsonConvert.DeserializeObject<T>(content);
         }
